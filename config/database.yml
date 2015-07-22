@@ -18,3 +18,8 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
+  database: heritage_cookbook_production
+  pool: 5
+  username: myapp
+  password: 
+  
