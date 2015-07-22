@@ -145,6 +145,11 @@ GEM
       activesupport (= 3.2.13)
       bundler (~> 1.0)
       railties (= 3.2.13)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.4)
+    rails_stdout_logging (0.0.3)
     railties (3.2.13)
       actionpack (= 3.2.13)
       activesupport (= 3.2.13)
@@ -219,6 +224,7 @@ DEPENDENCIES
   pg
   prawn (~> 1.0.0.rc2)
   rails (= 3.2.13)
+  rails_12factor
   ransack
   sass-rails (~> 3.2.3)
   sqlite3
