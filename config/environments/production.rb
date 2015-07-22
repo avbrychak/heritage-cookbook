@@ -26,7 +26,7 @@ CookbookHeritage::Application.configure do
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
-  # config.assets.css_compressor = :sass
+  config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
   config.assets.compile = false
@@ -76,15 +76,15 @@ CookbookHeritage::Application.configure do
 
   #Copied drom development
   # Use Gmail SMTP server in development
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   :address              => "smtp.gmail.com",
-  #   :port                 => 587,
-  #   :user_name            => 'heritage.cookbook.testing@gmail.com',
-  #   :password             => 'ESSGYtHC',
-  #   :authentication       => 'plain',
-  #   :enable_starttls_auto => true  
-  # }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => 'heritage.cookbook.testing@gmail.com',
+    :password             => 'ESSGYtHC',
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  
+  }
 
   config.after_initialize do
 
