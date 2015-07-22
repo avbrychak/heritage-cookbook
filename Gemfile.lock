@@ -123,6 +123,7 @@ GEM
       mime-types
       mimemagic (= 0.3.0)
     pdf-core (0.2.5)
+    pg (0.18.2)
     polyamorous (1.2.0)
       activerecord (>= 3.0)
     polyglot (0.3.5)
@@ -215,6 +216,7 @@ DEPENDENCIES
   mysql2
   oink
   paperclip
+  pg
   prawn (~> 1.0.0.rc2)
   rails (= 3.2.13)
   ransack

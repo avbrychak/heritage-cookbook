@@ -43,6 +43,6 @@ group :development, :test do
   gem 'debugger'
 end
 
-group :production
+group :production do
   gem 'pg'
 end
