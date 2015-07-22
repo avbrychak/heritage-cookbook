@@ -1,0 +1,47 @@
+Your cookbook has been re-ordered
+---------------------------------
+
+Dear <%= @user_name %>,
+
+Congratulations on your bestseller! 
+
+Your reprint file has just been sent to the printer and so it won't be long now. Hume Imaging will print your cookbook in 10-15 business days and then sent it out to you via FedEx Ground. 
+
+The following information is important - Please keep a copy of it. Print it out and keep it safely. 
+
+Reorder Receipt
+---------------
+
+This is to confirm the information just sent to the printer.
+
+Reorder Details:
+
+Order Number: #<%= @order.id %>
+Number of Books: <%= @order.number_of_books %>
+Printing Cost: $<%= @order.order_printing_cost %>
+Shipping Cost: <%= (@order.order_shipping_cost) ? "$#{@order.order_shipping_cost}" : "Unknown" %>
+Total Charged: $<%= @charged %>
+
+Please bill:
+
+<%= @order.bill_first_name %> <%= @order.bill_last_name %>
+<%= @order.bill_address %>
+<%= @order.bill_address2 %>
+<%= @order.bill_city %> <%= @order.bill_state %>,
+<%= @order.bill_country %> <%= @order.bill_zip %>
+<%= @order.bill_phone %>
+<%= @order.bill_email %>
+
+Please ship the books to:
+
+<%= @order.ship_first_name %> <%= @order.ship_last_name %>
+<%= @order.ship_address %>
+<%= @order.ship_address2 %>
+<%= @order.ship_city %> <%= @order.ship_state %>
+<%= @order.ship_country %> <%= @order.ship_zip %>
+<%= @order.ship_phone %>
+<%= @order.ship_email %>
+
+
+Thanks,
+Virginie

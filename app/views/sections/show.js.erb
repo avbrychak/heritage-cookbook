@@ -1,0 +1,25 @@
+var $selectedSection = $('#section_<%= @section.id %>');
+var $currentSection = $('.current-section');
+var $currentSectionContent = $currentSection.children(".section-content");
+var $selectedSectionContent = $selectedSection.children(".section-content");
+var $recipes = $selectedSectionContent.children(".recipes");
+var $extraPages = $selectedSectionContent.children(".extra-pages");
+
+// Stop the loader
+$selectedSection.find('.loader').hide();
+
+// Hide any previously selected section
+$currentSection.removeClass('current-section');
+$currentSectionContent.slideUp();
+
+// Display recipes and extra pages in the section content
+if ($currentSection.attr('id') != 'section_<%= @section.id %>') {
+  $selectedSection.addClass('current-section');
+  $recipes.html('<%= escape_javascript(render "recipes/list").html_safe %>');
+  $extraPages.html('<%= escape_javascript(render "extra_pages/list").html_safe %>');
+  $selectedSectionContent.slideDown();
+}
+
+// Enable modals and previews link after AJAX call
+enableModals();
+enablePreviewLinks();

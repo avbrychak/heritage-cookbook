@@ -1,0 +1,41 @@
+// Add an hidden field with the library image URL
+var existingHiddenField = $("input[name='<%= "libimage[#{@field}]" %>']");
+existingHiddenField.attr('value', '<%= @image.lib_image.url %>').trigger('change');
+
+// Replace the image preview by the selected image
+var existingPreviewImage = $('#<%= @field %>-preview img');
+if (existingPreviewImage.length) {
+  existingPreviewImage.attr("src", "<%= @image.lib_image.url(:preview) %>");
+} else {
+  $('<img>').attr({
+    alt: "<%= @field %>",
+    src: "<%= @image.lib_image.url(:preview) %>"
+  }).appendTo('#<%= @field %>-preview .thumb');
+}
+
+// Replace the image preview in the recipe and extra page form
+var $recipeForm = $("#form-image-thumb");
+if ($recipeForm.length) {
+  var $existingFormPreviewImage = $recipeForm.find('img');
+  if ($existingFormPreviewImage.length) {
+    $existingFormPreviewImage.attr("src", "<%= @image.lib_image.url(:preview) %>");
+  } else {
+    $('<img>').attr({
+      alt: "<%= @field %>",
+      src: "<%= @image.lib_image.url(:preview) %>"
+    }).appendTo('#form-image-thumb .thumb');
+  }
+}
+
+// Remove the image library area and display the new thumb
+$("#<%= "#{@field}-image-library-area" %>").slideUp().html("");
+$('#<%= @field %>-preview .thumb').slideDown();
+
+// Close the modal if exist
+$(".close-modal").click()
+
+// Modify the upload button text if exist
+$(".photo-button").text("Modify my photo")
+
+// Show the grayscale option
+$(".grayscale").slideDown()

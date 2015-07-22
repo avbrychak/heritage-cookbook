@@ -1,0 +1,12 @@
+%ul#cookbooks
+  - cookbooks.each do |cookbook|
+    %li.cookbook{class: (current_cookbook && current_cookbook.id == cookbook.id) ? "current" : nil, title: (display_cookbook_author) ? "#{cookbook.owner.name}'s #{cookbook.title}" : cookbook.title}
+      .template-thumb
+        = link_to image_tag((cookbook.template) ? cookbook.template.thumbnail_image : "template_placeholder.gif"), select_cookbook_path(cookbook.id)
+        .note= cookbook.title
+  - if display_new_cookbook_button
+    %li.cookbook
+      .template-thumb
+        %a#create-a-cookbook-button{href: new_cookbook_path, alt: "Create a new cookbook"}
+          #plus +
+          New Cookbook

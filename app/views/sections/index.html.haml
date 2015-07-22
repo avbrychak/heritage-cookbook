@@ -1,0 +1,42 @@
+- content_for :page_title, "Create sections for your book"
+- content_for :headline, "Create sections for your book"
+- content_for :info_panel, render("info_panels/sections")
+
+#cookbook-pages-number.notice-color.hidden
+  %p
+    = "Number of pages: "
+    %span#num-pages{"data-url" => count_page_cookbook_url(current_cookbook)}
+    = "/"
+    %span#binding-pages= current_cookbook.book_binding.max_number_of_pages
+  %p.note
+
+= link_to "Add Section", new_section_path, class: "button orange", id: "add-section-button"
+= link_to "$ Check my Book price", check_price_cookbook_path(current_cookbook), class: "button blue", id: "check-book-price-button"
+
+%ul#sections{'data-sort-url' => sort_sections_url}
+  - @sections.each do |section|
+    %li.section{id: "section_#{section.id}"}
+      .section-bar
+        %h3
+          = link_to "#{section.name} (#{section.recipes.size + section.extra_pages.size})", section_path(section.id), remote: true
+          %span.loader= image_tag "loader.gif"
+        %ul.actions
+          - if !user_is_contributor?
+            %li
+              = link_to "", edit_section_path(section.id), title: "Edit", class: "picto write"
+          %li
+            = link_to_preview "", preview_section_path(section), class: "picto preview"
+          - if !user_is_contributor?
+            %li
+              = link_to "", section_path(section.id), title: "Delete", class: "picto delete", method: :delete, confirm: "Are you sure ?"
+            %li
+              .picto.move.handle{title: "Move"}
+        %hr
+      .section-content.hidden
+        .recipes
+        .extra-pages
+        = link_to "Add Recipe", new_section_recipe_path(section), class: "button blue"
+        = link_to "Add Extra Page", new_section_extra_page_path(section), class: "button blue"
+        - if !user_is_contributor?
+          = link_to "Customize Divider", edit_section_path(section), class: "button blue"
+        %hr

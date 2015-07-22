@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title><%= yield :headline %></title>
+    <link type="text/css" media="screen" rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans"/>
+    <link type="text/css" media="screen" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Merriweather"/>
+  </head>
+  <body>
+    <table cellpadding="0" cellspacing="0" border="0" width="100%">
+      <tr>
+        <td>
+          <table cellspacing="0" cellpadding="0" border="0" align="center" style="border-top-style: dashed; border-top-width: 2px; border-top-color: #30bbde;">
+            <tr>
+              <td width="100px" style="padding-left: 10px; padding-right: 10px; padding-top: 1em;">
+                <img src="http://my.heritagecookbook.com/assets/heritage-cookbook-logo.png" alt="Heritage Cookbook Logo" width="97px" height="97px" style="display: block;"/>
+              </td>
+              <td width="460px" style="color: #fdb514; padding-left: 10px; padding-right: 10px; padding-top: 1em;">
+                <h1 style="font-family: 'Merriweather', serif; font-weight: 400; padding: 0;"><%= yield :headline %></h1>
+              </td>
+            </tr>
+            <tr>
+              <td colspan="2" width="568px" style="padding-left: 10px; padding-right: 10px;">
+                <div style="font-family: 'PT Sans', sans-serif; color: #565656;"><%= yield %></div>
+                <br/>
+              </td>
+            </tr>
+          </table>
+          <table cellspacing="0" cellpadding="0" border="0" align="center" style="border-top-style: dashed; border-top-width: 2px; border-top-color: #30bbde;">
+            <tr>
+              <td colspan="2" width="580px" style="font-size: 0.8em; padding-left: 10px; padding-right: 10px;">
+                <p style="font-family: 'PT Sans', sans-serif; color: #565656;">© <%= Time.now.year %> Heritage Cookbook. All rights reserved.</p>
+              </td>
+            </tr>
+          </table>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

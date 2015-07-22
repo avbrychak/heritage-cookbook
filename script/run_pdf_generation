@@ -1,0 +1,21 @@
+#!/bin/bash
+#
+# Process paid order wainting for final PDF generation
+
+env=${1-production}
+app_home="/srv/app/heritage"
+app_dir="$app_home/heritage-cookbook"
+date=`date`
+cmd="bundle exec rake heritage:generate_final_pdfs --trace"
+log_file="$app_dir/log/cron.log"
+
+# Load rbenv binaries
+export PATH="$app_home/.rbenv/shims:$PATH"
+
+cd $app_dir
+echo "------------------------------------------------------------------" >> $log_file
+echo "// $date - Generate final PDF ($env)" >> $log_file
+echo "------------------------------------------------------------------" >> $log_file
+RACK_ENV=$1 RAILS_ENV=$1 SKIP_IMAGE_NOT_FOUND=true nice -n 10 $cmd &>> $log_file
+echo "------------------------------------------------------------------" >> $log_file
+echo "" >> $log_file

@@ -1,0 +1,130 @@
+- content_for :page_title, "Finalize your order"
+- content_for :headline, "Finalize your order"
+- content_for :info_panel, render("info_panels/order_confirmation")
+
+%p.note Please verify that the information below is correct. If it is correct, click the button to be brought to our payment gateway where you will be able to pay with Visa and Mastercard credit cards (however not with debit cards).
+
+%h3 Cookbook pricing details
+
+- if @order.is_reorder?
+  = render "reorder_cookbook_price_informations"
+- else
+  = render "cookbook_price_informations"
+
+%h3 Billing information
+
+%table.order
+  %tr
+    %th Name:
+    %td= "#{@order.bill_first_name} #{@order.bill_last_name}"
+  %tr
+    %th Address:
+    %td 
+      = "#{@order.bill_address} #{@order.bill_address2}"
+      %br
+      = "#{@order.bill_city}, #{@order.bill_state}, #{@order.bill_zip}"
+      %br
+      = @order.bill_country
+  %tr
+    %th Phone:
+    %td= @order.bill_phone
+  %tr
+    %th Email:
+    %td= @order.bill_email
+
+%h3 Shipping information
+
+%table.order
+  %tr
+    %th Name:
+    %td= "#{@order.ship_first_name} #{@order.ship_last_name}"
+  %tr
+    %th Address:
+    %td 
+      = "#{@order.ship_address} #{@order.ship_address2}"
+      %br
+      = "#{@order.ship_city}, #{@order.ship_state}, #{@order.ship_zip}"
+      %br
+      = @order.ship_country
+  %tr
+    %th Phone:
+    %td= @order.ship_phone
+  %tr
+    %th Email:
+    %td= @order.ship_email
+
+%h3 Special instructions
+
+- if @order.notes.to_s.empty? && @order.delivery_time.to_s.empty?
+  %p No special instructions.
+- else
+  %p= @order.notes
+  %p= @order.delivery_time
+
+= form_tag "https://www.beanstream.com/scripts/payment/payment.asp" do
+  = hidden_field_tag :merchant_id, BEANSTREAM_MERCHANT_ID
+  = hidden_field_tag :trnOrderNumber, @order.id
+  = hidden_field_tag :ref1, @order.id
+  = hidden_field_tag :declinedPage, declined_order_url(@order)
+  = hidden_field_tag :approvedPage, approved_order_url(@order)
+  = hidden_field_tag :trnAmount, "%.2f" % @order.total_cost
+  = hidden_field_tag :ordName, "#{@order.bill_first_name} #{@order.bill_last_name}"
+  = hidden_field_tag :ordAddress1, @order.bill_address
+  = hidden_field_tag :ordAddress2, @order.bill_address2
+  = hidden_field_tag :ordCity, @order.bill_city
+  = hidden_field_tag :ordProvince, @order.bill_state
+  = hidden_field_tag :ordPostalCode, @order.bill_zip
+  = hidden_field_tag :ordCountry, Order::COUNTRIES.key(@order.bill_country)
+  = hidden_field_tag :ordPhoneNumber, @order.bill_phone
+  = hidden_field_tag :ordEmailAddress, @order.bill_email
+  = hidden_field_tag :shipName, "#{@order.ship_first_name} #{@order.bill_last_name}"
+  = hidden_field_tag :shipAddress1, @order.ship_address
+  = hidden_field_tag :shipAddress2, @order.ship_address2
+  = hidden_field_tag :shipCity, @order.ship_city
+  = hidden_field_tag :shipProvince, @order.bill_state
+  = hidden_field_tag :shipPostalCode, @order.ship_zip
+  = hidden_field_tag :shipCountry, Order::COUNTRIES.key(@order.ship_country)
+  = hidden_field_tag :shipPhoneNumber, @order.ship_phone
+  = hidden_field_tag :shipEmailAddress, @order.ship_email
+
+  = submit_tag "Continue to payment gateway", class: "orange"
+  = link_to "Go back and edit your information", edit_customer_details_order_path(@order), class: "button blue"
+
+/ # Display a notice box with testing Beanstream credentials
+- if Rails.env.development?
+  .staging
+    %h5 Testing approved Beanstream card numbers
+    %ul.note
+      %li
+        %strong name on card:
+        your name
+      %li
+        %strong credit card type:
+        VISA
+      %li 
+        %strong credit card number: 
+        4030000010001234
+      %li 
+        %strong CVD/CVV
+        123
+      %li 
+        %strong expiration date: 
+        random date in the future
+    %hr
+    %h5 Testing declined Beanstream card numbers
+    %ul.note
+      %li
+        %strong name on card:
+        your name
+      %li
+        %strong credit card type:
+        VISA
+      %li 
+        %strong credit card number: 
+        4003050500040005
+      %li 
+        %strong CVD/CVV
+        123
+      %li 
+        %strong expiration date: 
+        random date in the future

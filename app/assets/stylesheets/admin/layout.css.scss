@@ -1,0 +1,23 @@
+@import "config";
+
+#admin_menu {
+  background-color: white;
+  border: 1px solid $light-gray;
+  border-bottom: 0;
+  overflow: hidden;
+
+  li {
+    display: block;
+    float: left;
+    padding: 0.4em;
+    border-right: 1px solid $light-gray;
+
+    a {
+      color: $gray;
+    }
+
+    &:hover {
+      background-color: $light-blue;
+    }
+  }
+}

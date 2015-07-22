@@ -1,0 +1,40 @@
+@import "config";
+
+#accounts-upgrade {
+  
+  #plans {
+    margin-bottom: 1em;
+  }
+}
+
+#accounts-new {
+
+  #terms_of_service_review {
+    display: inline-block;
+    width: 60%;
+  }
+
+  #terms-of-service {
+  	max-width: 800px;
+    height: 600px;
+    overflow: auto;
+    border: 1px solid grey;
+    padding: 1em;
+    text-align: left;
+    margin-bottom: 1em;
+
+    h1, h2, h3, h4, h5, h5, p {
+      color: $gray;
+      font-family: serif;
+      margin: 0.5em 0;
+      font-weight: bold;
+    }
+
+    p {
+      display: block;
+      width: 100%;
+      max-width: none;
+      font-weight: normal;
+    }
+  }
+}

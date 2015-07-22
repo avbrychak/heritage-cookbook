@@ -1,0 +1,14 @@
+- content_for :page_title, "Admin panel / Image Library"
+- content_for :headline, "Admin panel / Image Library"
+
+%h3 Add a new image
+
+#form-errors= errors_for @image if @image.errors.any?
+
+= form_for([:admin, @image], url: admin_image_library_index_path) do |f|
+  .one-line-controls
+    = f.file_field :lib_image
+  .one-line-controls
+    = label_tag :tag_names, "Tags"
+    = text_field_tag :tag_names
+  = f.submit "Add", class: "button blue"

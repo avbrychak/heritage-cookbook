@@ -1,0 +1,148 @@
+@import "config";
+
+$template-description-thumb-size: 25%;
+$templates-thumb-area-width: 122px;
+$templates-thumb-area-height: 240px;
+
+#templates-index {
+
+  #bindings {
+    text-align: center;
+
+    li {
+      display: inline-block;
+      padding: 0.2em;
+
+      input {
+        margin: auto;
+        float: none;
+      }
+    }
+  }
+
+  #templates-description {
+    min-height: 12em;
+    margin-bottom: 1em;
+    background-color: white;
+
+    .template {
+      overflow: hidden;
+
+      .general {
+        overflow: hidden;
+
+        .left-part {
+          display: inline-block;
+          vertical-align: top;
+          float: left;
+          width: $template-description-thumb-size;
+          text-align: center;
+
+          .thumb {
+            margin-top: 0.2em;
+            padding: 0;
+
+            img {
+              border: 1px solid $light-gray;
+            }
+          }
+        }
+
+        .right-part {
+          margin-left: $template-description-thumb-size;
+
+          .name {
+            @include reset-margins;
+          }
+
+          .description {
+            @include reset-margins;
+            margin-bottom: 0.5em;
+          }
+
+          .features {
+
+            li {
+              display: inline-block;
+              margin-right: 1em;
+              color: $blue;
+            }
+          }
+        }
+      }
+
+      .thumbs {
+        overflow: hidden;
+        margin-top: 1em;
+
+        .thumb {
+          width: $templates-thumb-area-width;
+          float: left;
+          margin: 0.98em;
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  #templates {
+    overflow: hidden;
+
+    .template {
+      display: block;
+      float: left;
+      margin: 0.98em;
+      text-align: center;
+      width: $templates-thumb-area-width;
+      height: $templates-thumb-area-height;
+      overflow: hidden;
+
+      .thumb {
+        padding: 0;
+	      cursor: pointer;
+      }
+
+      .type {
+        font-size: 0.8em;
+      }
+    }
+  }
+}
+
+#templates-index {
+
+  #designs-list {
+    text-align: center;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: block;
+      float: left;
+
+      a {
+        display: block;
+      }
+
+      img {
+        border: 1px solid black;
+      }
+      margin: 0.2em;
+    }
+  }
+
+  .design-description {
+    overflow: hidden;
+    
+    .thumb {
+      width: 30%;
+      float: left;
+
+      img {
+        display: block;
+        margin: auto;
+      }
+    }
+  }  
+}

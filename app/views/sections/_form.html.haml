@@ -1,0 +1,16 @@
+#form-errors= errors_for @section if @section.errors.any?
+
+= form_for @section do |f|
+  .control-group
+    = f.label :name, "Name:"
+    = f.text_field :name
+  - if current_cookbook.template.section_user_image_y
+    .control-group
+      .align-on-labels
+      = f.paperclip_attachment :photo, image_library: true
+      = hidden_field_tag "libimage[photo]"
+  .control-group
+    .align-on-labels
+    = link_to "DONE", sections_path, class: "button orange done-button alert-on-form-errors"
+    - if action_name == "new"
+      = link_to "Cancel", section_path(@section), method: :delete, class: "button orange"

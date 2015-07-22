@@ -1,0 +1,30 @@
+= render "info_panels/here_to_help"
+
+#info-text
+  %h4 Let’s get started
+
+  %h5 Your membership
+  %p.note 
+    If you’ve almost finished your cookbook and need an extra day or two added to your membership, please 
+    = mail_to CONTACT_EMAIL, "email me"
+    = ".  I am happy to give you a few days free of charge!"
+    %br
+    You can add time to your membership by clicking “add time”
+
+  %h5 Working on a cookbook
+  %p.note 
+    This page is your “Home Base”. From here, you can:
+    %ol.note
+      %li create a new book
+      %li edit an existing cookbook by clicking on its cover
+      %li access recipes in the books you are contributing to (other people’s books that you have been invited to work on)
+      %li re-order a book you have already ordered
+
+  %h5 Getting back to your bookshelf
+  %p.note To get back to your bookshelf at any time, click the "my books" link at the top right of the screen.
+
+  %h4 FAQs
+  %p.note 
+    Instructions for the page you’re working on are here. If you have more questions, click the 
+    = link_to "FAQ", faq_path
+    at the top of the page.

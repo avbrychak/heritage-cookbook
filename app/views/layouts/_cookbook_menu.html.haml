@@ -1,0 +1,6 @@
+- if current_cookbook && !["cookbooks#index"].include?("#{controller_name}##{action_name}") && controller_name != "accounts"
+  %ol.tabs#cookbook-menu
+    %li{class: (user_is_contributor? ? "disabled" : "") + ((current_cookbook_step == :design) ? "selected" : "")}= link_to "1. Design", templates_path
+    %li{class: (user_is_contributor? ? "disabled" : "") + ((current_cookbook_step == :contributors) ? "selected" : "")}= link_to "2. Contributors", contributors_path
+    %li{class: ((current_cookbook_step == :recipes) ? "selected" : "")}= link_to "3. Recipes", sections_path
+    %li{class: ((current_cookbook_step == :preview_and_order) ? "selected" : "")}= link_to "4. Preview and Order", new_order_path

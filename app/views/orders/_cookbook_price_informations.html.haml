@@ -1,0 +1,42 @@
+%table.order.pages
+  %tr
+    %th 
+      %strong Book Binding
+    %td
+      %strong= @cookbook.book_binding
+  %tr
+    %th Cover pages (front and back)
+    %td 2 pages
+  %tr
+    %th Color pages
+    %td= "#{@cookbook.num_color_pages} pages"
+  %tr
+    %th Black and White pages
+    %td= "#{@cookbook.num_bw_pages} pages"
+  %tr
+    %th 
+      %strong Total pages
+    %td 
+      %strong= "#{@cookbook.num_pages} pages"
+  %tr
+    %th 
+      %strong  Number of books
+    %td 
+      %strong= "#{@order.number_of_books} books"
+%table.order
+  %tr
+    %th Printing cost
+    %td= "$#{@order.printing_cost}"
+  %tr
+    %th Shipping cost
+    %td= (@order.shipping_cost) ? "$#{@order.shipping_cost}" : mail_to(CONTACT_EMAIL, "Please email us", subject: "Shipping cost for order ##{@order.id}")
+  %tr
+    %th 
+      %strong Price per book
+    %td
+      %strong= "$#{'%.2f' % (@order.total_cost.to_f / @order.number_of_books).round(2)}"
+  %tr
+    %th 
+      %strong Total cost
+    %td
+      %strong= "$#{@order.total_cost}"

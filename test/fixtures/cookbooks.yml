@@ -1,0 +1,140 @@
+brian_smith_first_cookbook:
+  grayscale: 0
+  user_image_file_name: ''
+  intro_image_file_name: ''
+  user_cover_image_file_name: ''
+  user_inner_cover_image_file_name: ''
+  inner_cover_image_grayscale: 0
+  title: My Cookbook
+  tag_line_1: 'My Cookbook'
+  tag_line_2: 'By Brian Smith!'
+  template_id: 6
+  intro_text: 'Hello Introduction !'
+  center_introduction: 0
+  intro_type: 0
+  tag_line_4: ''
+  intro_image_grayscale: 0
+  expired: 0
+  updated_on: 2008-05-01 11:12:00AM
+  show_index: true
+  book_binding_id: 1
+
+brian_smith_second_cookbook:
+  grayscale: 0
+  user_image_file_name: ''
+  intro_image_file_name: ''
+  user_cover_image_file_name: ''
+  user_inner_cover_image_file_name: ''
+  inner_cover_image_grayscale: 0
+  title: My Second Cookbook
+  tag_line_1: 'My Second Cookbook'
+  tag_line_2: 'By Brian Smith!'
+  intro_text: 'Hello Introduction ! Oh Hey !'
+  center_introduction: 0
+  intro_type: 0
+  tag_line_4: ''
+  intro_image_grayscale: 0
+  expired: 0
+  updated_on: 2013-05-01 11:12:00AM
+  show_index: true
+  book_binding_id: 1
+
+brian_smith_third_cookbook:
+  grayscale: 0
+  user_image_file_name: ''
+  intro_image_file_name: ''
+  user_cover_image_file_name: ''
+  user_inner_cover_image_file_name: ''
+  inner_cover_image_grayscale: 0
+  title: My Second Cookbook
+  tag_line_1: 'My Second Cookbook'
+  tag_line_2: 'By Brian Smith!'
+  intro_text: 'Hello Introduction ! Oh Hey !'
+  center_introduction: 0
+  intro_type: 0
+  tag_line_4: ''
+  intro_image_grayscale: 0
+  expired: 0
+  updated_on: 2013-05-01 11:12:00AM
+  show_index: true
+  is_locked_for_printing: true
+  book_binding_id: 1
+
+john_smith_first_cookbook:
+  grayscale: 0
+  user_image_file_name: ''
+  intro_image_file_name: ''
+  user_cover_image_file_name: ''
+  user_inner_cover_image_file_name: ''
+  inner_cover_image_grayscale: 0
+  title: My Cookbook
+  tag_line_1: 'My Cookbook'
+  tag_line_2: 'By John Smith!'
+  template_id: 6
+  intro_text: 'Hello Introduction !'
+  center_introduction: 0
+  intro_type: 0
+  tag_line_4: ''
+  intro_image_grayscale: 0
+  expired: 0
+  updated_on: 2008-05-01 11:12:00AM
+  show_index: true
+  book_binding_id: 1
+
+will_smith_first_cookbook:
+  grayscale: 0
+  user_image_file_name: ''
+  intro_image_file_name: ''
+  user_cover_image_file_name: ''
+  user_inner_cover_image_file_name: ''
+  inner_cover_image_grayscale: 0
+  title: My Cookbook
+  tag_line_1: 'My Cookbook'
+  tag_line_2: 'By Will Smith!'
+  template_id: 6
+  intro_text: 'Hello Introduction !'
+  center_introduction: 0
+  intro_type: 0
+  tag_line_4: ''
+  intro_image_grayscale: 0
+  expired: 0
+  updated_on: 2008-05-01 11:12:00AM
+  show_index: true
+  book_binding_id: 1
+
+introduction_with_text:
+  title: Introduction with Text
+  center_introduction: 0
+  intro_text: <%= ActiveSupport::TestCase.lorem %>
+  template_id: 6
+  book_binding_id: 1
+
+introduction_without_text:
+  title: Introduction without Text
+  center_introduction: 0
+  template_id: 6
+  book_binding_id: 1
+
+one_single_page_recipe_single_column:
+  title: Simple column recipe
+  template_id: 6
+  book_binding_id: 1
+
+oleg_cookbook:
+  grayscale: 0
+  title: My Cookbook
+  tag_line_1: 'Testing cookbook'
+  template_id: 1
+  intro_text: 'Hello Introduction !'
+  tag_line_2: 'Best cookbook ever!'
+  id: 696636
+  tag_line_3: 'Hello'
+  intro_type: 0
+  inner_cover_image_grayscale: 0
+  tag_line_4: 'You'
+  center_introduction: 0
+  intro_image_grayscale: 0
+  expired: 0
+  updated_on: 2008-05-01 11:12:00AM
+  show_index: true
+  book_binding_id: 1

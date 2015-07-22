@@ -1,0 +1,11 @@
+.preview-modal
+  %h3= (title && !title.empty?) ? title : "Preview"
+    
+  %p.loader 
+    Your page is loading...
+    %span= image_tag "loader.gif"
+
+  %p.note.center
+    It may take a few minutes to load your PDF file. Your file will open once it's loaded.
+
+  = link_to "Close", "#", class: 'close-modal button blue'

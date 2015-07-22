@@ -1,0 +1,22 @@
+<cite>from <%= @author_display_name %>.'s book, <%= @author_city %>, <%= @author_state %></cite>
+
+<%- if @ingredients && !@ingredients.empty? %>
+<h2>Ingredients</h2>
+<p><%= @ingredients %></p>
+<%- end %>
+
+<%- if @instructions && !@instructions.empty? %>
+<h2>Preparation instructions</h2>
+<p><%= @instructions %></p>
+<%- end %>
+
+<%- if @tags && @tags.any? %>
+tags: <%= @tags.join(", ") %>
+<%- end %>
+
+<p>
+  <em>Submitted by: </em> <%= @contributor_display_name %>
+</p>
+
+contributor_email: <%= @contributor_email %>
+author_email: <%= @author_email %>

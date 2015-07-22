@@ -1,0 +1,27 @@
+- content_for :page_title, "Preview and order your book"
+- content_for :headline, "Preview and order your book"
+- content_for :info_panel, render("info_panels/order")
+
+#cookbook-preview
+  %p Please preview the whole cookbook before placing an order:
+  %p.note The file we print is the file you preview, so make sure you have it the way you want it. You won’t be able to make any changes after you’ve ordered it.
+
+  = link_to_preview "Preview my cookbook", preview_cookbook_url(@cookbook), class: "button blue preview-cookbook"
+
+  #preview-confirm-checkbox
+    = label_tag :preview do
+      = check_box_tag :preview, 1
+      I have previewed my book and approve it the way it is. I am ready to order this file.
+      Proceed to shipping details now.
+
+- if !user_is_contributor?
+
+  #cookbook-price-calculator.hidden
+
+    %hr
+
+    %h3 Enter your quantity and shipping details
+
+    = render "form"
+
+    #cookbook-order-grid

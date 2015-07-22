@@ -1,0 +1,23 @@
+- content_for :page_title, "Finalize your order"
+- content_for :headline, "Finalize your order"
+- content_for :info_panel, render("info_panels/customer_details")
+
+= errors_for @order if @order.errors.any?
+
+= form_for @order, url: update_customer_details_order_path(@order) do |f|
+
+  = render "billing_shipping_form_controls.html", f: f
+
+  %h3 Special instructions
+
+  .control-group
+    = f.label :notes, "If you have any special instructions for this order, such as shipping or printing, please enter them here:"
+    = f.text_area :notes
+  .control-group
+    = f.label :delivery_time, "Normal printing time for cookbooks is 2-3 weeks. If possible, I would like to have my books by:"
+    = f.text_area :delivery_time
+
+  .control-group
+    .align-on-labels
+    = f.submit "Confirm your order", class: "orange"
+    = link_to "Cancel", :back, class: "button blue"

@@ -1,0 +1,45 @@
+- content_for :page_title, "Invite helpers to work with you"
+- content_for :headline, "You don’t have to do it alone!"
+- content_for :info_panel, render("info_panels/contributors")
+
+
+%h3 Invite helpers to work with you
+
+= errors_for @contributor if @contributor.errors.any?
+
+= form_for @contributor, url: contributors_url do |f|
+  .control-group
+    = f.label :first_name, "First name:"
+    = f.text_field :first_name
+  .control-group
+    = f.label :last_name, "Last name:"
+    = f.text_field :last_name
+  .control-group
+    = f.label :email, "Email address:"
+    = f.text_field :email
+  .control-group
+    = f.label :contributor_message, "Enter a brief message that will be emailed to this person:"
+    = f.text_area :contributor_message
+  .control-group
+    .align-on-labels
+    = f.submit "Invite", class: 'blue'
+
+
+- if @contributors.count > 0
+  %hr
+  %h3= "Current contributors to your cookbook (#{@contributors.count})"
+
+  %table.contributors
+    - @contributors.each do |contributor|
+      %tr.contributor
+        %td
+          .name<
+            = "#{contributor.name}"
+            %span.email= mail_to contributor.email, "(#{contributor.email})"
+          .actions
+            = link_to "resend invitation", resend_invite_contributor_path(contributor.id)
+            |
+            = link_to "remove", contributor_path(contributor.id), method: :delete
+        %td.contributed-recipes= "Contributed recipes: #{current_cookbook.num_recipes_contributed_by(contributor.id)}"
+
+= link_to "Next", sections_path, class: "button orange"

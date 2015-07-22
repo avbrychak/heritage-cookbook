@@ -1,0 +1,7 @@
+%h3 Add an image
+
+.one-line-control
+  = f.paperclip_attachment :photo, image_library: true
+  = hidden_field_tag "libimage[photo]"
+
+= link_to "DONE", "#", class: 'close-modal button blue'

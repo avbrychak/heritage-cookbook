@@ -1,0 +1,68 @@
+#new_recipe, .edit_recipe {
+
+  #recipe_ingredient_list, #recipe_ingredient_list_2 {
+    width: 192px;
+    height: 280px;
+  }
+
+  #recipe_submitted_by_title {
+    width: 140px;
+  }
+  #recipe_submitted_by {
+    width: 256px;
+  }
+
+  #recipe_instructions {
+  	height: 500px;
+  }
+
+  .recipe-column-group {
+    overflow: hidden;
+    display: inline-block;
+    width: 66%;
+
+    .column {
+      width: 50%;
+      display: block;
+      float: left;
+      
+      label {
+        display: block;
+        float: left;
+        width: 80%;
+      }
+
+
+    }
+  }
+
+  #recipe-page-layout {
+    display: inline-block;
+    vertical-align: top;
+    overflow: hidden;
+    width: 66%;
+
+    .radio {
+      padding: 0.2em;
+      float: left;
+      width: 48%;
+
+      label, input, p {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+
+        img {
+          max-width: 100%;
+          height: 150px;
+        }
+      }
+
+      p {
+        margin-bottom: 0.6em;
+        cursor: auto;
+      }
+    }
+  }
+}

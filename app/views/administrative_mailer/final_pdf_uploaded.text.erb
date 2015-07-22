@@ -1,0 +1,47 @@
+Good morning,
+
+This is just an automated note to let you know that a PDF has been generated and uploaded to Hume. The details are as follows:
+
+
+------------------
+Billing Information
+------------------
+Name: <%=@order.bill_first_name + ' ' + @order.bill_last_name %>
+Address: 
+  <%=@order.bill_address %> 
+  <%=@order.bill_address2 %>
+  <%=@order.bill_city %>, <%=@order.bill_state %>, <%=@order.bill_zip %>
+  <%=@order.bill_country %>
+Phone: <%=@order.bill_phone %>
+Email: <%=@order.bill_email %>
+
+
+------------------
+Order Details:
+------------------
+PDF Filename: <%= @filename %>
+Cookbook title: <%= @order.cookbook.title %>, Version: <%= @order.version %>
+Binding: <%= @order.cookbook.book_binding %>
+Number of books: <%=@order.number_of_books %>
+Total number of pages: <%= @order.cookbook.num_pages %>
+Number of colour pages: <%= @order.cookbook.num_color_pages %>
+Number of black pages: <%= @order.cookbook.num_bw_pages %>
+Printing Price: <%= @order.order_printing_cost ? ("$%.2f" % @order.order_printing_cost) : 'N/A'%>
+Shipping Price: <%= @order.order_shipping_cost ? ("$%.2f" % @order.order_shipping_cost) : 'N/A' %>
+Total Price: <%= @order.order_total_cost ? "$%.2f" % @order.order_total_cost : 'N/A' %>
+Paid on: <%=@order.paid_on %>
+Beanstream Payment: <%= @order.beanstream_cost.is_a?(Float) ? "$%.2f" % @order.beanstream_cost : 'N/A' %>
+Customer Notes: <%=@order.notes%>
+Expected Delivery: <%=@order.delivery_time%>
+
+------------------
+Shipping Information
+------------------
+Name: <%=@order.ship_first_name %> <%=@order.ship_last_name %>
+Address: 
+  <%=@order.ship_address %> 
+  <%=@order.ship_address2 %>
+  <%=@order.ship_city %>, <%=@order.ship_state %> <%=@order.ship_zip %>
+  <%=@order.ship_country %>
+Phone: <%=@order.ship_phone %>
+Email: <%=@order.ship_email %>

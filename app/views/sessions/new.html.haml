@@ -1,0 +1,19 @@
+- content_for :page_title, "Log in to your account"
+- content_for :headline, "Log in to your account"
+
+%h3.center Authentication
+
+= form_tag sessions_path do
+  .control-group
+    = label_tag :email
+    = text_field_tag :email, params[:email]
+  .control-group
+    = label_tag :password
+    = password_field_tag :password
+  .control-group
+    .align-on-labels
+    = link_to "Forgot your password?", recover_password_path
+  .control-group
+    .align-on-labels
+    = submit_tag "Log In", class: "blue"
+    = link_to "Sign up", signup_path, class: "button orange"

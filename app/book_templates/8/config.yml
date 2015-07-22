@@ -1,0 +1,38 @@
+# General
+book_font: "Times"
+book_color: "000000"
+
+# Cover
+cover_title_y: 0
+cover_text_padding_right:
+cover_title_font_size:
+cover_title_font_style: ""
+
+has_image: 0
+cover_user_image_y:
+cover_user_image_max_height:
+cover_user_image_max_width:
+cover_color:
+
+tag_lines: 0
+max_tag_line_1_length:
+max_tag_line_2_length:
+max_tag_line_3_length:
+max_tag_line_4_length:
+
+# Inner cover
+inner_cover_title_y:
+inner_cover_font_size:
+show_book_title_on_inner_cover:
+
+# Sections
+header_color:
+section_header_y: 5.511
+headers_font_size: 20
+headers_font_style: "I"
+section_user_image_y:
+section_user_image_max_height:
+section_user_image_max_width:
+
+# Table of content
+toc_header_y: 6.68

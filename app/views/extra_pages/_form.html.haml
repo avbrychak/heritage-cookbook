@@ -1,0 +1,35 @@
+#form-errors= errors_for @extra_page if @extra_page.errors.any?
+
+= form_for [@section, @extra_page] do |f|
+  .control-group
+    = f.label :name, "Extra Page name:"
+    = f.text_field :name
+  .control-group
+    = f.label :section_id, "Extra Page section:"
+    = f.select :section_id, current_cookbook.sections.map{|section| [section.name, section.id]}
+  .control-group
+    = f.label :text, "Text:"
+    = f.text_area :text, class: "book-content"
+  .control-group
+    = f.label :index_as_recipe, "Index as recipe:"
+    = f.check_box :index_as_recipe
+  .control-group
+    .align-on-labels
+    #form-image-thumb
+      .thumb
+        - if @extra_page.photo?
+          = image_tag(@extra_page.photo.url(:preview))
+  .control-group.grayscale{class: (!@extra_page.photo?) ? "hidden" : ""}
+    = f.check_box :grayscale
+    = f.label :grayscale, "Turn this into a black-and-white photo"
+  .control-group
+    .align-on-labels
+    = modal_tag (@extra_page.photo?) ? "Modify my photo" : "Add a photo", render("modal_photo_upload", f: f), class: "button blue photo-button"
+  .control-group
+    .align-on-labels
+    = link_to_preview "Preview my extra page", preview_section_extra_page_path(@section, @extra_page), class: "picto preview"
+  .control-group
+    .align-on-labels
+    = link_to "DONE", sections_path, class: "button orange done-button alert-on-form-errors"
+    - if action_name == "new"
+      = link_to "Cancel", section_extra_page_path(@section, @extra_page), method: :delete, class: "button orange"

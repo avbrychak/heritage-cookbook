@@ -1,0 +1,7 @@
+family_landscape:
+  id: 1
+  lib_image_file_name: family-landscape.jpg
+
+family_portrait:
+  id: 2
+  lib_image_file_name: family-portrait.jpg

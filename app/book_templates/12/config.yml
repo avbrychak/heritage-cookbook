@@ -1,0 +1,38 @@
+# General
+book_font: "Cacpinaf"
+book_color: "b63825"
+
+# Cover
+cover_title_y: 8.295
+cover_text_padding_right: 0
+cover_title_font_size: 48
+cover_title_font_style: ""
+cover_color:
+
+has_image: 0
+cover_user_image_y:
+cover_user_image_max_height:
+cover_user_image_max_width:
+
+tag_lines: 1
+max_tag_line_1_length: 20
+max_tag_line_2_length:
+max_tag_line_3_length:
+max_tag_line_4_length:
+
+# Inner cover
+inner_cover_title_y: 8.295
+inner_cover_font_size: 48
+show_book_title_on_inner_cover: 1
+
+# Sections
+header_color:
+section_header_y: 7.421
+headers_font_size: 42
+headers_font_style: ""
+section_user_image_max_height:
+section_user_image_max_width:
+section_user_image_y:
+
+# Table of content
+toc_header_y: 7.750

@@ -1,0 +1,67 @@
+appetizers:
+  name: Appetizers
+  position: 1
+  cookbook: brian_smith_first_cookbook
+
+soups:
+  name: Soups
+  position: 2
+  cookbook: brian_smith_first_cookbook
+
+salads:
+  name: Salads
+  position: 3
+  cookbook: brian_smith_first_cookbook
+
+beverages:
+  name: Beverages
+  position: 4
+  cookbook: brian_smith_first_cookbook
+
+vegetables:
+  name: Vegetables
+  position: 5
+  cookbook: brian_smith_first_cookbook
+
+side_dishes:
+  name: Side Dishes
+  position: 6
+  cookbook: brian_smith_first_cookbook
+
+meat_and_game:
+  name: Meat and Game
+  position: 7
+  cookbook: brian_smith_first_cookbook
+
+fish_and_seafood:
+  name: Fish and Seafood
+  position: 8
+  cookbook: brian_smith_first_cookbook
+
+poultry:
+  name: Poultry
+  position: 9
+  cookbook: brian_smith_first_cookbook
+
+backed_goods:
+  name: Baked Goods
+  position: 10
+  cookbook: brian_smith_first_cookbook
+
+desserts:
+  name: Desserts
+  position: 11
+  cookbook: brian_smith_first_cookbook
+
+other:
+  name: Other
+  position: 12
+  cookbook: brian_smith_first_cookbook
+
+meals:
+  name: "Meals"
+  cookbook: one_single_page_recipe_single_column
+
+custom:
+  name: "Custom food"
+  cookbook: brian_smith_second_cookbook

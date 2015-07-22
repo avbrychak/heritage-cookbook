@@ -1,0 +1,38 @@
+<%= content_for :headline, "You've been invited to help with a cookbook!" %>
+
+<h2>Dear <%= @user.name %>,</h2>
+
+<p><%= @inviter.name %> has invited you to join in the fun of creating a cookbook at HeritageCookbook.com.</p>
+
+<p>
+  As a contributor to the cookbook you will be able to add and edit your own recipes, photos and stories as well as preview the book as it is being built. 
+  You won't be able to edit anyone else's work though - only the editor-in-chief, the person who invited you to help, can do this.
+</p>
+
+<%- if @message && !@message.empty? %>
+<p>
+  <%= @inviter.first_name %> wrote this for you:
+  <br/><br/>
+  <%= @message %>
+</p>
+<% end %>
+
+<p>
+  To login to your account, use the following information:
+  <br/><br/>
+  Email: <%= @user.email %>
+  <br/><br/>
+  Password: <%= @password %>
+  <br/><br/>
+  You can login at the following address:
+  <br/>
+  <a href="<%= @login_url %>" alt="Login to Heritage Cookbook"><%= @login_url %></a>
+</p>
+
+<p>Once you have logged in, you can change your password to something you will remember more easily by clicking on the "My Account" link on the top right of the page.</p>
+
+<p>
+  Have Fun!
+  <br/>
+  Virginie
+</p>

@@ -1,0 +1,20 @@
+- content_for :page_title, "Admin panel / Image Library"
+- content_for :headline, "Admin panel / Image Library"
+
+%h3 Image Library
+
+= link_to "Add new image", new_admin_image_library_path, class: "button blue"
+
+%h2 Tags
+
+.inline-button= link_to "All Tags", admin_image_library_index_path
+- @tags.each do |tag|
+  .inline-button= link_to tag.name.capitalize, admin_image_library_index_path(tag: tag.name)
+
+%h2 
+  Images
+  .inline-button= @tag.capitalize
+  = "(#{@images.length})"
+
+- @images.each do |image|
+  = link_to image_tag(image.lib_image.url(:thumb)), edit_admin_image_library_path(image)

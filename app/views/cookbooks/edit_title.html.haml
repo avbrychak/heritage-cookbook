@@ -1,0 +1,12 @@
+%h3= "Rename my cookbook"
+
+= errors_for @cookbook if @cookbook.errors.any?
+
+= form_for @cookbook, url: update_title_cookbook_path(@cookbook), html: {class: "edit_cookbook_title"} do |f|
+  .control-group
+    = f.label :title
+    = f.text_field :title
+  .control-group
+    .align-on-labels
+    = f.submit "DONE", class: "orange"
+    = link_to "Cancel", :back, class: "button blue"

@@ -1,0 +1,26 @@
+- content_for :page_title, "Admin panel / Orders"
+- content_for :headline, "Admin panel / Orders"
+
+= errors_for @order if @order.errors.any?
+
+= form_for [:admin, @order] do |f|
+
+  .control-group
+    = f.label :number_of_books, "Number of books: "
+    = f.text_field :number_of_books
+  
+  = render "orders/billing_shipping_form_controls", f: f
+
+  %h3 Special instructions
+
+  .control-group
+    = f.label :notes, "If you have any special instructions for this order, such as shipping or printing, please enter them here:"
+    = f.text_area :notes, value: "Manually pushing this order through."
+  .control-group
+    = f.label :delivery_time, "Normal printing time for cookbooks is 2-3 weeks. If possible, I would like to have my books by:"
+    = f.text_area :delivery_time
+
+  .control-group
+    .align-on-labels
+    = f.submit "Manually add this order", class: "orange"
+    = link_to "Cancel", :back, class: "button blue"

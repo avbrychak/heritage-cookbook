@@ -1,0 +1,748 @@
+--- 
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>If you have an account on HeritageCookbook.com you can login below by entering you email address and your password. If you don&#8217;t have an account, you can get a <a href="/account/signup">free 30 day trial!</a></p>
+    name: account_login
+    text: If you have an account on HeritageCookbook.com you can login below by entering you email address and your password. If you don't have an account, you can get a "free 30 day trial!":/account/signup
+    id: "1"
+    description: Account/Login
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>Forgotten your password? Not to worry. We will generate you a new one and email it to you. Simply enter the email address you registered your account under below, and we&#8217;ll send you an email with the new password in it.</p>
+    name: forgot_password
+    text: Forgotten your password? Not to worry. We will generate you a new one and email it to you. Simply enter the email address you registered your account under below, and we'll send you an email with the new password in it.
+    id: "2"
+    description: Account/Forgot Password
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <p>Hello. A very special welcome! This is our brand new system. It has all the features we used to have, and some new ones. Plus there are more things coming soon.</p>
+      
+      
+      	<p>Because we just launched this system, it may take a few days to work out some of the bugs. If something goes wrong, just let us know, and we&#8217;ll work on fixing it as soon as possible.</p>
+      
+      
+      	<p><strong>Good luck with your cookbook project!</strong></p>
+    name: welcome
+    text: |-
+      Hello. A very special welcome! This is our brand new system. It has all the features we used to have, and some new ones. Plus there are more things coming soon.
+
+      
+
+      Because we just launched this system, it may take a few days to work out some of the bugs. If something goes wrong, just let us know, and we'll work on fixing it as soon as possible.
+
+      
+
+      *Good luck with your cookbook project!*
+    id: "3"
+    description: Cookbook/Index
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>You&#8217;re making this cookbook for a reason, we&#8217;re sure. Maybe it&#8217;s for a family member? Maybe it&#8217;s to commemorate an occasion? No matter what, use this space to personalize your cookbook.</p>
+    name: introduction
+    text: You're making this cookbook for a reason, we're sure. Maybe it's for a family member? Maybe it's to commemorate an occasion? No matter what, use this space to personalize your cookbook.
+    id: "4"
+    description: Cookbook/Introduction&Dedication
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>Invite your friends and family! There&#8217;s no reason that putting this cookbook together has to be a solo process. You can invite as many of your friends and family as you want to contribute. They will be able to log in, and submit recipes to the cookbook, but they won&#8217;t be able to do anything else.</p>
+    name: contributors
+    text: Invite your friends and family! There's no reason that putting this cookbook together has to be a solo process. You can invite as many of your friends and family as you want to contribute. They will be able to log in, and submit recipes to the cookbook, but they won't be able to do anything else.
+    id: "5"
+    description: Cookbook/Contributors
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>This is where you add and edit the recipes in your cookbook. Each recipe has to be part of a section (e.g. Soups, Salads). You can use the default sections, or create your own (up to a maximum of 12).</p>
+    name: recipes
+    text: This is where you add and edit the recipes in your cookbook. Each recipe has to be part of a section (e.g. Soups, Salads). You can use the default sections, or create your own (up to a maximum of 12).
+    id: "6"
+    description: Cookbook/Recipes
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <h2>Before previewing your cookbook</h2>
+      
+      
+      	<p>By clicking the button provided below you&#8217;ll be able to preview entire cookbook the way it will be printed. Please note that depending on the number of pages your cookbook has it might take several minutes for the preview file to be generated.</p>
+      
+      
+      	<p>If you&#8217;re still in process of adding more recipes and doing more changes you probably should preview the cookbook in smaller sections. You may preview cover pages, table of contents, recipe sections and individual recipes separately on their respective pages.</p>
+    name: preview
+    text: |-
+      h2. Before previewing your cookbook
+
+      
+
+      By clicking the button provided below you'll be able to preview entire cookbook the way it will be printed. Please note that depending on the number of pages your cookbook has it might take several minutes for the preview file to be generated.
+
+      
+
+      If you're still in process of adding more recipes and doing more changes you probably should preview the cookbook in smaller sections. You may preview cover pages, table of contents, recipe sections and individual recipes separately on their respective pages.
+    id: "7"
+    description: Cookbook/Preview
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <p>We look forward to printing your Heritage Cookbook and getting it to you in double quick time. We are located in Toronto, and we ship anywhere.</p>
+      
+      
+      	<h2>The Cost of Shipping &#8211; Coming Soon!</h2>
+      
+      
+      	<p>We&#8217;re currently still setting up our shipping calculator, so you won&#8217;t be charged for shipping just yet. If you place an order, you will pay with a credit card now for the order, and then you should call Bobby at Hume Imaging, 1-800-296-6813 extension 233 to arrange for shipping cost and payment. We ship via FedEx ground.</p>
+    name: order
+    text: |-
+      We look forward to printing your Heritage Cookbook and getting it to you in double quick time. We are located in Toronto, and we ship anywhere.
+
+      
+
+      h2. The Cost of Shipping - Coming Soon!
+
+      
+
+      We're currently still setting up our shipping calculator, so you won't be charged for shipping just yet. If you place an order, you will pay with a credit card now for the order, and then you should call Bobby at Hume Imaging, 1-800-296-6813 extension 233 to arrange for shipping cost and payment. We ship via FedEx ground.
+    id: "8"
+    description: Order/Index
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <h2>Is this your first time here?</h2>
+      
+      
+      	<p>We&#8217;re glad to have you! Because it&#8217;s your first time, we&#8217;re automatically showing you some information here. <strong>Please make sure you read this, as it contains important information about how to use HeritageCookbook.com.</strong></p>
+      
+      
+      	<h2>Help is available!</h2>
+      
+      
+      	<p>First, look just up and to the right. See the Hot Pot icon? It looks like this: <img src="/images/helppot.jpg" alt=""/></p>
+      
+      
+      	<p>You will see that at the top of all the key pages in the system. Clicking it will make the help section display, just like this one is now. Click it again, and the help section will hide again.</p>
+      
+      
+      	<h2>Working on your cookbook</h2>
+      
+      
+      	<h3>Creating a cookbook</h3>
+      
+      
+      	<p>This page is your &#8220;Home Base&#8221; for working on your cookbook. Below you will see a link like this:</p>
+      
+      
+      <div style="text-align:center"><img src="/images/help/cookbook_index_create.png" alt="" class="center"/></div>
+      
+      	<p>Clicking on that link will create a cookbook for you. If your account lets you have more than one cookbook, the link will still be there for you to create additional cookbooks as well.</p>
+      
+      
+      	<h3>Cookbook Overview</h3>
+      
+      
+      	<p>Once your cookbook is created, you will see something that looks like this:</p>
+      
+      
+      <div style="text-align:center"><img src="/images/help/cookbook_index_book.png" alt=""  class="center"/></div>
+      
+      	<p class="help_1">Once you&#8217;ve chosen a design for your cookbook, you can see a small image of it here.</p>
+      
+      
+      	<p class="help_2">Some general information about your cookbook is shown here.</p>
+      
+      
+      	<p class="help_3">Click any of these links to work on that part of it.</p>
+      
+      
+      	<p class="help_4">When you&#8217;re ready to preview, or order your final book, click here.</p>
+      
+      
+      	<h3>Choosing another cookbook to work with</h3>
+      
+      
+      	<p>If you have more than once cookbook on your account, you will see this:</p>
+      
+      
+      <div style="text-align:center"><img src = "/images/help/cookbook_index_otherbooks.png" alt=""  class="center"/></div>
+      
+      	<p class="help_1">This is where your other cookbooks are displayed, if you have any.</p>
+      
+      
+      	<p class="help_2">This is where the cookbooks you contribute to are displayed.</p>
+      
+      
+      	<p class="help_3">Click any of these links to switch to working on that cookbook.</p>
+    name: help_welcome
+    text: |-
+      h2. Is this your first time here?
+
+      
+
+      We're glad to have you! Because it's your first time, we're automatically showing you some information here. *Please make sure you read this, as it contains important information about how to use HeritageCookbook.com.*
+
+      
+
+      h2. Help is available!
+
+      
+
+      First, look just up and to the right. See the Hot Pot icon? It looks like this: <img src="/images/helppot.jpg" alt=""/>
+
+      
+
+      You will see that at the top of all the key pages in the system. Clicking it will make the help section display, just like this one is now. Click it again, and the help section will hide again.
+
+      
+
+      h2. Working on your cookbook
+
+      
+
+      h3. Creating a cookbook
+
+      
+
+      This page is your "Home Base" for working on your cookbook. Below you will see a link like this:
+
+      
+
+      <div style="text-align:center"><img src="/images/help/cookbook_index_create.png" alt="" class="center"/></div>
+
+      
+
+      Clicking on that link will create a cookbook for you. If your account lets you have more than one cookbook, the link will still be there for you to create additional cookbooks as well.
+
+      
+
+      h3. Cookbook Overview
+
+      
+
+      Once your cookbook is created, you will see something that looks like this:
+
+      
+
+      <div style="text-align:center"><img src="/images/help/cookbook_index_book.png" alt=""  class="center"/></div>
+
+      
+
+      p(help_1). Once you've chosen a design for your cookbook, you can see a small image of it here.
+
+      
+
+      p(help_2). Some general information about your cookbook is shown here.
+
+      
+
+      p(help_3). Click any of these links to work on that part of it.
+
+      
+
+      p(help_4). When you're ready to preview, or order your final book, click here.
+
+      
+
+      
+
+      
+
+      h3. Choosing another cookbook to work with
+
+      
+
+      If you have more than once cookbook on your account, you will see this:
+
+      
+
+      <div style="text-align:center"><img src = "/images/help/cookbook_index_otherbooks.png" alt=""  class="center"/></div>
+
+      	
+
+      p(help_1). This is where your other cookbooks are displayed, if you have any.
+
+      
+
+      p(help_2). This is where the cookbooks you contribute to are displayed.
+
+      
+
+      p(help_3). Click any of these links to switch to working on that cookbook.
+    id: "9"
+    description: Help/Welcome page
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <h2>Pick A Cover Design Template</h2>
+      
+      
+      	<p>One of the first decisions you need to make as you create your cookbook is the overall design. Here you choose what kind of cookbook cover you want to have. Some designs will allow you to add your own picture, some will only let you adjust the subtitle or &#8216;tagline&#8217;. Choose a design, but don&#8217;t worry too much, you can always easily change your design template by coming back to this tab.</p>
+      
+      
+      <div style="text-align:center"><img src="/images/help/choose_design.png" alt=""/></div>
+      
+      	<p class="help_1">Pick from the design samples shown above.</p>
+      
+      
+      	<p class="help_2">There are two kinds of cookbook cover templates.  One lets you add only a &#8216;tag line&#8217; beneath the title. The second lets you add your own photo to the cover. Some of the design templates allow you to do both. The two icons here indicate which kind of design template it is.</p>
+      
+      
+      	<h2>Design Template Details</h2>
+      
+      
+      <div style="text-align:center"><img src="/images/help/template_details.png" alt=""/></div>
+      
+      	<p class="help_1">Add or edit your tag line for the cookbook.</p>
+      
+      
+      	<p>p(help_2)If you have chosen a cookbook design template which lets you include your own photo on the cover, you will have the option to browse for a photo on your computer and upload it to the cookbook system.</p>
+      
+      
+      	<p class="help_3">If you wish for the inside pages of the cookbook to be black and white (which is cheaper to print) you can select this box. If you want them to return to colour, uncheck the box.</p>
+      
+      
+      	<p class="help_4">You can preview various parts of the cookbook here. This will open a adobe pdf file for you to preview the cookbook.</p>
+    name: help_design
+    text: |-
+      h2. Pick A Cover Design Template
+
+      
+
+      One of the first decisions you need to make as you create your cookbook is the overall design. Here you choose what kind of cookbook cover you want to have. Some designs will allow you to add your own picture, some will only let you adjust the subtitle or 'tagline'. Choose a design, but don't worry too much, you can always easily change your design template by coming back to this tab.
+
+      
+
+      <div style="text-align:center"><img src="/images/help/choose_design.png" alt=""/></div>
+
+      
+
+      p(help_1). Pick from the design samples shown above.
+
+      
+
+      p(help_2). There are two kinds of cookbook cover templates.  One lets you add only a 'tag line' beneath the title. The second lets you add your own photo to the cover. Some of the design templates allow you to do both. The two icons here indicate which kind of design template it is.
+
+      
+
+      h2. Design Template Details
+
+      
+
+      <div style="text-align:center"><img src="/images/help/template_details.png" alt=""/></div>
+
+      
+
+      p(help_1). Add or edit your tag line for the cookbook.
+
+      
+
+      p(help_2)If you have chosen a cookbook design template which lets you include your own photo on the cover, you will have the option to browse for a photo on your computer and upload it to the cookbook system.
+
+      
+
+      p(help_3). If you wish for the inside pages of the cookbook to be black and white (which is cheaper to print) you can select this box. If you want them to return to colour, uncheck the box.
+
+      
+
+      p(help_4). You can preview various parts of the cookbook here. This will open a adobe pdf file for you to preview the cookbook.
+    id: "10"
+    description: Help/Design
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <h2>Adding An Introduction Or Dedication</h2>
+      
+      
+      	<p>This being a cookbook created by you, we think it&#8217;s important that you let readers understand what it&#8217;s all about. That&#8217;s why we&#8217;ve added an Introduction or Dedication page at the start of the cookbook.</p>
+      
+      
+      <div style="text-align:center"><img src="/images/help/introduction_detail.png" alt=""/></div>
+      
+      	<p class="help_1">Choose how you want the opening page to be labelled &#8211; as an Introduction, or as a Dedication.</p>
+      
+      
+      	<p class="help_2">Choose whether you want the text to be centered, or left aligned in the final cookbook. <strong><span class="caps">NOTE</span>:</strong> This is new on the site. On our older site you had to enter &lt;center&gt; around your text, but that won&#8217;t work any more (it will show up!). Make sure you change this on your cookbooks if you were on the older system.</p>
+      
+      
+      	<p class="help_3">Add the relevant text for your Introduction or Dedication.</p>
+    name: help_intro
+    text: |-
+      h2. Adding An Introduction Or Dedication
+
+      
+
+      This being a cookbook created by you, we think it's important that you let readers understand what it's all about. That's why we've added an Introduction or Dedication page at the start of the cookbook.
+
+      
+
+      <div style="text-align:center"><img src="/images/help/introduction_detail.png" alt=""/></div>
+
+      
+
+      p(help_1). Choose how you want the opening page to be labelled - as an Introduction, or as a Dedication.
+
+      
+
+      p(help_2). Choose whether you want the text to be centered, or left aligned in the final cookbook. *NOTE:* This is new on the site. On our older site you had to enter &lt;center&gt; around your text, but that won't work any more (it will show up!). Make sure you change this on your cookbooks if you were on the older system.
+
+      
+
+      p(help_3). Add the relevant text for your Introduction or Dedication.
+    id: "11"
+    description: Help/Introduction&Dedication
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <h2>Recipe Details Part One</h2>
+      
+      
+      <div style="text-align:center"><img src="/images/help/recipe_detail.png" alt=""/></div>
+      
+      	<p class="help_1">Enter the name for your recipe here</p>
+      
+      
+      	<p class="help_2">Select the recipe section in which it should fall</p>
+      
+      
+      	<p class="help_3">Type your ingredients in, line by line.</p>
+      
+      
+      	<p class="help_4">Upload a photo, or add a story to a recipe by clicking here</p>
+      
+      
+      	<h2>Recipe Details Part Two</h2>
+      
+      
+      <div style="text-align:center"><img src="/images/help/recipe_detail2.png" alt=""/></div>
+      
+      	<p class="help_5">Browse for and upload your recipe photo here</p>
+      
+      
+      	<p class="help_6">Choose for your image to shown as black and white (grayscale), or colour by checking or unchecking this box. All recipe photos will be shown on the left hand side of the page</p>
+      
+      
+      	<p class="help_7">Add a unique story to this recipe, it will be shown on the left hand side of the page, beneath any photo that you uploaded</p>
+      
+      
+      	<h2>Recipe Layout Update</h2>
+      
+      
+      	<p><strong>Some Notes About Recipe Layout:</strong></p>
+      
+      
+      	<p>We have a somewhat complex (but we think pretty good) layout engine. It takes your recipes and orders them in such a way that it maximizes the page space. So you don&#8217;t needlessly pay for extra pages. Here how it works:</p>
+      
+      
+      	<p class="help_1">As you know, your final recipe book will be ordered by sections (like chapters), you can drag and drop the ordering of these sections in the main recipe area (Navigation Tab #4).</p>
+      
+      
+      	<p class="help_2">However, within a section, your recipes are laid out in a set order ? first come the two page recipes, then come the one page recipes, then come the half page recipes (which are combined automatically so that there are two to a page).</p>
+      
+      
+      	<p class="help_3">Within each of these sub-orders (all of the one page recipes for example) the recipes are ordered alphabetically.</p>
+      
+      
+      	<p class="help_4">We&#8217;ve added a new feature which allows you to &#8216;force&#8217; a half page recipe to stay on it&#8217;s own page, and not be combined with other half page recipes. To enable this, check the box at the bottom of the recipe edit page which says &#8216;Separate recipe&#8217;. If you change your mind later and want it to combine with other half page recipes, uncheck the same box.</p>
+    name: help_recipes
+    text: |-
+      h2. Recipe Details Part One
+
+      
+
+      <div style="text-align:center"><img src="/images/help/recipe_detail.png" alt=""/></div>
+
+      
+
+      p(help_1). Enter the name for your recipe here
+
+      
+
+      p(help_2). Select the recipe section in which it should fall
+
+      
+
+      p(help_3). Type your ingredients in, line by line.
+
+      
+
+      p(help_4). Upload a photo, or add a story to a recipe by clicking here
+
+      
+
+      h2. Recipe Details Part Two
+
+      
+
+      <div style="text-align:center"><img src="/images/help/recipe_detail2.png" alt=""/></div>
+
+      
+
+      p(help_5). Browse for and upload your recipe photo here
+
+      
+
+      p(help_6). Choose for your image to shown as black and white (grayscale), or colour by checking or unchecking this box. All recipe photos will be shown on the left hand side of the page
+
+      
+
+      p(help_7). Add a unique story to this recipe, it will be shown on the left hand side of the page, beneath any photo that you uploaded
+
+      
+
+      h2. Recipe Layout Update
+
+      
+
+      *Some Notes About Recipe Layout:*
+
+      
+
+      We have a somewhat complex (but we think pretty good) layout engine. It takes your recipes and orders them in such a way that it maximizes the page space. So you don't needlessly pay for extra pages. Here how it works:
+
+      
+
+      p(help_1). As you know, your final recipe book will be ordered by sections (like chapters), you can drag and drop the ordering of these sections in the main recipe area (Navigation Tab #4).
+
+      
+
+      p(help_2). However, within a section, your recipes are laid out in a set order ? first come the two page recipes, then come the one page recipes, then come the half page recipes (which are combined automatically so that there are two to a page).
+
+      
+
+      p(help_3). Within each of these sub-orders (all of the one page recipes for example) the recipes are ordered alphabetically.
+
+      
+
+      p(help_4). We've added a new feature which allows you to 'force' a half page recipe to stay on it's own page, and not be combined with other half page recipes. To enable this, check the box at the bottom of the recipe edit page which says 'Separate recipe'. If you change your mind later and want it to combine with other half page recipes, uncheck the same box.
+    id: "12"
+    description: Help/Recipes page
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <h2>Adding and Managing Contributors</h2>
+      
+      
+      	<p>This is where you can view, add, and delete contributors to your cookbook project. A contributor (once they have logged in) will be able to see all of the recipes in your cookbook, and will be able to add new recipes of their own, however they will not be able to edit any recipe other than their own.</p>
+      
+      
+      	<p>Click on &#8216;Add Contributor&#8217; to add a new contributor.</p>
+      
+      
+      <div style="text-align:center"><img src="/images/help/contributor_detail.png" alt=""/></div>
+      
+      	<p class="help_1">Enter the contributor&#8217;s name and email information so that we can send them an invitation to join your cookbook team.</p>
+      
+      
+      	<p class="help_2">Add a personalized note that will be included in the email invitation which they are sent.</p>
+    name: help_contrib
+    text: |-
+      h2. Adding and Managing Contributors
+
+      
+
+      This is where you can view, add, and delete contributors to your cookbook project. A contributor (once they have logged in) will be able to see all of the recipes in your cookbook, and will be able to add new recipes of their own, however they will not be able to edit any recipe other than their own.
+
+      
+
+      Click on 'Add Contributor' to add a new contributor.
+
+      
+
+      <div style="text-align:center"><img src="/images/help/contributor_detail.png" alt=""/></div>
+
+      
+
+      p(help_1). Enter the contributor's name and email information so that we can send them an invitation to join your cookbook team.
+
+      
+
+      p(help_2). Add a personalized note that will be included in the email invitation which they are sent.
+    id: "13"
+    description: Help/Contributors
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <h2>Adding and Managing Your Recipes</h2>
+      
+      
+      	<p>This tab is the heart of your cookbook project. Here you can add, edit, delete the sections of your cookbook, as well as the recipes that are contained in each section.</p>
+      
+      
+      <div style="text-align:center"><img src="/images/help/recipes_ordering.png" alt=""></div>
+      
+      	<p class="help_1">You can add a section (like a chapter) to your cookbook. Typically a cookbook has sections that are based on the types of food. In this example, we are adding different types of Muffins sections</p>
+      
+      
+      	<p class="help_2">You can add an individual recipe inside one of the sections by clicking here</p>
+      
+      
+      	<p class="help_3">You can edit the name of the entire section here (in this case Cornmeal Muffins)</p>
+      
+      
+      	<p class="help_4">You can delete an entire section. It will warn you and double-check that you indeed want to erase a section and all of its contained recipes</p>
+      
+      
+      	<p class="help_5">By clicking on the 4 arrowed icon, you can reorder the sections of the cookbook, by dragging and dropping the sections</p>
+    name: help_sections
+    text: |
+      h2. Adding and Managing Your Recipes
+
+      
+
+      This tab is the heart of your cookbook project. Here you can add, edit, delete the sections of your cookbook, as well as the recipes that are contained in each section.
+
+      
+
+      <div style="text-align:center"><img src="/images/help/recipes_ordering.png" alt=""></div>
+
+      
+
+      p(help_1). You can add a section (like a chapter) to your cookbook. Typically a cookbook has sections that are based on the types of food. In this example, we are adding different types of Muffins sections
+
+      
+
+      p(help_2). You can add an individual recipe inside one of the sections by clicking here
+
+      
+
+      p(help_3). You can edit the name of the entire section here (in this case Cornmeal Muffins)
+
+      
+
+      p(help_4). You can delete an entire section. It will warn you and double-check that you indeed want to erase a section and all of its contained recipes
+
+      
+
+      p(help_5). By clicking on the 4 arrowed icon, you can reorder the sections of the cookbook, by dragging and dropping the sections
+
+
+    id: "14"
+    description: Help/Sections
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <div class="yellowbox">
+      
+      	<h2>Note to users of the older system:</h2>
+      
+      
+      	<p><strong>We&#8217;ve changed the login process a little bit.</strong> Before, you had a username, and a password. Now you just need your email address, and the same password, usernames are no longer required (just another thing to remember!).</p>
+      
+      
+      	<p>So, assuming you know the email address you had used on your account, simply enter that here, and you&#8217;ll be able to login. If you don&#8217;t remember the email, send me a note at <a href="susan@heritagecookbook.com">susan@heritagecookbook.com</a> and I&#8217;ll look it up for you.</p>
+      
+      
+      	<p><strong>Oh, there&#8217;s another catch.</strong> In this new system, passwords have to be at least 6 characters long. So, if your password from the previous system was shorter than that, we&#8217;ve simply added the letter &#8216;a&#8217; to the end, enough times to make it 6 characters long (e.g. if your password was &#8216;hi&#8217;, it now will be &#8216;hiaaaa&#8217;)</p>
+      
+      
+      	<p>Hope that makes sense. If not just contact me!</p>
+      
+      
+      </div>
+    name: account_login_warning
+    text: |-
+      <div class="yellowbox">
+
+      
+
+      h2. Note to users of the older system:
+
+      
+
+      *We've changed the login process a little bit.* Before, you had a username, and a password. Now you just need your email address, and the same password, usernames are no longer required (just another thing to remember!).
+
+      
+
+      So, assuming you know the email address you had used on your account, simply enter that here, and you'll be able to login. If you don't remember the email, send me a note at "susan@heritagecookbook.com":susan@heritagecookbook.com and I'll look it up for you.
+
+      
+
+      *Oh, there's another catch.* In this new system, passwords have to be at least 6 characters long. So, if your password from the previous system was shorter than that, we've simply added the letter 'a' to the end, enough times to make it 6 characters long (e.g. if your password was 'hi', it now will be 'hiaaaa')
+
+      
+
+      Hope that makes sense. If not just contact me!
+
+      
+
+      </div>
+    id: "15"
+    description: Account/Login/Warning
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>Try out Heritage Cookbook for free for 30 days. Simply fill out the form below and click the &#8220;Submit Registration Info&#8221; button to create your free account!</p>
+    name: signup
+    text: Try out Heritage Cookbook for free for 30 days. Simply fill out the form below and click the "Submit Registration Info" button to create your free account!
+    id: "16"
+    description: Account/Signup
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>Choose which plan you would like to add to your account, and then click the &#8220;Submit&#8221; button. You will be taken to our payment company&#8217;s website, where they will process your credit card number in a safe and secure manner. At the end you will return to this site.</p>
+    name: upgrade
+    text: Choose which plan you would like to add to your account, and then click the "Submit" button. You will be taken to our payment company's website, where they will process your credit card number in a safe and secure manner. At the end you will return to this site.
+    id: "17"
+    description: Account/Upgrade
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: "<p>Here you may edit information associated with your account. If you wish to change your email address and/or your current password please go to this page: <a href=\"/account/change_login\">Edit Email / Password</a></p>"
+    name: account_edit
+    text: |
+      Here you may edit information associated with your account. If you wish to change your email address and/or your current password please go to this page: "Edit Email / Password":/account/change_login
+
+
+    id: "18"
+    description: Account/Edit
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>Here you may change your password and/or email address. Please note that if you change your email address you will be logged out and asked to confirm your account again (email with instructions will be sent to you)</p>
+    name: account_edit_login
+    text: Here you may change your password and/or email address. Please note that if you change your email address you will be logged out and asked to confirm your account again (email with instructions will be sent to you)
+    id: "19"
+    description: Account/Edit/Change Login
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>Hello. You were invited to join HeritageCookbook.com. You are here because you got the email from the somebody and now you need to choose your password. Fantastic.</p>
+    name: account_create_contrib
+    text: Hello. You were invited to join HeritageCookbook.com. You are here because you got the email from the somebody and now you need to choose your password. Fantastic.
+    id: "20"
+    description: Account/Create Contributor
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <div class="yellowbox">
+      
+      	<p><strong>Tip:</strong> Is the email not arriving? It may have been caught by your Junk Mail filter, so make sure you check that too.</p>
+      
+      
+      	<p>What&#8217;s a Junk Mail filter? Well, some e-mail programs automatically try to pull out emails they think might be junk or spam. Because you have never received an email from us before, this may have happened. If you don&#8217;t receive the email in a few minutes, try looking in your Junk Mail box.</p>
+      
+      
+      </div>
+    name: account_confirm_email
+    text: |-
+      <div class="yellowbox">
+
+      
+
+      *Tip:* Is the email not arriving? It may have been caught by your Junk Mail filter, so make sure you check that too.
+
+      
+
+      What's a Junk Mail filter? Well, some e-mail programs automatically try to pull out emails they think might be junk or spam. Because you have never received an email from us before, this may have happened. If you don't receive the email in a few minutes, try looking in your Junk Mail box.
+
+      
+
+      </div>
+    id: "21"
+    description: Account/Resend Confirmation Email
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p>It seems that you are trying to confirm your account. Normally all you have to do is to click a link that was sent to you via welcome / confirmation email. Seems that it didn&#8217;t work. Don&#8217;t dispair. Here you may enter your email address and confirmation manually.</p>
+    name: account_confirm
+    text: It seems that you are trying to confirm your account. Normally all you have to do is to click a link that was sent to you via welcome / confirmation email. Seems that it didn't work. Don't dispair. Here you may enter your email address and confirmation manually.
+    id: "22"
+    description: Account/Confirm
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: <p><em>Until you order your printed cookbook, this information is optional</em>, but it will help us work together better.</p>
+    name: account_additional_info
+    text: _Until you order your printed cookbook, this information is optional_, but it will help us work together better.
+    id: "23"
+    description: Account/Additional Info

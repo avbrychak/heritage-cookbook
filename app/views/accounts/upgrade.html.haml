@@ -1,0 +1,21 @@
+%h3= (@selected_plan) ? "Confirm your membership plan:" : "Choose your membership plan:"
+= form_tag process_payment_account_path(current_user) do
+  #plans
+    - @plans_available.each do |plan|
+      .on-line-control
+        = radio_button_tag :plan, plan[1], (@plan.id == plan[1])
+        = label_tag plan[1], plan[0]
+  = submit_tag "Go to the payment website", class: "orange"
+  = link_to "Cancel", root_path, class: "button blue"
+
+/ # Display a notice box with testing Paypal credentials
+- if Rails.env.development?
+  .staging
+    %h5 Testing Paypal credentials
+    %ul.note
+      %li 
+        %strong email: 
+        testing@heritagecookbook.com 
+      %li 
+        %strong password: 
+        heritage

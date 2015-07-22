@@ -1,0 +1,30 @@
+= render "info_panels/here_to_help"
+
+#info-text
+
+  %h4 Make it personal
+
+  %h5 Add your cover photos and text 
+
+  %p.note 
+    Enter your text in the top, middle and/or bottom line fields. The program will auto save as you move from one step to the next.
+    %br
+    If you’ve chosen a cover that allows you to add a photo, choose “upload” next to User Image. Select the image (jpg files only) from your computer and press return/enter. You can also use a photo from Heritage Cookbook’s library of images. If you don’t like the image you’ve uploaded, just select “remove,” and start again. If you get a message telling you the image load has failed, you will have to try again.
+    %br
+    You can now preview your cover.
+
+  %h5 If you are designing your own cover
+  %p.note 
+    For this template, you’ll have the option of designing the title page so that it is different from the cover page.
+    = modal_tag "(click here to read more about designing your own cover)", render("cookbooks/modal_help_designing_your_own_cover")
+
+  %h5 Other options
+
+  %p.note
+    If you would like your inside title page (this is the first piece of paper in your book), section dividers  and table of contents to be in black and white, check the black and white box. The default is color, so a photo that is uploaded as a black and white will read as a color photo unless you check the black-and-white box. 
+    %br
+    If you would like an index of your recipes, check that box.  
+    %br
+    You can now preview your title page, table of contents (it will be empty until you add catergories), and index (it will be empty until you add recipes). 
+    %br
+    When you’re done, hit "next".

@@ -1,0 +1,179 @@
+- content_for :page_title, "Admin panel / Users"
+- content_for :headline, "Admin panel / Users"
+
+%h2= @user.name
+
+%h3 Account Info
+
+%dl
+  %dt User ID:
+  %dd
+    = @user.id
+    = link_to " (Login as #{@user.name}) ", login_as_admin_user_path(@user.id)
+  %dt Membership:
+  %dd= @user.plan.title
+  %dt Expiry Date:
+  %dd
+    - if @user.expiry_date
+      = @user.expiry_date.strftime('%B %-d, %Y') 
+      = " (#{distance_of_time_in_words_to_now(@user.expiry_date)} #{(@user.expiry_date > Time.now.to_date) ? 'remaining' : 'ago'})"
+      = link_to "(Edit)", edit_admin_user_path(@user)
+      %br
+      = link_to "+ 2 days", update_expiry_date_admin_user_path(@user.id, 2), class: "inline-button", confirm: "Set expiry date to 2 days from now?"
+      = link_to "+ 1 week", update_expiry_date_admin_user_path(@user.id, 7), class: "inline-button", confirm: "Add 1 week from now?"
+      = link_to "+ 1 month", update_expiry_date_admin_user_path(@user.id, 30), class: "inline-button", confirm: "Add 1 month from now?"
+      = link_to "+ 1 year", update_expiry_date_admin_user_path(@user.id, 365), class: "inline-button", confirm: "Add 1 year from now?"
+    - else
+      Unlimited
+  %dt Email:
+  %dd= mail_to @user.email
+  %dt First Name:
+  %dd= @user.first_name.capitalize
+  %dt Last Name:
+  %dd= @user.last_name.capitalize
+  %dt Cookbook Type:
+  %dd= (!@user.cookbook_type.blank?) ? @user.cookbook_type : "-"
+  %dt How heard about HCB?:
+  %dd= (!@user.how_heard.blank?) ? @user.how_heard : "-"
+  %dt Account Created On:
+  %dd= (@user.created_on) ? @user.created_on.strftime('%B %-d, %Y') : "-"
+  %dt Last Login:
+  %dd 
+    - if @user.last_login_on
+      = @user.last_login_on.strftime('%B %-d, %Y - %H:%m (UTC)')
+      = " / (#{@user.login_count} total logins)"
+    - else
+      Never logged in
+  %dt Notes:
+  %dd
+    = form_for [:admin, @user] do |f|
+      = f.text_area :notes
+      %br
+      = f.submit "Save these notes", class: 'button orange'
+
+= link_to "Delete this user", admin_user_path(@user), method: :delete, confirm: "Are you sure ?", class: "button red"
+
+%h3 Address
+
+%dl
+  %dt Address:
+  %dd= (@user.address && !@user.address.empty?) ? @user.address : "-"
+  %dt City:
+  %dd= (@user.city && !@user.city.empty?) ? @user.city : "-"
+  %dt State:
+  %dd= (@user.state && !@user.state.empty?) ? @user.state : "-"
+  %dt Zip / Postal Code
+  %dd= (@user.zip && !@user.zip.empty?) ? @user.zip : "-"
+  %dt Country
+  %dd= (@user.country && !@user.country.empty?) ? @user.country : "-"
+  %dt Phone Number
+  %dd= (@user.phone && !@user.phone.empty?) ? @user.phone : "-"
+
+%h3 Cookbooks
+
+%h4= "Owned (#{@owned_cookbooks.length})"
+
+- if @owned_cookbooks.empty?
+  %p.note No cookbooks created yet.
+- else
+
+  %table
+    %tr
+      %th Title
+      %th Recipes
+      %th Contributors
+    - @owned_cookbooks.each do |cookbook|
+      %tr
+        %td
+          = cookbook.title
+          %br
+          .note
+            = link_to "Order", admin_new_order_path(cookbook_id: cookbook.id)
+        %td.note= "#{pluralize(cookbook.recipes.count, 'recipe')} and #{pluralize(cookbook.extra_pages.count, 'extra page')} in #{pluralize(cookbook.sections.count, 'section')}"
+        %td.note= pluralize cookbook.contributors.count, 'contributor'
+
+%h4= "Contributed (#{@contributed_cookbooks.length})"
+
+- if @contributed_cookbooks.empty?
+  %p.note No cookbooks contributed to yet.
+- else
+
+  %table
+    %tr
+      %th Title
+      %th Recipes
+      %th Contributors
+    - @contributed_cookbooks.each do |cookbook|
+      %tr
+        %td
+          = cookbook.title
+          %span.note= link_to " / #{cookbook.owner.name}", admin_user_path(cookbook.owner.id)
+        %td.note= "#{pluralize(cookbook.recipes.count, 'recipe')} and #{pluralize(cookbook.extra_pages.count, 'extra page')} in #{pluralize(cookbook.sections.count, 'section')}"
+        %td.note= pluralize cookbook.contributors.count, 'contributor'
+
+%h3 Orders
+
+%h4= "Paid orders (#{@orders.length})"
+
+- if @orders.empty?
+
+  %p.note This user has no ordered any cookbooks yet.
+
+- else
+
+  = render 'admin/orders/orders_list', orders: @orders
+
+%h4= "Paid re-orders (#{@reorders.length})"
+
+- if @reorders.empty?
+
+  %p.note This user has no made any re-order yet.
+
+- else
+
+  %table
+    %tr
+      %th Order
+      %th Ordered Cookbook
+      %th Date
+      %th Books
+      %th Pages
+      %th Cost
+      %th Original order
+    - @reorders.each do |order|
+      %tr
+        %td= "##{order.id}"
+        %td
+          - if order.cookbook_title
+            = order.cookbook_title
+          - else
+            = order.cookbook.title
+            %br
+          %span.note= "##{order.cookbook_id}"
+        %td.note= (order.paid_on) ? order.paid_on.strftime('%B %-d, %Y') : 'Not recorded'
+        %td.note= order.number_of_books
+        %td.note
+          - if order.order_bw_pages && order.order_color_pages
+            = "Color: #{order.order_color_pages}"
+            %br
+            = "B&W  : #{order.order_bw_pages}"
+          - else
+            Not recorded
+        %td.note= "$#{'%.2f' % (order.order_shipping_cost + order.order_printing_cost)}"
+        %td.note= "##{order.reorder_id}"
+
+%h3 Membership History
+
+- if @membership_changes.empty?
+  %p.note This user has no record of membership, must be a contributor.
+- else
+  %table
+    %tr
+      %th Plan
+      %th Date
+      %th Expiry Date
+    - @membership_changes.each do |record|
+      %tr
+        %td= record.plan.title
+        %td.note= record.created_at.strftime('%B %-d, %Y')
+        %td.note= (record.expiry_date) ? record.expiry_date.strftime('%B %-d, %Y') : "-"

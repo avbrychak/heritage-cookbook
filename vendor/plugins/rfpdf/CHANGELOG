@@ -1,0 +1,8 @@
+# 1.00 Added view template functionality
+# 1.10 Added Chinese support
+# 1.11 Added Japanese support
+# 1.12 Added Korean support
+# 1.13 Updated to fpdf.rb 1.53d.
+#      Added makefont and fpdf_eps.
+#      Handle \n at the beginning of a string in MultiCell.
+#      Tried to fix clipping issue in MultiCell - still needs some work.

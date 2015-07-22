@@ -1,0 +1,56 @@
+- content_for :page_title, "Add photos and text to your cover"
+- content_for :headline, "Add photos and text to your cover"
+- content_for :info_panel, render("info_panels/design_step_2")
+
+= render "layouts/design_steps"
+
+#template-thumb
+  = image_tag @cookbook.template.thumbnail_image
+
+#forms
+  #form-errors= errors_for @cookbook if @cookbook.errors.any?
+  
+  = form_for @cookbook do |f|
+
+    - if @cookbook.template.tag_lines > 0       
+      %h3 Personalize your cover text
+      - @cookbook.template.tag_lines.times do |number|
+        .one-line-controls
+          = f.label "tag_line_#{number+1}".to_sym, "Line #{number+1}:"
+          = f.text_field "tag_line_#{number+1}".to_sym
+
+    - if @cookbook.template.has_image > 0
+      %h3 Upload your own photo
+      = f.paperclip_attachment :user_image, image_library: true
+      = hidden_field_tag "libimage[user_image]"
+
+    - if !@cookbook.template.cover_image
+      %h3 Upload your own cover image
+      = f.paperclip_attachment :user_cover_image, label: "Upload an image onto the cover page:"
+      = hidden_field_tag "libimage[user_cover_image]"
+
+    %ul
+      %li= link_to_preview "Preview the Cover", preview_cover_cookbook_url(@cookbook), class: "picto preview"
+
+    - if !@cookbook.template.inner_cover_image
+      %h3 Upload your own title page image
+      = f.paperclip_attachment :user_inner_cover_image, label: "Upload an image onto the title page:"
+      = hidden_field_tag "libimage[user_inner_cover_image]"
+
+    %ul
+      %li= link_to_preview "Preview the Title Page and Table of Contents", preview_title_and_toc_cookbook_path(@cookbook), class: "picto preview"
+
+
+    %h3 Other options
+
+    .one-line-controls
+      = f.check_box :grayscale
+      = f.label :grayscale, "Convert the title page, table of contents and section dividers to black-and-white"
+    .one-line-controls
+      = f.check_box :show_index
+      = f.label :show_index, "Add an index page at the end of your cookbook"
+
+    %ul
+      %li= link_to_preview "Preview the Index Pages", preview_index_cookbook_path(@cookbook), class: "picto preview"
+      
+  = link_to "Next", edit_introduction_cookbook_path, class: "button orange next-button alert-on-form-errors"

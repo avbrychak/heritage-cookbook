@@ -1,0 +1,47 @@
+template_1:
+  id: 1
+  name: Our Family Cookbook 1
+  template_type: 1
+  description: 
+
+template_2:
+  id: 2
+  name: Our Family Cookbook 2
+  template_type: 2
+  description:
+
+template_3:
+  id: 3
+  name: Our Comunity Cookbook
+  template_type: 3
+  description:
+
+template_4:
+  id: 4
+  name: Our Cookbook
+  template_type: 4
+  description:
+
+template_5:
+  id: 5
+  name: Sharing Delicous Secrets
+  template_type: 5
+  description: 
+
+template_6:
+  id: 6
+  name: Divine Cuisine
+  template_type: 6
+  description:
+
+template_7:
+  id: 7
+  name: Insert Both Your Own Picture and Tagline
+  template_type: 7
+  description:
+
+template_8:
+  id: 8
+  name: The Do It All Cover
+  template_type: 8
+  description:

@@ -1,0 +1,38 @@
+# General
+book_font: "Gotham"
+book_color: "000000"
+
+# Cover
+cover_title_y: 8.476
+cover_text_padding_right: 0
+cover_title_font_size: 28
+cover_title_font_style: ""
+cover_color:
+
+has_image: 1
+cover_user_image_y: 3.76
+cover_user_image_max_height: 3.76
+cover_user_image_max_width: 6
+
+tag_lines: 1
+max_tag_line_1_length: 20
+max_tag_line_2_length:
+max_tag_line_3_length: 
+max_tag_line_4_length:
+
+# Inner cover
+inner_cover_title_y: 7.102
+inner_cover_font_size: 28
+show_book_title_on_inner_cover: 1
+
+# Sections
+header_color:
+section_header_y: 6.484
+headers_font_size: 20
+headers_font_style: ""
+section_user_image_y: 3.7691
+section_user_image_max_height: 3.095
+section_user_image_max_width: 4.67
+
+# Table of content
+toc_header_y: 7.750

@@ -1,0 +1,97 @@
+- content_for :page_title, "Admin panel / Orders"
+- content_for :headline, "Admin panel / Orders"
+
+%h2= "Order ##{@order.id}"
+
+%h3 Order Info
+
+%dl
+  %dt Order ID:
+  %dd= @order.id
+  - if @order.is_reorder?
+    %dt Re-order of the order ID:
+    %dd= link_to @order.reorder_id, admin_order_path(@order.reorder_id)
+  %dt Cookbook ID: 
+  %dd= @order.cookbook_id
+  %dt Cookbook owner:
+  %dd
+    = link_to "#{@order.cookbook.owner.name} ", admin_user_path(@order.cookbook.owner.id)
+    = mail_to @order.cookbook.owner.email, "<#{@order.cookbook.owner.email}>"
+  %dt User who ordered the cookbook:
+  %dd
+    = link_to "#{@order.user.name} ", admin_user_path(@order.user.id)
+    = mail_to @order.user.email, "<#{@order.user.email}>"
+
+%h4 Cookbook  
+
+%dl
+  %dt Binding: 
+  %dd= @order.book_binding || @order.cookbook.book_binding
+  %dt Number of books: 
+  %dd= @order.number_of_books
+  %dt Number of pages: 
+  %dd= @order.num_pages || @order.cookbook.num_pages
+  %dt Cover pages: 
+  %dd 2 (front and back)
+  %dt Inside Color pages: 
+  %dd= @order.order_color_pages || @order.cookbook.num_color_pages
+  %dt Black and White pages: 
+  %dd= @order.order_bw_pages || @order.cookbook.num_bw_pages
+
+%h4 Pricing
+
+%dl
+  %dt Printing Price: 
+  %dd= @order.order_printing_cost ? ("$%.2f" % @order.order_printing_cost) : 'Not Recorded'
+  %dt Shipping Price:
+  %dd= @order.order_shipping_cost ? ("$%.2f" % @order.order_shipping_cost) : 'Not Recorded'
+  %dt Total Price: 
+  %dd= "$%.2f" % @order.order_total_cost
+  %dt Paid on: 
+  %dd=@order.paid_on
+  %dt Beanstream Payment: 
+  %dd= "$%.2f" % @order.beanstream_cost
+  %dt Customer Notes: 
+  %dd= (@order.notes.empty?) ? "No notes" : @order.notes
+  %dt Expected Delivery: 
+  %dd= (@order.delivery_time.empty?) ? "No notes" : @order.delivery_time
+
+%h4 Billing Information
+
+%dl
+  %dt Name: 
+  %dd= "#{@order.bill_first_name} #{@order.bill_last_name}"
+  %dt Address: 
+  %dd
+    = @order.bill_address
+    - if !@order.bill_address2.empty?
+      %br
+      = @order.bill_address2
+    %br
+    = "#{@order.bill_city}, #{@order.bill_state}, #{@order.bill_zip}"
+    %br
+    = @order.bill_country
+  %dt Phone: 
+  %dd= @order.bill_phone
+  %dt Email: 
+  %dd= mail_to @order.bill_email
+
+%h4 Shipping Information
+
+%dl
+  %dt Name: 
+  %dd= "#{@order.ship_first_name} #{@order.ship_last_name}"
+  %dt Address: 
+  %dd
+    = @order.ship_address
+    %br
+    - if !@order.ship_address2.empty?
+      = @order.ship_address2
+      %br
+    = "#{@order.ship_city}, #{@order.ship_state}, #{@order.ship_zip}"
+    %br
+    = @order.ship_country
+  %dt Phone: 
+  %dd= @order.ship_phone
+  %dt Email: 
+  %dd= mail_to @order.ship_email

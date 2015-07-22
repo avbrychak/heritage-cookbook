@@ -1,0 +1,39 @@
+- content_for :info_panel do
+  = render "info_panels/additional_information"
+
+%h3 Additional information
+   
+= errors_for @user if @user.errors.any?
+
+= form_for @user, url: update_additional_information_account_path(@user) do |f|
+  .control-group
+    = f.label :address
+    = f.text_field :address
+  .control-group
+    .align-on-labels
+    = f.text_field :address2
+  .control-group
+    = f.label :city
+    = f.text_field :city
+  .control-group
+    = f.label :state, "State / Province"
+    = f.select :state, [""] + Order::states_reverse
+  .control-group
+    = f.label :zip, "Zip, Postal Code"
+    = f.text_field :zip
+  .control-group
+    = f.label :country
+    = f.select :country, ["", "Canada", "United States", "Other"]
+  .control-group
+    = f.label :phone, "Phone Number"
+    = f.text_field :phone
+  .control-group
+    = f.label :newsletter, "Sign up for our newsletter?"
+    = f.check_box :newsletter
+
+  .control-group
+    .align-on-labels
+    = f.submit "Submit Additional Registration Info", class: "orange"
+  .control-group
+    .align-on-labels
+    = link_to "Skip this for now", root_path, class: "button blue"

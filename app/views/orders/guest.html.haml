@@ -1,0 +1,12 @@
+- content_for :page_title, "Ordering #{@cookbook.owner.name}’s cookbook"
+- content_for :headline, "Ordering #{@cookbook.owner.name}’s cookbook"
+
+%h3= "Ordering cookbook '#{@order.cookbook_title || @order.cookbook.title}' by #{@cookbook.owner.name}"
+
+%p= "#{current_user.first_name}, #{@cookbook.owner.name} has allowed you to purchase their cookbook. Please use the price calculator to pursue your order."
+
+%h3 Enter your quantity and shipping details
+
+= render "form"
+
+#cookbook-order-grid

@@ -1,0 +1,25 @@
+- if @extra_pages.empty?
+  %p.note You have no Extra Pages yet
+- else
+  %table
+    %tr
+      %th.align-left Extra Page
+      %th Photo
+      %th Pages
+      %th Author
+    - @extra_pages.each do |extra_page|
+      %tr.extra-page
+        %td.align-left
+          .name= extra_page.name
+          .actions
+            - if extra_page.author_is(current_user) || user_is_owner?
+              = link_to "edit", edit_section_extra_page_path(@section, extra_page)
+              |
+            = link_to_preview "preview", preview_section_extra_page_path(@section, extra_page)
+            - if extra_page.author_is(current_user) || user_is_owner?
+              |
+              = link_to "remove", section_extra_page_path(@section, extra_page), method: :delete, confirm: "Are you sure ?"
+        %td
+          .photo= image_tag(extra_page.photo(:preview)) if extra_page.photo?
+        %td.pages= (extra_page.pages == 0.5) ? "½" : extra_page.pages.to_i
+        %td.contributors= extra_page.user.name

@@ -1,0 +1,62 @@
+one_month_free_trial:
+  id: 1
+  title: 1 Month Free Trial Membership
+  duration: 1
+  price: 0.0
+  number_of_books: 1
+  purchaseable: 1
+  upgradeable: 0
+
+one_month_membership:
+  id: 12
+  title: "1 Month Membership"
+  duration: 1
+  price: 29.95
+  number_of_books: 1
+  purchaseable: 1
+  upgradeable: 1
+
+two_month_membership:
+  id: 13
+  title: "2 Month Membership"
+  duration: 2
+  price: 39.95
+  number_of_books: 1
+  purchaseable: 1
+  upgradeable: 1
+
+four_month_membership:
+  id: 14
+  title: "4 Month Membership"
+  duration: 4
+  price: 49.95
+  number_of_books: 2
+  purchaseable: 1
+  upgradeable: 1
+
+one_year_membership:
+  id: 15
+  title: "1 Year Membership"
+  duration: 12
+  price: 59.95
+  number_of_books: 3
+  purchaseable: 1
+  upgradeable: 1
+
+one_month_membership_upgrade:
+  id: 16
+  title: "1 Month Membership Upgrade"
+  duration: 1
+  price: 19.95
+  number_of_books: 3
+  purchaseable: 0
+  upgradeable: 1
+
+contributor_only:
+  id: 5
+  title: "Contributor Only"
+  duration: 0
+  price: 0.0
+  number_of_books: 0
+  purchaseable: 0
+  upgradeable: 0

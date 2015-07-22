@@ -1,0 +1,213 @@
+class AccountMailer < ActionMailer::Base
+  
+  helper ActionView::Helpers::UrlHelper
+  include ActionView::Helpers::TextHelper
+  
+  def signup_details(user, login_url)
+    subject          'Your Heritage Cookbook Free Trial has Begun!'
+    recipients         user.email
+    @data = {
+          :first_name =>  user.first_name,
+          :login_url => login_url
+        }
+    self.generate_and_send
+  end
+
+  def forgot_password(user, password)
+    subject          'Forgot Your Password'
+    recipients         user.email
+    @data = {
+          :first_name =>  user.first_name,
+          :password  => password
+        }
+    self.generate_and_send
+  end
+
+  def added_as_contributor(user, inviter, login_url)
+    subject          'You have been invited to help with a cookbook at HeritageCookbook.com'
+    recipients         user.email  
+    @data = {
+          :user_name =>  user.name,
+          :inviter_name => inviter.name,
+          :inviter_first_name => inviter.first_name,
+          :message => user.contributor_message,
+          :login_url => login_url
+        }
+    self.generate_and_send
+  end
+  
+  def added_as_new_contributor(user, inviter, password, login_url)
+    subject          'You have been invited to help with a cookbook at HeritageCookbook.com'
+    recipients         user.email
+    @data = {
+          :user_name =>  user.name,    
+          :inviter_name => inviter.name,
+          :inviter_first_name => inviter.first_name,
+          :message => user.contributor_message || '',
+          :user_email  => user.email,
+          :user_password => password,
+          :login_url => login_url
+        }
+    self.generate_and_send
+  end
+
+  def final_pdf_uploading_started (orders)
+    subject          "HeritageCookbook - PDF Generation Started for #{orders.size} cookbooks"
+    recipients         PDF_GENERATION_EMAIL_RECIPIENTS
+    @body['orders']     = orders
+    self.generate_and_send :text
+  end
+  
+  def final_pdf_uploaded(order)
+    subject          "HeritageCookbook - Order #{order.id}-#{order.version} has been uploaded to FTP"
+    recipients         PDF_GENERATION_EMAIL_RECIPIENTS
+    @body['order']      = order
+    @body['filename']    = order.filename
+    self.generate_and_send :text
+  end
+
+  def order_submitted(order)
+    subject          "HeritageCookbook - Order ##{order.id}-#{order.version} has been submited"
+    recipients         ORDER_PLACEMENT_EMAIL_RECIPIENTS
+    @body['order']      = order
+    self.generate_and_send :text
+  end
+  
+  def reorder_submitted(order)
+    subject          "HeritageCookbook - Re-order ##{order.id}-#{order.version} has been submited"
+    recipients         ORDER_PLACEMENT_EMAIL_RECIPIENTS
+    @body['order']      = order
+    self.generate_and_send :text
+  end
+  
+  def order_receipt(user, order, charged)
+    subject          'Receipt for your cookbook printing order on HeritageCookbook.com'
+    recipients         user.email
+    @data = {
+          :user_name =>  user.name,
+          :printing_cost => "$%.2f" % order.printing_cost,
+          :shipping_cost => ((order.shipping_cost == false) ? 'Unknown' : "$%.2f" % order.shipping_cost),
+          :total_cost => "$%.2f" % charged
+        }
+    @data.merge! order.attributes
+    self.generate_and_send
+  end
+
+  def reorder_receipt(user, order, charged)
+    subject          'Receipt for your cookbook printing order on HeritageCookbook.com'
+    recipients         user.email
+    @data = {
+          :user_name =>  user.name,
+          :printing_cost => "$%.2f" % order.printing_cost,
+          :shipping_cost => ((order.shipping_cost == false) ? 'Unknown' : "$%.2f" % order.shipping_cost),
+          :total_cost => "$%.2f" % charged
+        }
+    @data.merge! order.attributes
+    self.generate_and_send
+  end
+
+  def hume_reorder_request(order)
+      subject         "HeritageCookbook - Reprint of order ##{order.reorder_id}"
+      recipients      REORDER_REQUEST_EMAIL_RECIPIENTS
+      @body['order']  = order
+      self.generate_and_send :text
+    end
+
+  def account_upgraded(user)
+    subject          "HeritageCookbook - Account upgraded for #{user.email}"
+    recipients         ACCOUNT_UPGRADED_EMAIL_RECIPIENTS
+    @body['user']      = user
+    self.generate_and_send :text
+  end
+  
+  [1,5,7,11,15,20,29].each do |num|
+    define_method "expiry_notice_#{num}" do |user|
+      subject          "HeritageCookbook - #{pluralize(num, 'day')} left before your free trial expires!"
+      recipients         user.email
+      @data = {
+            :user_name =>  user.name
+          }
+      self.generate_and_send
+    end
+  end
+
+  [1,7].each do |num|
+    define_method "paid_account_expiry_notice_#{num}" do |user|
+      subject          "HeritageCookbook - #{pluralize(num, 'day')} left before your membership expires!"
+      recipients         user.email
+      @data = {
+            :user_name =>  user.name
+          }
+      self.generate_and_send
+    end
+  end
+
+  def printer_quote(user, num_cookbooks, num_bw_pages, num_color_pages, zip_code)
+    # Email header info MUST be added here
+    @recipients = LARGE_ORDER_QUOTE_EMAIL
+    @from = 'susan@heritagecookbook.com'
+    @subject = "Large Quote Request from HeritageCookbook.com"
+    @content_type = "text/plain"
+
+    # Email body substitutions go here
+    @body["user"] = user
+    @body["num_cookbooks"] = num_cookbooks
+    @body["num_bw_pages"] = num_bw_pages
+    @body["num_color_pages"] = num_color_pages
+    @body["zip_code"] = zip_code
+  end
+
+  def gift_card_created(gift_card)
+    subject         "HeritageCookbook - Gift Card for #{gift_card.user.name}"
+    recipients      gift_card.bill_email
+    @data = {
+      :user_name        => gift_card.bill_name,
+      :friend_name      => gift_card.user.name,
+      :friend_email     => gift_card.user.email,
+      :message          => gift_card.message,
+      :plan_name        => gift_card.plan.title,
+      :gift_card_date   => gift_card.give_on.to_s
+    }
+    self.generate_and_send
+  end
+
+  def gift_card_notification(gift_card)
+    subject         "#{gift_card.bill_name} has sent you a #{gift_card.plan.title} on HeritageCookbook.com"
+    recipients      gift_card.user.email
+    @data = {
+      :user_name     => gift_card.user.name,
+      :message       => gift_card.message,
+      :plan_name     => gift_card.plan.title,
+      :friend_name   => gift_card.bill_name
+    }
+    self.generate_and_send
+  end
+  
+  # Adds some common settings, and then sends the message
+  def generate_and_send(type = :both)
+    from 'susan@heritagecookbook.com'
+    @charset =  "utf-8"
+    if type == :both
+      add_text_from_db
+      add_html_from_db
+    end
+  end
+  
+  # Loads the text part of the msg
+  def add_text_from_db
+    data = @data || {}
+    part :content_type => 'text/plain', 
+       :body => (  Textblock.get('email_' + self.template, :stripped_html, data) +
+            render_message("text_message_footer", {}))
+  end
+  
+  # Loads the HTML part of the msg
+  def add_html_from_db
+    data = @data || {}
+    content_type 'multipart/alternative'
+    part :content_type => 'text/html', 
+       :body => (  render_message("html_message_header", {}) + 
+            Textblock.get('email_' + self.template, :html, data) +
+            render_message("html_message_footer", {}))
+  end
+end

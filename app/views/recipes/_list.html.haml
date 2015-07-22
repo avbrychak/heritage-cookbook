@@ -1,0 +1,25 @@
+- if @recipes.empty?
+  %p.note You have no Recipes yet
+- else
+  %table
+    %tr
+      %th.align-left Recipe
+      %th Photo
+      %th Pages
+      %th Author
+    - @recipes.each do |recipe|
+      %tr.recipe
+        %td.align-left
+          .name= recipe.name
+          .actions
+            - if recipe.author_is(current_user) || user_is_owner?
+              = link_to "edit", edit_section_recipe_path(@section, recipe)
+              |
+            = link_to_preview "preview", preview_section_recipe_path(@section, recipe)
+            - if recipe.author_is(current_user) || user_is_owner?
+              |
+              = link_to "remove", section_recipe_path(@section, recipe), method: :delete, confirm: "Are you sure ?"
+        %td
+          .photo= image_tag(recipe.photo(:preview)) if recipe.photo?
+        %td.pages= (recipe.pages == 0.5) ? "½" : recipe.pages.to_i
+        %td.contributors= recipe.user.name

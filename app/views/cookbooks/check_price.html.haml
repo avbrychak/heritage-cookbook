@@ -1,0 +1,49 @@
+- content_for :page_title, "Check my book price"
+- content_for :headline, "Check my book price"
+- content_for :info_panel, render("info_panels/sections")
+
+%h3 Check my Book price
+
+%table.order.pages
+  %tr
+    %th Book Binding
+    %td= @cookbook.book_binding
+  %tr
+    %th Cover pages (front and back)
+    %td 2 pages
+  %tr
+    %th Color pages
+    %td= "#{@cookbook.num_color_pages} pages"
+  %tr
+    %th Black and white pages
+    %td= "#{@cookbook.num_bw_pages} pages"
+  %tr
+    %th 
+      %strong Total pages
+    %td 
+      %strong= "#{@cookbook.num_pages} pages"
+  %tr
+    %th 
+      %strong Quantity
+    %td 
+      #num-cookbooks-field{'data-url' => check_price_cookbook_path(current_cookbook)}
+        = text_field_tag :num_cookbooks, @num_cookbooks
+        %strong cookbooks
+%table.order
+  %tr
+    %th Printing cost per book
+    %td= "$ #{@cost_per_book}"
+  %tr
+    %th 
+      %strong Total printing cost
+    %td
+      %strong= "$ #{@printing_cost}"
+
+%p.note
+  Please note shipping is not included in this price. 
+  %br 
+  To check shipping costs, click the 
+  = link_to "Preview and Order", new_order_path
+  tab.
+
+= link_to "Return", sections_path, class: "button blue"

@@ -1,0 +1,34 @@
+brian_first_cookbook_authorship:
+  cookbook: brian_smith_first_cookbook
+  user: brian_smith
+  role: 1
+
+brian_second_cookbook_authorship:
+  cookbook: brian_smith_second_cookbook
+  user: brian_smith
+  role: 1
+
+john_first_cookbook_authorship:
+  cookbook: john_smith_first_cookbook
+  user: john_smith
+  role: 1
+
+will_first_cookbook_authorship:
+  cookbook: will_smith_first_cookbook
+  user: will_smith
+  role: 1
+
+brian_contributor_to_will_first_cookbook_authorship:
+  cookbook: will_smith_first_cookbook
+  user: brian_smith
+  role: 2
+
+brian_contributor_to_john_first_cookbook_authorship:
+  cookbook: john_smith_first_cookbook
+  user: brian_smith
+  role: 2
+
+adam_contributor_to_brian_first_cookbook_authorship:
+  cookbook: brian_smith_first_cookbook
+  user: adam_smith
+  role: 2

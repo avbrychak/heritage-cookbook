@@ -1,0 +1,49 @@
+= errors_for @user if @user.errors.any?
+
+= form_for @user, url: account_path(@user) do |f|
+  .control-group
+    .align-on-labels
+    %p.note<
+      If you wish to change your password, please
+      = link_to " click here", edit_password_account_path(@user)
+  .control-group
+    = f.label :first_name, "Your first name:"
+    = f.text_field :first_name
+  .control-group
+    = f.label :last_name, "Your last name:"
+    = f.text_field :last_name
+  .control-group
+    = f.label :email, "Your email address:"
+    = f.text_field :email
+  .control-group
+    = f.label :email_confirmation, "Re-type your email address:"
+    = f.text_field :email_confirmation
+  .control-group
+    = f.label :address, "Address:"
+    = f.text_field :address
+  .control-group
+    .align-on-labels
+    = f.text_field :address2
+  .control-group
+    = f.label :city, "City:"
+    = f.text_field :city
+  .control-group
+    = f.label :state, "State / Province:"
+    = f.select :state, [""] + Order::states_reverse
+  .control-group
+    = f.label :zip, "Zip, Postal Code:"
+    = f.text_field :zip
+  .control-group
+    = f.label :country, "Country:"
+    = f.select :country, ["", "Canada", "United States", "Other"]
+  .control-group
+    = f.label :phone, "Phone Number:"
+    = f.text_field :phone
+  .control-group
+    = f.label :newsletter, "Sign up for our newsletter?"
+    = f.check_box :newsletter
+
+  .control-group
+    .align-on-labels
+    = f.submit "Save Changes", class: "button orange"
+    = link_to "Cancel", root_path, class: "button blue"

@@ -1,0 +1,67 @@
+@import 'config';
+
+table.order {
+  width: 60%;
+  margin-bottom: 1em;
+
+  th {
+    text-align: left;
+    font-weight: normal;
+  }
+
+  td {
+    text-align: right;
+  }
+
+  &.pages {
+    border-bottom: 1px solid $gray;
+    margin-bottom: 0.5em;
+  }
+}
+
+#orders-new {
+
+  #place-this-order-button {
+    text-align: center;
+  }
+
+  #order-cost {
+    color: $orange;
+    font-weight: bold;
+  }
+
+  #preview-confirm-checkbox {
+    margin-top: 1em;
+    * {
+      cursor: pointer;
+    }
+  }
+
+  .loader {
+    text-align: center;
+  }
+}
+
+#orders-reorder {
+
+  table.order {
+    width: 80%;
+  }
+}
+
+#share-order {
+  margin-bottom: 1em;
+  
+  label[for=order_token]{
+    cursor: pointer;
+    margin-bottom: 1em;
+  }
+
+  #order-token-link {
+    margin-top: 0.5em;
+    padding: 0.5em;
+    text-align: center;
+    background-color: $light-blue;
+    margin-bottom: 1em;
+  }
+}

@@ -1,0 +1,8 @@
+%h3 Add an image
+
+.image-upload-form
+  = form_for [@section, @extra_page], url:  update_attachment_section_extra_page_path(@section, @extra_page), html: {id: "edit_extra_page_attachment_#{@extra_page.id}"}, remote: true do |f|
+    .one-line-control
+      = f.paperclip_attachment :photo, image_library: true
+
+    = link_to "DONE", "#", class: 'close-modal button blue'

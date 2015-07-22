@@ -1,0 +1,66 @@
+--- 
+- !ruby/object:Textblock 
+  attributes: 
+    name: email_expiry_notice_1
+    description: Email / Email / Expiry Notice 1 day
+    text_html: |-
+      <h1>Dear (=user_name=)</h1>
+      <p>You have 1 day before your account expires.</p>
+    
+    text: |-
+      h1. Dear (=user_name=)
+      
+      You have 1 day before your account expires
+
+- !ruby/object:Textblock
+  attributes:
+    name: email_expiry_notice_11
+    description: Email / Email / Expiry Notice 11 days
+    text_html: |-
+      <h1>Dear (=user_name=)</h1>
+      <p>You have 11 days before your account expires.</p>
+    
+    text: |-
+      h1. Dear (=user_name=)
+      
+      You have 11 days before your account expires
+      
+- !ruby/object:Textblock
+  attributes:
+    name: email_expiry_notice_15
+    description: Email / Email / Expiry Notice 15 days
+    text_html: |-
+      <h1>Dear (=user_name=)</h1>
+      <p>You have 15 days before your account expires.</p>
+
+    text: |-
+      h1. Dear (=user_name=)
+      
+      You have 15 days before your account expires
+
+- !ruby/object:Textblock
+  attributes:
+    name: email_expiry_notice_20
+    description: Email / Email / Expiry Notice 20 days
+    text_html: |-
+      <h1>Dear (=user_name=)</h1>
+      <p>You have 20 days before your account expires.</p>
+
+    text: |-
+      h1. Dear (=user_name=)
+
+      You have 20 days before your account expires
+      
+      
+- !ruby/object:Textblock
+  attributes:
+    name: email_expiry_notice_29
+    description: Email / Email / Expiry Notice 29 days
+    text_html: |-
+      <h1>Dear (=user_name=)</h1>
+      <p>You have 29 days before your account expires.</p>
+
+    text: |-
+      h1. Dear (=user_name=)
+
+      You have 29 days before your account expires

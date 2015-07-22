@@ -1,0 +1,14 @@
+body {
+
+  // Fix image upload button
+  .image-upload-form-part {
+    .upload-menu {
+      .upload-input-link {
+        display: none;
+      }
+      .upload-input input{
+        position: static;
+      }
+    }
+  }
+}

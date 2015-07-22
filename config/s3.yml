@@ -1,0 +1,9 @@
+development:
+  bucket: kurt_heritage_cookbook_development
+  access_key_id: AKIAJFYPQ3NGICEBJHJQ
+  secret_access_key: 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
+
+test:
+  bucket: kurt_heritage_cookbook_test
+  access_key_id: AKIAJFYPQ3NGICEBJHJQ
+  secret_access_key: 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

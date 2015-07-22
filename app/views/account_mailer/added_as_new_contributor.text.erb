@@ -1,0 +1,29 @@
+You've been invited to help with a cookbook!
+--------------------------------------------
+
+Dear <%= @user.name %>,
+
+<%= @inviter.name %> has invited you to join in the fun of creating a cookbook at HeritageCookbook.com. 
+
+As a contributor to the cookbook you will be able to add and edit your own recipes, photos and stories as well as preview the book as it is being built. You won't be able to edit anyone else's work though - only the editor-in-chief, the person who invited you to help, can do this. 
+
+<%- if @message && !@message.empty? %>
+<%= @inviter.first_name %> wrote this for you:
+
+<%= @message %>
+<% end %>
+
+To login to your account, use the following information:
+
+Email: <%= @user.email %>
+
+Password: <%= @password %>
+
+You can login at the following address:
+
+<%= @login_url %>
+
+Once you have logged in, you can change your password to something you will remember more easily by clicking on the "My Account" link on the top right of the page.
+
+Have Fun!
+Virginie

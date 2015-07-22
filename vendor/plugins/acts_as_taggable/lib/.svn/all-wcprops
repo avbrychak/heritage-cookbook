@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/twg/heritage-cookbook/!svn/ver/416/app/trunk/vendor/plugins/acts_as_taggable/lib
+END
+tagging.rb
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/twg/heritage-cookbook/!svn/ver/405/app/trunk/vendor/plugins/acts_as_taggable/lib/tagging.rb
+END
+acts_as_taggable.rb
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/twg/heritage-cookbook/!svn/ver/408/app/trunk/vendor/plugins/acts_as_taggable/lib/acts_as_taggable.rb
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/twg/heritage-cookbook/!svn/ver/405/app/trunk/vendor/plugins/acts_as_taggable/lib/README
+END
+tag.rb
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/twg/heritage-cookbook/!svn/ver/416/app/trunk/vendor/plugins/acts_as_taggable/lib/tag.rb
+END

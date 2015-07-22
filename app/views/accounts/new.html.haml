@@ -1,0 +1,77 @@
+- content_for :page_title, "Create your account"
+- content_for :headline, "Create your account"
+
+%h3 Signup for a Free Trial
+
+= errors_for @user if @user.errors.any?
+
+= form_for @user, url: accounts_path do |f|
+  .control-group
+    = f.label :plan, "* Choose a membership plan:"
+    = f.select :plan_id, Plan.available_signup_plans
+  .control-group
+    = f.label :first_name, "* Your first name:"
+    = f.text_field :first_name
+  .control-group
+    = f.label :last_name, "* Your last name:"
+    = f.text_field :last_name
+  .control-group
+    = f.label :email, "* Your email address:"
+    = f.text_field :email
+  .control-group
+    = f.label :email_confirmation, "* Re-type your email address:"
+    = f.text_field :email_confirmation
+  .control-group
+    = f.label :password, "* Your preferred password:"
+    = f.password_field :password
+  .control-group
+    = f.label :password_confirmation, "* Re-type your password:"
+    = f.password_field :password_confirmation
+  .control-group
+    = f.label :how_heard, "Where did you learn about us?"
+    = f.select :how_heard, User::HOW_HEARD
+  .control-group
+    = f.label :cookbook_type, "What type of cookbook would you like to create?"
+    = f.select :cookbook_type, User::COOKBOOK_TYPE
+  .control-group
+    = f.label :address, "Address:"
+    = f.text_field :address
+  .control-group
+    .align-on-labels
+    = f.text_field :address2
+  .control-group
+    = f.label :city, "City:"
+    = f.text_field :city
+  .control-group
+    = f.label :state, "State / Province:"
+    = f.select :state, [""] + Order::states_reverse
+  .control-group
+    = f.label :zip, "Zip, Postal Code:"
+    = f.text_field :zip
+  .control-group
+    = f.label :country, "Country:"
+    = f.select :country, ["", "Canada", "United States", "Other"]
+  .control-group
+    = f.label :phone, "Phone Number:"
+    = f.text_field :phone
+  .control-group
+    = f.label :newsletter_info, "Sign up for our newsletter?"
+    = f.check_box :newsletter, checked: true
+
+  .control-group
+    = f.label :read_terms_of_services, modal_tag("* Read Terms of Service", render("modal_terms_of_service"))
+    %p.note#terms_of_service_review
+      I have carefully reviewed the Terms and Conditions above. On registering the HeritageCookbook.com program, I hereby agree  to the terms and conditions as set out under the Disclaimer
+
+  .control-group
+    = f.label :terms_of_service, "I Agree"
+    = f.check_box :terms_of_service
+
+  .control-group
+    .align-on-labels
+    = f.submit "Submit Registration Info", class: "orange"
+
+  .control-group
+    .align-on-labels
+    %p.note Fields marked with an * must be entered
+

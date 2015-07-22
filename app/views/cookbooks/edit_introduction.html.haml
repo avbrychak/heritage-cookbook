@@ -1,0 +1,47 @@
+- content_for :page_title, "Add a personal note at the front of your book"
+- content_for :headline, "Add a personal note at the front of your book"
+- content_for :info_panel, render("info_panels/design_step_3")
+
+= render "layouts/design_steps"
+
+#form-errors= errors_for @cookbook if @cookbook.errors.any?
+
+= form_for @cookbook, url: update_introduction_cookbook_path(@cookbook) do |f|
+
+  = check_box_tag :do_not_include, "1", (@cookbook.intro_type == 2)
+  = label_tag :do_not_include, "I do not wish to include this page"
+
+  %h3 This page will be a:
+  .radio
+    = f.radio_button :intro_type, 1
+    = f.label :intro_type, "Dedication", value: 1
+  .radio
+    = f.radio_button :intro_type, 0
+    = f.label :intro_type, "Introduction", value: 0
+
+  %h3 Add your text:
+  = f.text_area :intro_text, class: "book-content"
+
+  %h3 Make the text:
+  .radio
+    = f.radio_button :center_introduction, false
+    = f.label :center_introduction, "Left aligned", value: false
+  .radio
+    = f.radio_button :center_introduction, true
+    = f.label :center_introduction, "Centered", value: true
+    
+  %h3 Add your own photo
+
+  = f.paperclip_attachment :intro_image, image_library: true
+  = hidden_field_tag "libimage[intro_image]"
+
+  .one-line-controls
+    = f.check_box :intro_image_grayscale
+    = f.label :intro_image_grayscale, "Turn this into a black-and-white photo"
+
+  %ul
+    = link_to_preview "Preview this page", preview_introduction_cookbook_path(@cookbook), class: "picto preview"
+    
+= link_to "Next", contributors_path, class: "button orange next-button alert-on-form-errors"
+
+

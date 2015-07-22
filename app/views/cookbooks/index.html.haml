@@ -1,0 +1,31 @@
+- content_for :page_title, "Welcome, #{current_user.first_name}!"
+- content_for :headline, "Welcome, #{current_user.first_name}!"
+- content_for :info_panel, render("info_panels/cookbooks")
+
+- # Display user cookbooks
+%h3 Here are the cookbooks you are working on:
+= render 'cookbooks_list', cookbooks: @cookbooks, display_new_cookbook_button: true, display_cookbook_author: false
+
+- # Display cookbooks user contributed to
+- if @contributed_cookbooks.any?
+  %h3 Here are the cookbooks you are contributing to:
+  = render 'cookbooks_list', cookbooks: @contributed_cookbooks, display_new_cookbook_button: false, display_cookbook_author: true
+
+- if @completed_orders.any?
+  %h3= "Here are the completed cookbooks you have ordered (#{@completed_orders.count}):"
+  %table#completed-orders-list
+    - @completed_orders.each do |order|
+      %tr
+        %td
+          %em= order.generated_at.to_formatted_s(:long_ordinal)
+          %br
+          %strong= order.cookbook.title
+        %td
+          = "#{order.number_of_books} books "
+          - if order.order_color_pages && order.order_bw_pages
+            ="(#{order.num_pages} pages)"
+          %br
+          = "$ #{(order.order_printing_cost + order.order_shipping_cost).round(2)}"
+        %td.actions
+          = link_to "re-order", reorder_order_path(order.id), class: "button blue"
+

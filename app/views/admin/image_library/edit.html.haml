@@ -1,0 +1,15 @@
+- content_for :page_title, "Admin panel / Image Library"
+- content_for :headline, "Admin panel / Image Library"
+
+%h3 Edit my image tag
+
+#form-errors= errors_for @image if @image.errors.any?
+
+= form_for([:admin, @image], url: admin_image_library_path) do |f|
+  .one-line-controls
+    = link_to image_tag(@image.lib_image.url(:preview)), @image.lib_image.url(:original)
+  .one-line-controls
+    = label_tag :tag_names, "Tags"
+    = text_field_tag :tag_names, @image.tag_list
+  = f.submit "Add", class: "button blue"
+  = link_to "Delete", admin_image_library_path(@image), class: "button orange", method: :delete

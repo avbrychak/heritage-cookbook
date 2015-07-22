@@ -1,0 +1,978 @@
+@import "config";
+
+// Layout
+// --------------------------------------------------------------------------
+
+$container-width: 940px;
+$content-width: 630px;
+$content-padding: 20px;
+$content-margin-right: 8px;
+$border-width: 1px;
+$page-background: image-url('page-background.png');
+$header-background: font-url('header-background.png');
+$logo-size: 100px;
+$help-panel-arrow: image-url('help-panel-arrow.png');
+
+.staging {
+  background-color: $light-green;
+  border: 1px solid $green;
+  padding: 0.6em;
+  text-align: center;
+
+  h5 {
+    color: $gray;
+    margin-bottom: 1em;
+    font-size: 1em;
+  }
+
+  ul {
+    display: inline-block;
+    text-align: left;
+  }
+
+  hr {
+    border-color: white;
+  }
+}
+
+.full-width {
+  width: $container-width - ($border-width * 2) - ($content-padding * 2) !important;
+}
+
+body {
+  @include reset-margins;
+  @include sans-serif-font;
+  background-image: $page-background;
+  color: $gray;
+  overflow-y: scroll;
+
+  h1 {
+    @include reset-margins;
+    @include message-title-font;
+    padding-left: 2px;
+    font-weight: normal;
+    color: $blue;
+    line-height: 0.8em;
+  }
+
+  h2 {
+    font-size: 1.1em;
+    color: $blue;
+    font-weight: 500;
+  }  
+
+  h3 {
+    @include serif-font;
+    font-size: 1.1em;
+    color: $blue;
+    font-weight: normal;
+    margin-bottom: 1em;
+
+    a {
+      color: $blue;
+    }
+  }
+
+  h4 {
+    @include serif-font;
+    font-size: 1em;
+    margin: 0.2em 0;
+    color: $pink;
+    font-weight: normal;
+    border-bottom: 1px dashed $pink;
+    padding-bottom: 0.4em;
+    margin-bottom: 1em;
+  }
+
+  h5 {
+    @include reset-margins;
+    color: $pink;
+    font-weight: bold;
+    font-size: 0.8em;
+  }
+
+  ul {
+    @include reset-margins;
+    list-style: none;
+
+    li {
+      padding-bottom: 0.4em;
+    }
+  }
+
+  ol {
+    padding-left: 1.2em;
+
+    li {
+      padding-bottom: 0.4em;
+    }
+  }
+
+  hr {
+    border: 1px dashed $blue;
+    margin: 1em 0;
+  }
+
+  .note {
+    font-size: 0.8em;
+    font-weight: 500;
+  }
+
+  p.note {
+    @include reset-margins;
+    margin-bottom: 1em;
+  }
+
+  .center {
+    text-align: center;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .hidden-forever {
+    display: none !important;
+  }
+
+  .hidden-visibility {
+    visibility: hidden;
+  }
+
+  a {
+    text-decoration: none;
+    color: darken($blue, 20%);
+  }
+
+  .shadow {
+    @include shadow(2px, 2px, 5px, 0px);
+  }
+
+  .loader {
+    display: none;
+  }
+
+  .form-status {
+    position: fixed;
+    left: 0;
+    top: 2.8em;
+    background-color: $green;
+    border-right: 1px solid $light-green;
+    border-top: 1px solid $light-green;
+    color: white;
+    font-size: 0.6;
+    padding: 0.4em 1em;
+  }
+}
+
+header {
+  background-image: $header-background;
+  background-repeat: repeat-x;
+  background-position: 0% 0%;
+  margin-bottom: 1em;
+
+  nav {
+    padding: 0.4em 0px;
+
+    ul {
+      @include reset-margins;
+      list-style-type: none;
+      text-align: right;
+
+      li {
+        display: inline-block;
+        margin-left: 1em;
+
+        a {
+          color: white;
+          text-decoration: none;
+          font-size: 0.7em;
+          font-weight: 500;
+          font-size: 0.8em;
+        }
+      }
+    }
+  }
+
+  #logo {
+    display: inline-block;
+    float: left;
+    width: $logo-size;
+    margin-top: -1.6em;
+
+    a {
+      display: block;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        border: none;
+      }
+    }
+  }
+
+  #header-message {
+    width: $content-width - $logo-size + $border-width * 2;
+    padding: 0 $content-padding;
+    float: left;
+
+    h1 {
+      padding-top: 0.2em;
+      font-size: 60px;
+    }
+  }
+
+  #account-status {
+    margin-left: $content-width + $content-padding * 2 + $border-width * 2;
+    padding-top: 1.6em;
+    text-align: right;
+
+    #status-title {
+      font-size: 0.9em;
+      font-weight: 400;
+    }
+
+    #status-content {
+      @include serif-font;
+      font-size: 0.8em;
+      font-weight: bold;
+      color: $blue;
+    }
+  }
+}
+
+.container {
+  width: $container-width;
+  overflow: hidden;
+  margin: auto;
+
+  #content {
+    width: $content-width;
+    float: left;
+    border: $border-width solid $light-gray;
+    @include shadow(2px, 2px, 5px, 0px);
+    padding: $content-padding;
+    background-color: white;
+    margin-bottom: 2em;
+  }
+
+  #info-panel {
+    margin-left: $content-width + $content-padding * 2 + $border-width * 2;
+    width: $container-width - ($content-width + $content-padding * 2 + $content-margin-right + $border-width * 2) - 6;
+    padding-left: $content-margin-right;
+    margin-bottom: 2em;
+
+    #info-image {
+      background-color: white;
+      border: 1px solid $light-gray;
+      padding: 1em;
+      @include shadow(2px, 2px, 5px, 0px);
+
+      h1 {
+        color: $pink;
+        border-bottom: 2px solid $pink;
+        padding-bottom: 0em;
+        
+        a {
+          color: $pink;
+        }
+      }
+
+      h1:before {
+        content: " ";
+        display: block;
+        float: left;
+        position: relative;
+        width: 24px;
+        height: 76px;
+        padding-top: 24px;
+        background-image: $help-panel-arrow;
+        background-position: left center;
+        background-repeat: no-repeat;
+      }
+
+      img {
+        width: 100%;
+        border: 1px solid $light-gray;
+      }
+
+    }
+
+    #info-text {
+      padding: 1em;
+    }
+  }
+}
+
+#cookbook-menu {
+  width: $content-width + $content-padding * 2 + $border-width * 2;
+  float: left;
+}
+
+#design-steps {
+  margin: 1em 0 2em 0;
+
+}
+
+// Notifications
+// --------------------------------------------------------------------------
+
+#notification {
+  font-size: 0.9em;
+  text-align: center;
+
+  .notice {
+    border: 1px solid darken($light-blue, 5%);
+    background-color: $light-blue;
+    padding: 0.2em 0.5em;
+  }
+
+  .alert {
+    border: 1px solid $orange;
+    background-color: lighten($orange, 20%);
+    padding: 0.2em;
+  }
+}
+
+// Image upload
+// --------------------------------------------------------------------------
+
+.thumb {
+  padding: 1em 0px;
+
+  img {
+    border: 1px solid $light-gray;
+    max-width: 360px;
+    max-height: 570px;
+  }
+}
+
+.image-upload-form-part {
+  display: inline-block;
+  margin-bottom: 1em;
+
+  .upload-menu {
+    display: inline-block;
+    vertical-align:text-top;
+
+    .upload-input {
+      display: block;
+      float: left;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      padding-right: 0.4em;
+
+      input {
+        opacity: 0;
+        position: absolute;
+        top:0;
+        right: 0;
+        cursor: pointer;
+      }
+    }
+  }
+
+  label {
+    display: inline !important;
+    width: auto !important;
+    color: $blue;
+    font-weight: 500;
+  }
+
+  .progress-bar {
+    display: none;
+    width: 99%;
+    height: 1em;
+    border: 1px solid $blue;
+    background-color: darken($light-blue, 20%);
+
+    .percent {
+      width: 0%;
+      background-color: darken($blue, 8%);
+      height: 100%;
+    }
+
+    .text {
+      padding-left: 1em;
+      color: white;
+      position: absolute;
+    }
+  }
+}
+
+// Image Library
+// --------------------------------------------------------------------------
+
+#categories-list {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 600px;
+
+  .select {
+    margin-bottom: 1em;
+  }
+
+  select {
+    width: 40%;
+    display: inline-block;
+  }
+
+}
+
+.images-list {
+  
+  ul {
+    display: block;
+    overflow: hidden;
+    margin: -1em;
+    
+    li {
+      display: block;
+      padding: 1em;
+      float: left;
+      
+      a {
+        width: 120px;
+        height: 80px;
+        display: block;
+        overflow: hidden;
+      }
+      
+      img {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+// Picto
+// --------------------------------------------------------------------------
+
+$picto-write: image-url('picto_write.png');
+$picto-preview: image-url('picto_preview.png');
+$picto-delete: image-url('picto_delete.png');
+$picto-move: image-url('picto_move.png');
+$picto-text: image-url('picto_text.png');
+$picto-photo: image-url('picto_photo.png');
+$picto-help: image-url('picto_help.png');
+
+.picto {
+  display: inline-block;
+  padding-left: 32px;
+  padding-top: 0.1em;
+  min-height: 24px;
+  margin-bottom: 0.5em;
+  background-repeat: no-repeat;
+  background-position: 0% 50%;
+
+  &.write {
+    background-image: $picto-write;
+  }
+
+  &.preview {
+    background-image: $picto-preview;
+  }
+
+  &.delete {
+    background-image: $picto-delete;
+  }
+  
+  &.move {
+    background-image: $picto-move;
+  }
+
+  &.text {
+    background-image: $picto-text;
+  }
+
+  &.photo {
+    background-image: $picto-photo;
+  }
+
+  &.help {
+    background-image: $picto-help;
+    background-position: 0% 0%;
+  }
+
+  &.right {
+    background-position: 100% 0%;
+    padding-left: 0;
+    padding-right: 32px;
+  }
+}
+
+form .picto.help {
+  min-width: 80%;
+}
+
+p .picto {
+  padding-left: 1em;
+  min-height: 0;
+  height: 1em;
+  margin-bottom: 0;
+  background-size: 100% auto;
+}
+
+// Forms
+// --------------------------------------------------------------------------
+
+.image-upload-form, .auto-save {
+  overflow: hidden;
+}
+
+form {
+  overflow: hidden;
+  margin-bottom: 1em;
+
+  label, input, select {
+    display: block;
+  }
+
+  select {
+    background-color: transparent;
+  }
+
+  input[type=submit] {
+    margin-top: 1em;
+  }
+
+  input[type="checkbox"], input[type="radio"] {
+    display: block;
+    float: left;
+    margin-right: 1em;
+  }
+
+  input[type=text], input[type=password], textarea, select {
+    @include reset-margins;
+    padding: 0.4em;
+    border: 1px solid lighten($gray, 50%);
+  }
+
+  input[type=text], input[type=password] {
+    height: 1.4em;
+    width: 80%;
+    max-width: 400px;
+  }
+
+  textarea {
+    resize: none;
+    height: 10em;
+    width: 400px;
+  }
+
+  textarea.book-content {
+    @include sans-serif-font;
+    font-size: 0.9em;
+  }
+
+  .one-line-controls {
+    margin-bottom: 1em;
+
+    input, label {
+      vertical-align: top;
+      display: inline-block;
+      margin-right: 1em;
+    }
+
+    label {
+      max-width: 60%;
+      max-width: 340px;
+    }
+
+  }
+
+  .control-group {
+    overflow: hidden;
+    padding: 0.4em;
+
+    p {
+      @include reset-margins;
+      display: inline-block;
+      vertical-align: middle;
+      width: 80%;
+      max-width: 400px;
+    }
+
+    label, input, select, textarea {
+      display: inline-block;
+    }
+
+    label {
+      float: left;
+      max-width: 240px;
+      width: 30%;
+      text-align: right;
+      margin-right: 0.5em;
+    }
+
+    input[type=text], textarea, select {
+      display: inline-block;
+    }
+
+    input[type=checkbox], input[type=radio] {
+      float: none;
+      @include reset-margins;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .right-part {
+      float: right;
+      width: 68%;
+    }
+
+    .one-line-checkbox {
+      display: inline-block;
+
+      label {
+        display: inline-block;
+        vertical-align: middle;
+        max-width: none;
+        width: auto;
+      }
+
+      input[type=checkbox] {
+        float: left;
+        margin: 3px 3px 3px 4px;
+        margin-right: 1em;
+      }
+    }
+  }
+
+  .align-on-labels {
+    display: inline-block;
+    width: 30%;
+    max-width: 240px;
+    padding-left: 0.3em;
+  }
+
+  #form-image-thumb {
+    display: inline-block;
+  }
+}
+
+// Form errors
+// --------------------------------------------------------------------------
+
+form {
+  .field_with_errors {
+    color: $red;
+  }
+
+  a {
+    color: $gray;
+  }
+}
+
+.form-errors {
+  border: 1px solid $orange;
+  background-color: lighten($orange, 20%);
+  padding: 1em;
+  text-align: center;
+  margin-bottom: 1em;
+
+  ul {
+    display: inline-block;
+    text-align: left;
+
+    li:before {
+      content: "›";
+      padding-right: 0.4em;
+    }
+  }
+}
+
+// Tooltips
+// --------------------------------------------------------------------------
+
+.tooltip {
+  padding: 0.5em;
+  display: block;
+  position: absolute;
+  background-color: $light-blue;
+  color: black;
+  @include border-radius(4px);
+  border: 1px solid $light-gray;
+
+  p {
+    @include reset-margins;
+    font-size: 0.9em;
+    font-weight: 500;
+  }
+}
+
+// Buttons
+// --------------------------------------------------------------------------
+
+$button-min-width: 100px;
+$button-margin-left-right: 12px;
+$button-margin-top-bottom: 6px;
+$button-font-size: 14px;
+
+.button, input[type=submit] {
+  @include reset-margins;
+  @include sans-serif-font;
+  @include inner-shadow(-1px, -1px, 7px, -1px);
+  font-size: $button-font-size;
+  font-weight: 500;
+  text-transform: uppercase; 
+  display: inline-block;
+  vertical-align: bottom;
+  cursor: pointer;
+  overflow: hidden;
+  text-decoration: none;
+  border: 0;
+  padding: $button-margin-top-bottom $button-margin-left-right;
+  min-width: $button-min-width;
+  text-align: center;
+  color: white !important;
+  background-color: $light-gray;
+
+  &.orange {
+    color: white;
+    background-color: $orange;
+  }
+
+  &.blue {
+    color: white;
+    background-color: $blue;
+  }
+
+  &.red {
+    color: white;
+    background-color: $red;
+  }
+}
+
+.inline-button {
+  display: inline-block;
+  vertical-align: middle;
+  background-color: $blue;
+  color: white;
+  height: 1.4em;
+  padding-left: 0.6em;
+  padding-right: 0.6em;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 0.8em;
+  @include border-radius(4px);
+
+  a {
+    color: inherit;
+  }
+}
+
+input[type=submit] {
+  min-width: $button-min-width + ($button-margin-left-right * 2);
+}
+
+// Tabs
+// --------------------------------------------------------------------------
+
+.tabs {
+  @include reset-margins;
+  list-style: none;
+  border-bottom: 1px solid $light-gray;
+  position: relative;
+  top: 1px;
+
+  li {
+    @include serif-font;
+    @include border-top-radius(10px);
+    @include shadow(4px, 0px, 5px, -3px);
+    cursor: pointer;
+    text-transform: uppercase;
+    display: inline-block;
+    position: relative;
+    top: 1px;
+    border: 1px solid $light-gray;
+    padding: 0.5em 1em;
+    background-color: $light-blue;
+
+    a {
+      color: $blue;
+    }
+
+    &.selected {
+      background-color: white;
+      border-bottom: 1px solid white;
+
+      a {
+        color: $orange;
+      }
+    }
+
+    &.disabled {
+      background-color: lighten($light-blue, 4%);
+      cursor: default;
+
+      a {
+        color: $light-gray;
+        cursor: default;
+      }
+    }
+  }
+}
+
+// Steps
+// --------------------------------------------------------------------------
+
+$step-arrow-height: 2em;
+$step-arrow-width: 0.6em;
+
+.steps {
+  @include serif-font;
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+  li {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;  
+    height: $step-arrow-height / 2;
+    background-color: $light-blue;
+    color: $blue;
+    padding: $step-arrow-height / 4;
+    padding-left: ($step-arrow-width / 0.4);
+    font-family: sans-serif;
+    font-size: $step-arrow-height / 2;
+
+    .checkmark {
+      display: none;
+      color: $green;
+    }
+
+    a {
+      color: $blue
+    }
+
+    &:after, &:before {
+      border: solid transparent; 
+      content: " "; 
+      height: 0; 
+      width: 0; 
+      position: absolute; 
+      pointer-events: none; 
+      border-color: rgba(136, 183, 213, 0); 
+      top: 50%; 
+    }
+
+    &:after {
+      left: 100%; 
+      border-left-color: #D4EFF9; 
+      border-width: ($step-arrow-height / 2) ($step-arrow-height / 2) ($step-arrow-height / 2) $step-arrow-width; 
+      margin-top: -($step-arrow-height / 2);
+    }
+
+    &:before {
+      border-left-color: white; 
+      border-width: ($step-arrow-height / 1.4) ($step-arrow-height / 1.4) ($step-arrow-height / 1.4) ($step-arrow-width / 0.8); 
+      top: $step-arrow-height / 1.875; 
+      margin-top: -($step-arrow-height / 1.4); 
+      margin-left: -($step-arrow-width / 0.4);
+    }
+
+    &:first-child {
+      padding-left: $step-arrow-width / 0.8;
+    }
+
+    &:first-child:before {
+      content: normal;
+    }
+
+    &.current {
+      background-color: $orange !important;
+      color: white;
+
+      a {
+        color: white
+      }
+
+      .checkmark {
+        color: white;
+      }
+    }
+
+    &.current:after {
+      border-color: transparent transparent transparent $orange !important;
+    }
+
+    &.done .checkmark {
+      display: inline-block;
+    }
+
+    &:nth-child(1) {
+      position: relative;
+      z-index: 6;
+    }
+    
+    &:nth-child(2) {
+      position: relative;
+      z-index: 4;
+    }
+    
+    &:nth-child(3) {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
+
+// Modals
+// --------------------------------------------------------------------------
+
+/* Lean modal jquery plugin */
+#lean_overlay {
+  position: fixed;
+  z-index:100;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+  background: #000;
+  display: none;
+}
+
+.modal {
+  @include sans-serif-font;
+  background-color: white;
+  padding: 2em;
+  max-height: 90%;
+  max-width: 90%;
+  overflow: auto;
+  border: 1px solid $gray;
+  border-top: 0;
+  text-align: left;
+
+  h3 {
+    margin-top: 0;
+    text-align: left;
+  }
+
+  .help-text {
+    margin-bottom: 1em;
+    max-width: 30em;
+  }
+
+  .preview-modal {
+    p {
+      margin: auto;
+      margin-bottom: 1em;
+      padding: 0;
+      display: block;
+      width: auto;
+      max-width: none;
+    }
+
+    h3 {
+      margin: 1em 0 !important;
+      width: 100% !important;
+      float: none !important;
+      padding: 0 !important;
+    }
+  }
+}

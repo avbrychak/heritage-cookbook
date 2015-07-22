@@ -1,0 +1,32 @@
+- # Display actions and informations for cookbook owners
+%li= link_to "Rename this cookbook", edit_title_cookbook_path(@cookbook.id)
+%li
+  %b Design:
+  - if @cookbook.template 
+    = @cookbook.template.name 
+  - else
+    %i= "Design is not set"
+  %br
+  = link_to (@cookbook.template) ? "Edit Design" : "Choose Design", "#"
+%li
+  %b Introduction:
+  - if (@cookbook.intro_text && !@cookbook.intro_text.empty?) 
+    = truncate(@cookbook.intro_text, length: 45) 
+  - else 
+    %i= "Your introduction text is not set"
+  %br
+  = link_to "Edit Introduction", show_introduction_cookbook_path(@cookbook)
+%li
+  %b Contributors:
+  - if @cookbook.contributors.empty?
+    %i You don't have any contributors
+  - else
+    = contributors_list @cookbook.contributors
+%li
+  %b Recipes:
+  = "Currently you have #{pluralize(@cookbook.recipes.count, 'recipe')} in #{pluralize(@cookbook.num_sections_with_recipes, 'section')}."
+  - if !@cookbook.contributors.empty?
+    %br
+    = "Out of those, #{pluralize(@cookbook.num_recipes_not_contributed_by(@user.id), "recipe")} were added by your contributors."
+  %br
+    = link_to "Manage Recipes", "#"

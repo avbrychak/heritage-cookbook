@@ -1,0 +1,21 @@
+<%= content_for :headline, "Welcome to HeritageCookbook" %>
+
+<h2>Dear <%= @first_name %></h2>,
+
+<p>Welcome to HeritageCookBook.com and thank you for registering. The fun is about to begin.</p>
+
+<p>
+  Your account has been created on our system under your email address and the password you chose when you registered. You can login any time by following this link:
+  <br/><br/>
+  Your email: <%= @email %>
+  <br/>
+  <a href="<%= @login_url %>" alt="Login to Heritage Cookbook"><%= @login_url %></a>
+</p>
+
+<p>If you forget your password, click the "Forgot your Password?" link on the login page and you will be able to get a new one.</p>
+
+<p>
+  Have fun!
+  <br/>
+  Virginie
+</p>

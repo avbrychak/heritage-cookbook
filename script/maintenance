@@ -1,0 +1,32 @@
+#!/bin/bash
+#
+# Perform Heritage Cookbook app maintenance tasks
+
+env=${1-production}
+app_home="/srv/app/heritage"
+app_dir="$app_home/heritage-cookbook"
+date=`date`
+log_file="$app_dir/log/cron.log"
+
+# Load rbenv binaries
+export PATH="$app_home/.rbenv/shims:$PATH"
+cd $app_dir
+
+echo "------------------------------------------------------------------" >> $log_file
+echo "// $date - Maintenance ($env)" >> $log_file
+echo "------------------------------------------------------------------" >> $log_file
+
+# Remove old preview file (> 1 day)
+echo "// Remove old preview file (> 1 day)" >> $log_file
+find $app_dir/public/pdf_previews -name preview_*.pdf -type f -mtime +1 | xargs printf "%b\n" | xargs rm -f &>> $log_file
+
+# Sending expiry notices for Free Trial accounts
+echo "// Sending expiry notices for Free Trial accounts" >> $log_file
+RAILS_ENV=$1 RACK_ENV=$1 bundle exec rake heritage:send_free_trial_expiry_emails DAYS=1,5,7,15,20,29 >> $log_file
+
+# Sending expiry notices for Paid accounts
+echo "// Sending expiry notices for Paid accounts" >> $log_file
+RAILS_ENV=$1 RACK_ENV=$1 bundle exec rake heritage:send_account_expiry_emails DAYS=1,7 >> $log_file
+
+echo "------------------------------------------------------------------" >> $log_file
+echo "" >> $log_file

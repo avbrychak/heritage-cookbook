@@ -1,0 +1,28 @@
+- content_for :headline, "Enjoy the fruits of your labor!"
+- content_for :info_panel, render("info_panels/order")
+
+%h3 Thank you for placing your printing order on HeritageCookbook.com
+
+%p It won't be long now!! Printing takes 2-3 weeks, and delivery another week.
+
+%p.note Your books are being printed by Hume Imaging and so the charge on your credit card will appear under their name.
+
+- if @order.cookbook.is_owner?(current_user) && !@order.is_reorder?
+
+  #share-order
+    %h3 Do you want to allow your friends or family to buy this book?
+
+    %p 
+      We can create a link for you that they can use to order copies of this book. 
+      %br
+      Simply e-mail the link to anyone who has a heritagecookbook.com account (their own account, or a contributor account), and they will be able to order your book. (If you make any changes to the book after you've placed the order or sent them this link, you'll need to generate a new link.)
+
+    = label_tag :order_token do
+      = check_box_tag :order_token, 1, false, "data-guest-order-url" => guest_order_url
+      I want a link to allow people with an account to order my cookbook
+    #order-token-link.note.hidden
+      = link_to guest_order_url(@order.id), guest_order_url(@order.id)
+
+    %p.note Allow 4-6 hours for the link to be usable
+
+= link_to "Return to my home page", root_path, class: "button blue"

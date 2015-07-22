@@ -1,0 +1,11 @@
+- content_for :page_title, "Preview and order your book"
+- content_for :headline, "Preview and order your book"
+- content_for :info_panel, render("info_panels/order")
+
+%h3 Your cookbook has too many pages for this binding
+
+%p= "We are sorry but the selected binding only support #{@cookbook.book_binding.max_number_of_pages} pages and your cookbook has #{@cookbook.num_pages}."
+
+%p.note
+  = 'Please select another binding'
+  = link_to 'in the "DESIGN" page', templates_path

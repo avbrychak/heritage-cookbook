@@ -1,0 +1,26 @@
+%header
+  .container
+    = render "layouts/account_menu"
+    #logo= link_to image_tag("heritage-cookbook-logo.png"), (current_user) ? root_path : WORDPRESS_URL
+    #header-message
+      %h1= yield :headline
+    #account-status
+      - if controller_name == "accounts" || (controller_name == "cookbooks" && action_name == "index")
+        - if current_user
+          #status-title Membership status:
+          #status-content
+            - if !current_user.expiry_date
+              Contributor
+              = "-"
+              = link_to "get a membership", upgrade_account_path(current_user)
+            - else
+              = "#{how_many_days_left?} days left"
+              = "-"
+              = link_to "add time", upgrade_account_path(current_user)
+      - elsif current_cookbook
+        #status-title Your current book:
+        #status-content
+          = "#{current_cookbook.title}"
+          - if !user_is_contributor?
+            = "-"
+            = link_to "rename", edit_title_cookbook_path(current_cookbook)

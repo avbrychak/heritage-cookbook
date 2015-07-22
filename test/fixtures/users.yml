@@ -1,0 +1,114 @@
+brian_smith:
+  first_name: Brian
+  last_name: Smith
+  email: brian@smith.tld
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8" # 'password'
+  address: "123, Fake St"
+  address2: ""
+  city: San Francisco
+  state: CA
+  zip: 94102
+  country: United States
+  phone: 555-555-5555
+  cookbook_type: ''
+  newsletter: ''
+  how_heard: ''
+  number_of_books: 3
+  expiry_date: <%= 1.month.since.to_s :db %>
+  last_login_on: 2006-12-19 12:29:54
+  login_count: 99
+  is_old_user: 0
+  plan_id: 12
+  paid_orders_count: 0
+
+adam_smith:
+  first_name: Adam
+  last_name: Smith
+  email: adam@smith.tld
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8" # 'password'
+  address: "123, Fake St"
+  address2: ""
+  city: San Francisco
+  state: CA
+  zip: 94102
+  country: United States
+  phone: 555-555-5555
+  cookbook_type: ''
+  newsletter: ''
+  how_heard: ''
+  number_of_books: 1
+  expiry_date: 
+  last_login_on: 
+  login_count: 0
+  is_old_user: 0
+  plan_id: 5
+  paid_orders_count: 0
+
+john_smith:
+  first_name: John
+  last_name: Smith
+  email: john@smith.tld
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8" # 'password'
+  address: "123, Fake St"
+  address2: ""
+  city: San Francisco
+  state: CA
+  zip: 94102
+  country: United States
+  phone: 555-555-5555
+  cookbook_type: ''
+  newsletter: ''
+  how_heard: ''
+  number_of_books: 1
+  expiry_date: <%= 1.month.since.to_s :db %>
+  last_login_on: 2006-12-19 12:29:54
+  login_count: 99
+  is_old_user: 0
+  plan_id: 12
+  paid_orders_count: 0
+
+will_smith:
+  first_name: Will
+  last_name: Smith
+  email: will@smith.tld
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8" # 'password'
+  address: "123, Fake St"
+  address2: ""
+  city: San Francisco
+  state: CA
+  zip: 94102
+  country: United States
+  phone: 555-555-5555
+  cookbook_type: ''
+  newsletter: ''
+  how_heard: ''
+  number_of_books: 1
+  expiry_date: <%= 1.month.ago.to_s :db %>
+  last_login_on: 2006-12-19 12:29:54
+  login_count: 99
+  is_old_user: 0
+  plan_id: 12
+  paid_orders_count: 0
+
+etienne_garnier:
+  first_name: Etienne
+  last_name: Garnier
+  email: garnier.etienne@gmail.com
+  hashed_password: "5baa61e4c9b93f3f0682250b6cf8331b7ee68fd8" # 'password'
+  address: "123, Fake St"
+  address2: ""
+  city: San Francisco
+  state: CA
+  zip: 94102
+  country: United States
+  phone: 555-555-5555
+  cookbook_type: ''
+  newsletter: ''
+  how_heard: ''
+  number_of_books: 3
+  expiry_date: <%= 1.month.since.to_s :db %>
+  last_login_on: 2006-12-19 12:29:54
+  login_count: 99
+  is_old_user: 0
+  plan_id: 12
+  paid_orders_count: 0

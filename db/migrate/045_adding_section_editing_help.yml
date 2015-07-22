@@ -1,0 +1,13 @@
+--- 
+- !ruby/object:Textblock 
+  attributes: 
+    name: help_section
+    text_html: |-
+      <p>This page is where you  can edit the title of your section, and also place an image on the section divider page if you want.</p>
+
+      <p><b>Note:</b> The image will display in grayscale or not depending on the overall grayscale setting you choose on the "Design" tab.</p>
+    text: |-
+      This page is where you  can edit the title of your section, and also place an image on the section divider page if you want.
+
+      *Note:* The image will display in grayscale or not depending on the overall grayscale setting you choose on the "Design" tab.
+    description: Help/Section

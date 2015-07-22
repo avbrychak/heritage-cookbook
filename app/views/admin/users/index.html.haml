@@ -1,0 +1,98 @@
+- content_for :page_title, "Admin panel / Users"
+- content_for :headline, "Admin panel / Users"
+
+%h3 Users
+
+= search_form_for [:admin, @search] do |f|
+  #left-search-fields
+    = f.label :id_eq, "User ID:"
+    = f.text_field :id_eq
+    = f.label :first_name_matches, "First name:"
+    = f.text_field :first_name_matches
+    = f.label :last_name_matches, "Last name:"
+    = f.text_field :last_name_matches
+    = f.label :email_eq, "Email:"
+    = f.text_field :email_eq
+    = f.label :state_eq, "State/Province:"
+    = f.select :state_eq, Order::states_reverse, include_blank: true
+    = f.label :country_eq, "Country:"
+    = f.select :country_eq, ["Canada", "United States", "Other"], include_blank: true
+    = f.label :country_eq, "How heard:"
+    = f.select :how_heard_eq, User::HOW_HEARD, include_blank: true
+  #right-search-fields
+    = f.label :cookbook_type_eq, "Cookbook type:"
+    = f.select :cookbook_type_eq, User::COOKBOOK_TYPE, include_blank: true
+    = f.label :cookbook_type_eq, "Account type:"
+    = f.select :plan_id_eq, Plan.plans_for_select, include_blank: true
+    = f.label :recipes_count, "No. of Recipes:"
+    .between
+      = f.text_field :recipes_count_gteq
+      <>
+      = f.text_field :recipes_count_lteq
+    = f.label :recipes_count, "No. of Orders:"
+    .between
+      = f.text_field :paid_orders_count_gteq
+      <>
+      = f.text_field :paid_orders_count_lteq
+    = f.label :created_on_gteq, "Created after:"
+    = f.text_field :created_on_gteq, class: "calendar"
+    = f.label :created_on_lteq, "Created before:"
+    = f.text_field :created_on_lteq, class: "calendar"
+    = f.label :plan_id_not_eq, class: "checkbox" do
+      = f.check_box :plan_id_not_eq, {}, 5, ""
+      Hide contributors
+  #submit-fields
+    = f.submit "Search", class: "button orange"
+    = link_to "Reset", admin_users_path, class: "button blue"
+
+%hr
+
+- if @users.empty?
+
+  %p.note No result found
+
+- else
+
+  %p#search-stats
+    = "Displaying result" 
+    %strong= @current_range[0]
+    = " - "
+    %strong= @current_range[1]
+    = " of "
+    %strong= @users.total_entries
+    = " in total"
+
+  = will_paginate @user
+
+  %table
+    %tr
+      %th Users
+      %th Created at
+      %th Expiry date
+      %th Last login (UTC)
+    - @users.each do |user|
+      %tr
+        %td
+          = link_to user.name, admin_user_path(user.id)
+          %span.note= mail_to user.email, " / #{user.email}"
+          %br
+          %span.note= user.plan.title
+        %td.note= user.created_on.strftime "%Y-%m-%d" if user.created_on
+        %td.note
+          - if user.expiry_date
+            = user.expiry_date 
+            %br
+            = " (#{distance_of_time_in_words_to_now(user.expiry_date)} #{(user.expiry_date > Time.now.to_date) ? 'remaining' : 'ago'})"
+          - else
+            Unlimited
+        %td.note
+          - if user.last_login_on
+            = user.last_login_on.strftime "%Y-%m-%d"
+            %br
+            = user.last_login_on.strftime "%H:%M:%S"
+          - else
+            = "Never logged in"
+
+  = will_paginate @users
+
+  = link_to "Download as CSV", admin_users_path(params.merge({format: :csv})), class: "button orange"

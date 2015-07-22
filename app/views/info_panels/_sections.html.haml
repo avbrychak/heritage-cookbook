@@ -1,0 +1,57 @@
+= render "info_panels/here_to_help"
+
+#info-text
+  
+  %h4 Adding content
+
+  %h5 Working on your book
+  %p.note Check that you’re working on the right book! Look at the top right to see which book you are working on! To change it, go to the “my books” link (top right). That will take you back to your bookshelf.
+
+  %h5 Start with sections
+  %p.note 
+    Each recipe has to be part of a section (e.g. Soups, Salads). The program auto-generates sections for you. You can use these, change them to section names you like, or delete them using the icons on the right.
+    %br
+    There is a maximum of 12 sections and a minimum of 1. 
+    %br
+    You can add a section by clicking the “add section” box.
+    %br
+    Use the symbols to the right of your section names to edit, preview, delete or move recipe sections.
+
+  %ul.note
+    %li.picto.write use this to edit a recipe or section
+    %li.picto.preview use this to preview a recipe or section
+    %li.picto.delete use this to delete a recipe or section
+    %li.picto.move use this to drag a section into a different order
+
+  %h5 Now add recipes to your sections
+  %p.note 
+    Click on a section to expand it and see recipes in that section. 
+    %br
+    Click “add a recipe” to add a recipe to a section.  
+    %br
+    Add as many recipes as you like to each section, but keep an eye on your page count. 
+    = modal_tag "(more on page counts here)", render("sections/modal_help_page_count")
+
+  %h5 Moving recipes from one section to another
+  %p.note To move recipes to another section, open up the recipe as if you were going to edit it, and select the drop-down menu that shows which section the recipe is in, and highlight the section you want that recipe to go into. 
+
+  %p.note 
+    Once there are recipes in your section, you will see the recipe name, if it has a photo, how many pages it takes up, and who entered the recipe (this name is not printed in the book).
+    %br
+    You can edit the recipe, preview or delete it.
+
+  %h5 About the order of recipes
+  %p.note Recipes are organized alphabetically, depending on what type of page they are. We put all two page recipes at the front of the section, alphabetically. Next come single page recipes (with or without photos), alphabetically, followed by short recipes (two to a page), and extra pages come last, also alphabetically.
+
+  %h5 Recipe layout
+  %p.note 
+    Recipes can take up one or two pages, depending on the layout you choose. (You’ll chose that when you add a photo to your recipe, later).
+    = modal_tag "(more on layouts here)", render("sections/modal_help_recipe_layout")
+
+  %h5 About extra pages
+  %p.note 
+    An extra page is a page that carries on to the next page if the text is too long – it acts kind of like Word. This is very useful for long recipes or if you have a lengthy story to tell. You are not limited to one page.
+    = modal_tag "(more on extra pages here)", render("sections/modal_help_extra_pages")
+  
+  %h5 Check your book price
+  %p.note As you are working on your book, you can check the book price by clicking the "check my book price" icon. You’ll need to enter a quantity of books since the price depends on the number of books you are ordering.  The price will also change if you go back to change the type of binding you want.

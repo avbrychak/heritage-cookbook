@@ -1,0 +1,36 @@
+%hr    
+  - if !@order.check_cookbook_binding
+    %p
+      Wire / Hard / Softcover bound books look their best with an 80 page min.
+      You can change to 
+      = link_to "a coil binding ", templates_path
+      or 
+      = link_to "add more pages.", sections_path
+  - elsif @order.large_order?
+    %p= "Please request a price quote for pricing on orders of #{Order::MAX_NUMBER_OF_BOOKS} books or more."
+    %p.note= "When clicking on the 'Request a price quote', an email will be sent to our printing service asking for a price for your command:"
+    %table.order
+      %tr
+        %th Name:
+        %td= current_user.name
+      %tr
+        %th Number of books:
+        %td= "#{@order.number_of_books} books"
+      %tr
+        %th Color pages:
+        %td= "#{@cookbook.num_color_pages} pages"
+      %tr
+        %th Black-and-White pages:
+        %td= "#{@cookbook.num_bw_pages} pages"
+      %tr
+        %th Shipping Zip/Postal code:
+        %td= @order.ship_zip
+    = link_to "Request a custom quote", ask_price_quote_order_path(@order), class: "button orange"
+  - elsif @order.ship_country == 'Other'
+    %p 
+      Please contact us regarding International orders - 
+      = mail_to CONTACT_EMAIL
+  - elsif @order.total_cost
+    %h3#order-cost= "Your order price is $#{@order.total_cost}"
+    = render "cookbook_price_informations"
+    #place-this-order-button= link_to "Place this order", edit_customer_details_order_path(@order), class: "button orange"

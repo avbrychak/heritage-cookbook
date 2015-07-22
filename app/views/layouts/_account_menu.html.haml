@@ -1,0 +1,12 @@
+%nav
+  %ul
+    - if current_user
+      %li= link_to "ADMIN", admin_users_path if user_is_admin?
+      %li= link_to "MY BOOKS", cookbooks_path
+      %li= link_to "MY ACCOUNT", edit_account_path(current_user)
+      %li= link_to "FAQs", faq_path
+      %li= link_to "LOGOUT", logout_path
+    - else
+      %li= link_to "LOGIN", login_path
+      %li= link_to "SIGNUP", signup_path
+      %li= link_to "FAQs", faq_path

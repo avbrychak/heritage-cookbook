@@ -1,0 +1,41 @@
+- content_for :page_title, "Admin panel / Orders"
+- content_for :headline, "Admin panel / Orders"
+
+%h3 Orders
+
+= search_form_for [:admin, @search] do |f|
+  #left-search-fields
+    = f.label :id_eq, "Order ID:"
+    = f.text_field :id_eq
+    = f.label :number_of_books, "Number of books:"
+    .between
+      = f.text_field :number_of_books_gteq
+      <>
+      = f.text_field :number_of_books_lteq
+    = f.label :book_binding_eq, "Book binding:"
+    = f.select :book_binding_eq, BookBinding.all.map{|bb| bb.name}, include_blank: true
+  #right-search-fields
+    = f.label :paid_on_gteq, "Placed after:"
+    = f.text_field :paid_on_gteq, class: "calendar"
+    = f.label :paid_on_lteq, "Placed before:"
+    = f.text_field :paid_on_lteq, class: "calendar"
+  #submit-fields
+    = f.submit "Search", class: "button orange"
+    = link_to "Reset", admin_orders_path, class: "button blue"
+
+%hr
+
+%p#search-stats
+  = "Displaying result" 
+  %strong= @current_range[0]
+  = " - "
+  %strong= @current_range[1]
+  = " of "
+  %strong= @orders.total_entries
+  = " in total"
+
+  = will_paginate @orders
+
+= render 'admin/orders/orders_list', orders: @orders
+
+= link_to "Download as CSV", admin_orders_path(params.merge({format: :csv})), class: "button orange"

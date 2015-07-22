@@ -1,0 +1,21 @@
+simple_recipe_extra_page:
+  name: "Extra Easy Hummus"
+  text: |
+    3 tablespoons butter
+    3 tablespoons flour
+    1/2 teaspoon salt
+    
+    <%= ActiveSupport::TestCase.lorem %>
+  index_as_recipe: 1
+  user: brian_smith
+  section: appetizers
+  grayscale: 1
+
+long_text_extra_page:
+  name: "Long text !"
+  text: |
+    <%= ActiveSupport::TestCase.lorem * 20 %>
+  index_as_recipe: 0
+  user: adam_smith
+  section: appetizers
+  grayscale: 0

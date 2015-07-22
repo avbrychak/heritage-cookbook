@@ -1,0 +1,22 @@
+// Render the image library menu and hide the image thumb
+var $area = $("#<%= "#{@field}-image-library-area" %>");
+$area.html("<%= escape_javascript(render "categories_list").html_safe %>").slideDown();
+$('#<%= @field %>-preview .thumb').slideUp();
+
+// Resize modal if exist
+<%= resize_modal "$(\"##{@field}-image-library\").closest('.modal');" %>
+
+// Image Library category selector
+$("#<%= @field %>-image-library-area #category").change(function(){
+	var href = $(this).val();
+  $.ajax({
+    url: href,
+    method: "GET",
+    dataType: 'script'
+  });
+});
+
+// If click on upload of remove, hide the image library area
+$($area.parents('.image-upload-form-part')[0]).find(".upload-input, .remove-image-link").click(function(){
+  $area.slideUp();
+});

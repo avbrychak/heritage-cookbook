@@ -1,0 +1,26 @@
+= render "info_panels/here_to_help"
+
+#info-text
+
+  %h4 Finalize your order
+
+  %h5 Is everything right?
+  %p.note 
+    This is the last step before you place your order.
+    %br
+    Make sure you have previewed your book, that the book order details are correct, and that the shipping and billing information is accurate.
+    %br
+    If you have any notes about timing, or concern about a specific issue, that should also be listed here under “special instructions”.
+    %br
+    Once you’re happy, click “Continue to payment gateway”. If you need to make changes, click “go back”.
+
+  %h5 Re-ordering
+  %p.note You’ll be able to re-order more books from your bookshelf page. If you need to make a few changes, I can re-open your account at no charge for a few days. 
+
+  %h5 Congratulations!
+  %p.note
+    You did it!
+    %br
+    I value your feedback, so don’t hesitate to 
+    = mail_to CONTACT_EMAIL, "e-mail me "
+    with any comments on the site. I hope you had a great time making your book!!!

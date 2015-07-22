@@ -1,0 +1,8 @@
+#categories-list
+  .select
+    = label_tag :category, "Select Image Category:"
+    = select_tag :category, 
+      options_for_select(@tags.all.collect {|tag| [ tag.name.capitalize, lib_image_path(tag.id, field: @field) ] })
+
+  %div.images-list{id: "#{@field}-images-list"}
+    = render "images_list"

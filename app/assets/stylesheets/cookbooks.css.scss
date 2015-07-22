@@ -1,0 +1,121 @@
+@import "config";
+
+$create-a-cookbook-button-width: 79px;
+$create-a-cookbook-button-height: 138px;
+$cookbook-thumb-width: 130px;
+
+#cookbooks-index {
+
+  #completed-orders-list {
+    width: 100%;
+    border-collapse: collapse; 
+
+    tr {
+      border-top: 1px solid $light-gray;
+    }
+
+    td {
+      padding: 1em 0em;
+
+      &.actions {
+        text-align: right;
+      }
+    }
+  }
+  
+  #cookbooks {
+    
+    .cookbook {
+      margin: 0.6em;
+      display: inline-block;
+      vertical-align: top;
+
+      &.current {
+        .template-thumb {
+
+          a {
+            img {
+              border: 4px solid $green;
+              margin: 0;
+            }
+          }
+        }
+      }
+
+      .template-thumb {
+        width: $cookbook-thumb-width;
+        overflow: hidden;
+        text-align: center;
+
+        a {
+          display: block;
+
+          img {
+            border: 1px solid $light-gray;
+            margin: 3px;
+          }
+        }
+
+        #create-a-cookbook-button {
+          display: inline-block;
+          @include inner-shadow(-1px, -1px, 7px, -1px);
+          background-color: $orange;
+          width: $create-a-cookbook-button-width;
+          height: $create-a-cookbook-button-height;
+          border: 1px solid $light-gray;
+          padding: 22px;
+          text-align: center;
+          color: white;
+          font-weight: 500;
+          text-transform: uppercase;
+          font-size: 0.8em;
+
+          #plus {
+            padding-top: 0.8em;
+            font-size: 3em;
+            line-height: 0.8em;
+            font-weight: 400;
+          }
+        }
+      }
+    }
+  }
+}
+
+#cookbooks-edit {
+
+  #template-thumb {
+    width: 7em;
+    margin-top: 0.4em;
+    float: left;
+    padding: 1em;
+
+    img {
+      border: 1px solid $light-gray;
+    }
+  }
+
+  #forms {
+    margin-left: 9em;
+  }
+}
+
+#cookbooks-edit_introduction {
+
+  #cookbook_intro_text {
+    width: 90%;
+    height: 300px;
+  }
+}
+
+#cookbooks-check_price {
+  
+  #num-cookbooks-field {
+
+    input {
+      display: inline-block;
+      width: 20px;
+      text-align: right;
+    }
+  }
+}

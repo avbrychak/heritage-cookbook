@@ -1,0 +1,24 @@
+<%= content_for :headline, "You've been invited to contribute to a Heritage cookbook" %>
+
+<h2>Dear <%= @user.name %>,</h2>
+
+<p><%= @inviter.name %> has invited you to join in the fun of creating a cookbook at HeritageCookbook.com.</p>
+
+<%- if @message && !@message.empty? %>
+<p>
+  <%= @inviter.first_name %> wrote this for you:
+  <br/><br/>
+  <%= @message %>
+</p>
+<%- end %>
+
+<p>
+  Since you already have an account on HeritageCookbook.com, you simply need to log in and you will see their cookbook at the bottom of the bookshelf page. 
+  You can login at: <a href="<%= @login_url %>" alt="Login to heritagecookbook.com"><%= @login_url %></a>
+</p>
+
+<p>
+  Have Fun!
+  <br/>
+  Virginie
+</p>

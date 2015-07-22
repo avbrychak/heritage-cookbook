@@ -1,0 +1,16 @@
+Hello,
+
+This is just an automated note to let you know that an account has been upgraded. The details are as follows:
+
+------------------
+User Information
+------------------
+User ID: <%=@user.id %>
+Name: <%=@user.name %>
+Email <%=@user.email %>
+
+------------------
+Order Details:
+------------------
+<%= @user.plan.title %>
+<%= number_to_currency(@user.plan.price) %>

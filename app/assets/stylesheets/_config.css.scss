@@ -1,0 +1,86 @@
+// Colors
+// --------------------------------------------------------------------------
+
+$blue: #30BBDE;
+$light-blue: #D4EFF9;
+$orange: #FBB423;
+$gray: #565656;
+$light-gray: #D0D0D0;
+$pink: #DB8F94;
+$green: #72C37A;
+$light-green: #A0DFA6;
+$red: #FF4E4E;
+
+.notice-color {
+  color: $green;
+ }
+
+.alert-color {
+  color: $red;
+}
+
+// Fonts
+// --------------------------------------------------------------------------
+
+@font-face {
+  font-family: 'journalregular';
+  src: font-url('journal-webfont.eot');
+  src: font-url('journal-webfont.eot?#iefix') format('embedded-opentype'),
+       font-url('journal-webfont.woff') format('woff'),
+       font-url('journal-webfont.ttf') format('truetype'),
+       font-url('journal-webfont.svg#journalregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@mixin message-title-font {
+  font-family: 'journalregular', serif;
+  font-size: 46px;
+}
+
+@mixin sans-serif-font {
+  font-family: "futura-pt", sans-serif;
+  font-size: 18px;
+}
+
+@mixin serif-font {
+  font-family: "lexia", serif;
+  font-size: 16px;
+}
+
+// General mixins
+// --------------------------------------------------------------------------
+
+@mixin reset-margins {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin shadow($horizontal, $vertical, $blur, $spread) {
+  $shadow: $horizontal $vertical $blur $spread $light-gray;
+  -moz-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin inner-shadow($horizontal, $vertical, $blur, $spread) {
+  $shadow: inset $horizontal $vertical $blur $spread lighten($gray, 20%);
+  -moz-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+}
+
+@mixin border-top-radius($px) {
+  -webkit-border-top-left-radius: $px;
+  -webkit-border-top-right-radius: $px;
+  -moz-border-radius-topleft: $px;
+  -moz-border-radius-topright: $px;
+  border-top-left-radius: $px;
+  border-top-right-radius: $px;
+}
+
+@mixin border-radius($px) {
+  -webkit-border-radius: $px;
+  -moz-border-radius: $px;
+  border-radius: $px;
+}

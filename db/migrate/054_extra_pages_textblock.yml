@@ -1,0 +1,18 @@
+--- 
+- !ruby/object:Textblock 
+  attributes: 
+    id: 49
+    name: help_extra_pages
+    description: Help/Extra Pages
+    text_html: |-
+      <h2>Extra Pages</h2>
+          
+      <p>We have added the EXTRA PAGE function so you can write as much as you like because the text will flow from one page to the next.</p> 
+      
+      <p>This is very useful for long recipes or if you have a lengthy story to tell. You are not limited to one page. You will find this feature when you open up the page to enter a recipe.</p>
+    text: |-
+      h2. Extra Pages
+      
+      We have added the EXTRA PAGE function so you can write as much as you like because the text will flow from one page to the next. 
+      
+      This is very useful for long recipes or if you have a lengthy story to tell. You are not limited to one page. You will find this feature when you open up the page to enter a recipe.

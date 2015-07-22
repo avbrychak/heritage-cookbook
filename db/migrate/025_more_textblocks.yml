@@ -1,0 +1,143 @@
+--- 
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <h1>Dear (=first_name=)</h1>
+      
+      
+      	<p>It really is easy to forget a password, isn&#8217;t it? Our lives just seem to be so full of numbers and codes and things to remember. Oh, well.</p>
+      
+      
+      	<p>Don&#8217;t worry, we&#8217;ve created a new password for you. It&#8217;s a computer generated password, so it might be hard to remember. Once you have logged in, you can go to the &#8216;Edit Account&#8217; page, where you can change it to something you&#8217;ll remember more easily.</p>
+      
+      
+      	<p>Your new password is: <strong style="padding-left:1em;" class="password">)</strong></p>
+    name: email_forgot_password
+    text: |-
+      h1. Dear (=first_name=)
+      
+      It really is easy to forget a password, isn't it? Our lives just seem to be so full of numbers and codes and things to remember. Oh, well.
+      
+      Don't worry, we've created a new password for you. It's a computer generated password, so it might be hard to remember. Once you have logged in, you can go to the 'Edit Account' page, where you can change it to something you'll remember more easily.
+      
+      Your new password is: *(=password=)*
+    id: "24"
+    description: Email / Forgot Password
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <p>Dear (=first_name=),</p>
+      
+      
+      	<p>Welcome to HeritageCookBook.com and thank you for registering. The fun is about to begin. To start your cookbook now you need to confirm your account. To do that, click here:</p>
+      
+      
+      	<p>(=confirm_url=)</p>
+    name: email_signup_details
+    text: |
+      Dear (=first_name=),
+      
+      Welcome to HeritageCookBook.com and thank you for registering. The fun is about to begin. To start your cookbook now you need to confirm your account. To do that, click here: 
+      
+      (=confirm_url=)
+
+    id: "25"
+    description: Email / Signup Details
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <p>Dear (=user_name=),</p>
+      
+      
+      	<p>(=inviter_name=) has invited you to join in the fun of creating a cookbook at HeritageCookbook.com.</p>
+      
+      
+      	<p>(=inviter_first_name=) wrote this for you:</p>
+      
+      
+      	<p><strong>(=message=)</strong></p>
+      
+      
+      	<p>Since you already have an account on HeritageCookbook.com, you simply need to log in and you will see their cookbook under the &#8220;Cookbooks you can contribute to&#8221; area.</p>
+    name: email_added_as_contributor
+    text: |-
+      Dear (=user_name=),
+      
+      (=inviter_name=) has invited you to join in the fun of creating a cookbook at HeritageCookbook.com. 
+      
+      (=inviter_first_name=) wrote this for you:
+      
+      *(=message=)*
+      
+      Since you already have an account on HeritageCookbook.com, you simply need to log in and you will see their cookbook under the "Cookbooks you can contribute to" area.
+    id: "26"
+    description: Email / Added as Contributor
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <p>Dear (=user_name=),</p>
+      
+      
+      	<p>(=inviter_name=) has invited you to join in the fun of creating a cookbook at HeritageCookbook.com.</p>
+      
+      
+      	<p>(=inviter_first_name=) wrote this for you:</p>
+      
+      
+      	<p><strong>(=message=)</strong></p>
+      
+      
+      	<p>To finalize creation of your account please follow this link and choose your password:</p>
+      
+      
+      	<p>(=contributor_url=)</p>
+    name: email_added_as_new_contributor
+    text: |
+      Dear (=user_name=),
+      
+      (=inviter_name=) has invited you to join in the fun of creating a cookbook at HeritageCookbook.com. 
+      
+      (=inviter_first_name=) wrote this for you:
+      
+      *(=message=)*
+      
+      To finalize creation of your account please follow this link and choose your password:
+      
+      (=contributor_url=)
+
+    id: "27"
+    description: Email / Added as New Contributor
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <p>Dear (=first_name=),</p>
+      
+      
+      	<p>The email address associated with your account has been changed. To confirm your account please follow this link:</p>
+      
+      
+      	<p>(=confirm_url=)</p>
+    name: email_changed_account_email
+    text: |
+      Dear (=first_name=),
+      
+      The email address associated with your account has been changed. To confirm your account please follow this link: 
+      
+      (=confirm_url=)
+
+    id: "28"
+    description: Email / Changed Account Email
+- !ruby/object:Textblock 
+  attributes: 
+    text_html: |-
+      <p>Thank you for placing your printing order on HeritageCookbook.com</p>
+      
+      
+      	<p>Your order was successfully submitted, and will be sent to you once printed.</p>
+    name: order_thankyou
+    text: |-
+      Thank you for placing your printing order on HeritageCookbook.com
+      
+      Your order was successfully submitted, and will be sent to you once printed.
+    id: "29"
+    description: Order / Thank You

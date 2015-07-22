@@ -1,0 +1,90 @@
+#form-errors= errors_for @recipe if @recipe.errors.any?
+
+= form_for [@section, @recipe] do |f|
+
+  %h3 1. Enter your recipe here
+
+  .control-group
+    = f.label :name, "Recipe name:"
+    = f.text_field :name
+
+  .control-group
+    = f.label :section_id, "Recipe section:"
+    = f.select :section_id, current_cookbook.sections.map{|section| [section.name, section.id]}
+
+  .control-group
+    = f.label :ingredient_list, "Ingredients:"
+    = f.text_area :ingredient_list, class: "book-content"
+    = f.text_area :ingredient_list_2, class: "book-content"
+
+  .control-group
+    = f.check_box :ingredients_uses_two_columns
+    = f.label :ingredients_uses_two_columns, "2 columns format:"
+
+  .control-group
+    = f.label :instructions, "Preparation instructions:"
+    = f.text_area :instructions, class: "book-content"
+
+  .control-group
+    = f.label :submitted_by_title, "Author's credit:"
+    = f.select :submitted_by_title, Recipe::SUBMITTED_BY_OPTIONS
+    = f.text_field :submitted_by
+
+  .control-group
+    = f.label :servings, "Number of servings:"
+    = f.text_field :servings
+
+  %h3 2. Add a photo to your recipe
+
+  .control-group
+    .right-part
+      = f.paperclip_attachment :photo, image_library: true
+      = hidden_field_tag "libimage[photo]"
+
+  .control-group.grayscale{class: (!@recipe.photo?) ? "hidden" : ""}
+    .align-on-labels
+    .one-line-checkbox
+      = f.check_box :grayscale
+      = f.label :grayscale, "Turn this into a black-and-white photo"
+
+  .control-group
+    = label_tag :choose_a_layout, "Choose a layout:"
+    #recipe-page-layout
+      .radio
+        %p.note Photo and recipe on one page (good for short recipes)
+        = f.label :single_page, image_tag("recipe_one_page.jpg"), value: 1
+        = f.radio_button :single_page, 1, checked: (@recipe.single_page?)
+      .radio
+        %p.note Photo and recipe on two pages (good for long recipes)
+        = f.label :single_page, image_tag("recipe_two_pages.jpg"), value: 0
+        = f.radio_button :single_page, 0, checked: (!@recipe.single_page?)
+
+  %h3 3. Add a story to your recipe or photo
+
+  .control-group
+    = label_tag :enter_your_text, "Enter your text here: "
+    = f.text_area :story, class: "book-content"
+
+  %h3 4. Finalize your recipe
+
+  .control-group
+    .align-on-labels
+    = link_to_preview "Preview my recipe", preview_section_recipe_path(@section, @recipe), class: "picto preview"
+
+  .control-group
+    .align-on-labels
+    .one-line-checkbox
+      = f.check_box :force_own_page
+      = f.label :force_own_page, modal_tag("Don't merge my recipe with another", render("modal_help_force_own_page"), class: "picto help right")
+
+  .control-group
+    .align-on-labels
+    .one-line-checkbox
+      = f.check_box :shared
+      = f.label :shared, modal_tag("Share this recipe", render("modal_help_shared"), class: "picto help right")
+
+  .control-group
+    .align-on-labels
+    = link_to "DONE", sections_path, class: "button orange done-button alert-on-form-errors"
+    - if action_name == "new"
+      = link_to "Cancel", section_recipe_path(@section, @recipe), method: :delete, class: "button orange"

@@ -1,0 +1,13 @@
+Good morning,
+
+This is just an automated note to let you know that we've started PDF generation for the day. In the next few minutes, or maybe a bit longer, you should receive emails for the following <%= @orders.size %> orders:
+
+<% @orders.each do |order| -%>
+
+  Order #: <%= order.id %>-<%= order.version %>
+  Cookbook #: <%= order.cookbook.id %>
+  From: <%= order.bill_first_name %> <%= order.bill_last_name %> 
+  Email: <%= order.bill_email %>
+  Number ordered: <%= order.number_of_books %>
+
+<% end -%>

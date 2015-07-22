@@ -1,0 +1,46 @@
+%table
+  %tr
+    %th Order
+    %th Ordered Cookbook
+    %th Date
+    %th Books
+    %th Pages
+    %th Cost
+    %th Status
+  - orders.each do |order|
+    %tr
+      %td
+        = link_to "##{order.id}", admin_order_path(order.id)
+        - if order.is_reorder?
+          = link_to "re-order", admin_order_path(order.id), class: "inline-button"
+      %td
+        - if order.cookbook_title
+          = order.cookbook_title
+        - else
+          = order.cookbook.title
+        %br
+        %span.note= "##{order.cookbook_id}"
+      %td.note= (order.paid_on) ? order.paid_on.strftime('%B %-d, %Y') : 'Not recorded'
+      %td.note= order.number_of_books
+      %td.note
+        - if order.order_bw_pages && order.order_color_pages
+          = "Color: #{order.order_color_pages}"
+          %br
+          = "B&W  : #{order.order_bw_pages}"
+        - else
+          Not recorded
+      %td.note
+        = "Shipping:"
+        = (order.order_shipping_cost) ? "$#{'%.2f' % order.order_shipping_cost}" : "Not recorded"
+        %br
+        = "Printing: "
+        = (order.order_printing_cost) ? "$#{'%.2f' % order.order_printing_cost}" : "Not recorded"
+      %td.note
+        - if order.generated_at
+          Generated at:
+          %br
+          = "#{order.generated_at.strftime('%B %-d, %Y')}" 
+          %br
+          = order.generated_at.strftime('%H:%m') 
+        - else 
+          Pending

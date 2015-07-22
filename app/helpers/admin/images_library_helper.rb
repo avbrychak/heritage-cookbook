@@ -1,0 +1,2 @@
+module Admin::ImagesLibraryHelper
+end

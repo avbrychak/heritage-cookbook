@@ -1,0 +1,6 @@
+- content_for :page_title, "Preview and order your book"
+- content_for :headline, "Preview and order your book"
+- content_for :info_panel, render("info_panels/order")
+
+%p An email has been sent to our printing service asking for a price quote for your command. You will be contacted soon.
+= link_to "Return", new_order_path, class: "button blue"

@@ -1,0 +1,75 @@
+- content_for :page_title, "Reorder a completed book"
+- content_for :headline, "Reorder a completed book"
+
+%h3 IMPORTANT:
+
+%p 
+  This is a reorder of the exact same file that was previously printed. 
+  %br 
+  If you have modified this book online since it was last printed none of the changes will show in this printing.
+  %br
+  %br
+  = mail_to CONTACT_EMAIL, "Email me"
+  if you want to receive a PDF preview of the book you are about to order.
+  %br
+  In order to print an updated book with changes, please go back to your bookcase (
+  = mail_to CONTACT_EMAIL, "email me "
+  if you need a couple of free days to get back into your account for edits), select the file that you have been updating and order it.
+
+
+%h3 Previous Order
+
+%table.order.pages
+  %tr
+    %th 
+      %strong Order date
+    %td
+      %strong= @old_order.generated_at.to_formatted_s(:long_ordinal)
+  %tr
+    %th
+      %strong Book title
+    %td
+      %strong= @old_order.cookbook_title || @old_order.cookbook.title
+  %tr
+    %th 
+      %strong Book binding
+    %td
+      %strong= @old_order.book_binding || "Plastic Coil"
+  - if @old_order.order_color_pages && @old_order.order_bw_pages
+    %tr
+      %th Cover pages (front and back)
+      %td 2 pages
+    %tr
+      %th Color pages
+      %td= "#{@old_order.order_color_pages} pages"
+    %tr
+      %th Black and White pages
+      %td= "#{@old_order.order_bw_pages} pages"
+    %tr
+      %th 
+        %strong Total pages
+      %td 
+        %strong= "#{@old_order.num_pages} pages"
+%table.order
+  %tr
+    %th Printing cost
+    %td= "$#{@old_order.order_printing_cost}"
+  %tr
+    %th Shipping cost
+    %td= (@old_order.order_shipping_cost) ? "$#{@old_order.order_shipping_cost}" : Unknow
+  %tr
+    %th 
+      %strong Price per book
+    %td
+      %strong= "$#{'%.2f' % ((@old_order.order_printing_cost + @old_order.order_shipping_cost) / @old_order.number_of_books).round(2)}"
+  %tr
+    %th 
+      %strong Total cost
+    %td
+      %strong= "$#{(@old_order.order_printing_cost + @old_order.order_shipping_cost).round(2)}"
+
+%h3 Enter your quantity and shipping details
+
+= render "form"
+
+#cookbook-order-grid

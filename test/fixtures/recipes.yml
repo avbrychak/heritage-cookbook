@@ -1,0 +1,204 @@
+recipe_1:
+  name: Recipe 1
+  servings: 2 persons
+  story: <%= ActiveSupport::TestCase.lorem %>
+  submitted_by_title: Submitted by
+  submitted_by: Maeiliss
+  grayscale: 0
+  pages: 1
+  shared: 1
+  position: 1
+  force_own_page: 1
+  ingredients_uses_two_columns: 1
+  ingredient_list: <%= ActiveSupport::TestCase.lorem %>
+  ingredient_list_2: <%= ActiveSupport::TestCase.lorem %>
+  user: brian_smith
+  section: appetizers
+  instructions: <%= ActiveSupport::TestCase.lorem %>
+
+recipe_2:
+  name: Recipe 2
+  servings: 4 persons
+  story: <%= ActiveSupport::TestCase.lorem %>
+  submitted_by_title: Submitted by
+  submitted_by: The contributor !
+  grayscale: 0
+  pages: 1
+  shared: 1
+  position: 1
+  force_own_page: 1
+  ingredients_uses_two_columns: 1
+  ingredient_list: <%= ActiveSupport::TestCase.lorem %>
+  ingredient_list_2: <%= ActiveSupport::TestCase.lorem %>
+  user: adam_smith
+  section: appetizers
+  instructions: <%= ActiveSupport::TestCase.lorem %>
+
+half_page:
+  id: 2
+  section: appetizers
+  name: 'Half page'
+  story: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  ingredient_list: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+  instructions: Prep - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+  servings: 1 Person
+  force_own_page: 0
+  user: brian_smith
+  pages: 0.5
+
+one_page:
+  id: 3
+  section: appetizers
+  name: 'One page'
+  story: |-
+    Story - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+  
+  
+  ingredient_list: Ingredients - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  instructions: Instructions - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  servings: 1 Person
+  force_own_page: 0
+  user: brian_smith
+
+two_pages:
+  id: 4
+  section: appetizers
+  name: 'Two pages'
+  story: Story - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  ingredient_list: Ingredients - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  instructions: |-
+    Preparations - Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+  servings: 1 Person
+  force_own_page: 0
+  user: brian_smith
+
+one_page_recipe_single_column_submission:
+  section: appetizers
+  name: "Southern-Style Super-Cheesy Sauce"
+  ingredient_list: |
+    3 tablespoons butter
+    3 tablespoons flour
+    1/2 teaspoon salt
+  instructions: <%= ActiveSupport::TestCase.lorem %>
+  servings: 5 Persons
+  submitted_by_title: Submitted by
+  submitted_by: Kurt
+  story: ""
+  user: brian_smith
+
+one_page_recipe_single_column:
+  section: appetizers
+  name: "Southern-Style Super-Cheesy Sauce"
+  ingredient_list: |
+    3 tablespoons butter
+    3 tablespoons flour
+    1/2 teaspoon salt
+  instructions: <%= ActiveSupport::TestCase.lorem %>
+  servings: 5 Persons
+  story: ""
+  user: brian_smith
+
+one_page_recipe_double_column:
+  section: appetizers
+  name: "Southern-Style Super-Cheesy Sauce"
+  ingredient_list: |
+    3 tablespoons butter
+    3 tablespoons flour
+    1/2 teaspoon salt
+  ingredient_list_2: |
+    3 tablespoons butter
+    3 tablespoons flour
+  ingredients_uses_two_columns: true
+  instructions: <%= ActiveSupport::TestCase.lorem %>
+  servings: 5 Persons
+  story: ""
+  user: brian_smith
+
+one_page_recipe_double_column_with_story:
+  section: appetizers
+  name: "Southern-Style Super-Cheesy Sauce"
+  ingredient_list: |
+    3 tablespoons butter
+    3 tablespoons flour
+    1/2 teaspoon salt
+  ingredient_list_2: |
+    3 tablespoons butter
+    3 tablespoons flour
+  ingredients_uses_two_columns: true
+  instructions: <%= ActiveSupport::TestCase.lorem %>
+  servings: 5 Persons
+  story: <%= ActiveSupport::TestCase.lorem %>
+  user: brian_smith
+
+oleg_recipe:
+  id: 222
+  section_id: 111
+  name: Potatoes
+  servings: 2 servings
+  ingredient_list: Potatoes
+  instructions: Boil 'em, Mash 'em, Put 'em in a stew
+  story: This one time to the way to the Mordor
+  photo_file_name: ''
+  submitted_by_title: Submitted by
+  submitted_by: Oleg
+  grayscale: 1
+  pages: 1
+  shared: 0
+  position: 1
+  user_id: 697077
+  photo_archive: ''
+  force_own_page: ''
+  user: brian_smith
+
+newline_problem_recipe:
+  id: 742053
+  section_id: 185039
+  name: Cowgirl Chef's Mom's Cinnamon Rolls
+  servings: ''
+  ingredient_list: "3/4 cup milk\r\n1/2 cup sugar\r\n1 1/4 teaspoons salt\r\n1/2 cup
+    butter\r\n1/3 cup warm water\r\n5 1/2 to 6 1/2 cups flour\r\n2 packages dry yeast\r\n3
+    eggs, room temperature"
+  instructions: "Here’s what you do. Scald milk; stir in sugar, salt and butter. Cool
+    to lukewarm.\r\n\r\nPour warm water into warmed bowl. Sprinkle in yeast and stir
+    until dissolved. \r\n\r\nAdd lukewarm milk mixture, eggs and 5 cups flour. \r\n\r\nWith
+    dough hook, on speed 2, mix until dough begins to cling to hook, about 3 minutes.
+    Add remaining flour, 1/2 cup at a time, as needed. \r\n\r\nMix until dough clings
+    to hook and sides of bowl, about five minutes.\r\n\r\nKnead on speed 2 until dough
+    is smooth and elastic, about 3 to 5 minutes. \r\n\r\nPlace in greased bowl, cover
+    and let rise in warm place, free from draft, for about an hour, or until doubled
+    in bulk.\r\n\r\nPunch down dough and divide in half. Roll each piece of dough
+    into a 9 x 7 rectangle. \r\n\r\nSpread each with butter and cinnamon-sugar mixture.
+    Slice and brush with melted butter, and place in pans, about two inches apart.\r\n\r\nBake
+    at 400 degrees for 10-15 minutes.\r\n\r\nWhen the rolls are completely cool, mix
+    up a box of powdered sugar, along with as much whole milk as it takes to make
+    a glaze that’ll drizzle easily, and add a teaspoon of vanilla. \r\n\r\nWith a
+    large spoon, drizzle away!"
+  story: ''
+  photo_file_name: ''
+  submitted_by: ''
+  grayscale: 0
+  pages: 1.0
+  shared: 0
+  position: 1
+  created_on: 2013-09-16 20:55:41.000000000 Z
+  updated_on: 2013-10-14 18:49:41.000000000 Z
+  photo_archive: ''
+  force_own_page: 0
+  submitted_by_title: 'Submitted By:'
+  ingredients_uses_two_columns: false
+  ingredient_list_2: ''
+  photo_file_size: 
+  photo_content_type: 
+  photo_width: 
+  photo_height: 
+  single_page: false
+  photo_dpi:
+  user: brian_smith

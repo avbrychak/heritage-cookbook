@@ -1,0 +1,24 @@
+.image-upload-form-part
+  = label_tag "#{@object_name}_#{@method}".to_sym, (@options[:label]) ? @options[:label] : "#{@method.to_s.capitalize.gsub('_', ' ')}:"
+  .upload-menu
+    .upload-input
+      = link_to "upload", "#", class: "upload-input-link"
+      = file_field_tag "#{@object_name}[#{@method}]".to_sym
+    - if @image_library
+      |
+      %span{id: "#{@method}-image-library"}= link_to "select from library", lib_images_path(field: @method), remote: true
+    %span{class: "remove-image-link #{"hidden" if !@object.send("#{@method}?")}"}
+      | 
+      = link_to "remove", "#"
+      = check_box_tag "remove[#{@method}]".to_sym, 1, false, class: "hidden-forever"
+
+  %div.hidden{id: "#{@method}-image-library-area"}
+
+  %div{id: "#{@method}-preview"}
+    - if @object.send("#{@method}?")
+      .thumb= image_tag(@object.send(@method).url(:preview))
+    - else
+      .thumb
+  .progress-bar
+    .text.note
+    .percent

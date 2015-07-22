@@ -1,0 +1,12 @@
+- # Display actions and informations for contributors
+%li
+  Cook Master: 
+  = mail_to @cookbook.owner.name, @cookbook.owner.email
+%li
+  Recipes:
+  %br
+  = "Currently there are #{pluralize(@cookbook.recipes.count, 'recipe')} in #{pluralize(@cookbook.num_sections_with_recipes, 'section')}."
+  %br
+  = "You have contributed #{pluralize(@cookbook.num_recipes_contributed_by(@user.id), 'recipe')} and #{pluralize(@cookbook.num_extra_pages_contributed_by(@user.id), "extra page")}."
+  %br
+  = link_to "Manage Recipes", "#"

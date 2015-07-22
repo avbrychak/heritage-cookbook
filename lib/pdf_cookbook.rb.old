@@ -1,0 +1,632 @@
+class PdfCookbook < PdfExtensions
+
+  # Previews the entire cookbook
+  def add_cookbook(cookbook)
+    add_cover(cookbook)
+    add_blank_page
+    add_inner_cover(cookbook)
+    add_blank_page
+    add_introduction(cookbook)
+    add_notes_page(cookbook)
+    add_table_of_contents(cookbook)
+    cookbook.sections.each do |section| 
+      sec = Section.find(section.id)
+      add_section(sec, cookbook, true, true) if sec.has_children?
+    end
+    if cookbook.show_index
+      new_page(false, true) if PageNo() % 2 == 0
+      add_index(cookbook) 
+    end
+    add_blank_page if PageNo() % 2 == 0
+    add_blank_page
+    add_blank_page
+    add_back_cover(cookbook)
+  end
+
+  
+  # Adds the cover page of a cookbook to the pdf document
+  def add_cover(cookbook)
+    template = cookbook.template
+    new_page(true, false)
+
+    cover_image = (File.exists?(template.cover_image) ? template.cover_image : cookbook.image_path('user_cover_image'))
+    show_box = File.exists?(template.cover_image) ? false : true;
+    show_centered_image(cover_image, max_usable_width, max_usable_height, show_box)
+    if template.has_image==1
+      SetY(template.cover_user_image_y)
+      # SetX(@margin[:left] + (max_usable_width - template.cover_user_image_max_width)/2)
+      show_centered_image(cookbook.image_path('user_image'), template.cover_user_image_max_width, template.cover_user_image_max_height, true)
+    end  
+    # Show the book title
+    SetY(template.cover_title_y)  
+    SetFont(template.book_font, template.cover_title_font_style, template.cover_title_font_size)
+    title_color = template.book_color.split(',')
+    SetTextColor(title_color[0].to_i,title_color[1].to_i,title_color[2].to_i)
+    1.upto(template.tag_lines) do |i|
+      tagline = eval("cookbook.tag_line_#{i}[0..template.max_tag_line_#{i}_length]")
+      tagline = ' ' if tagline.empty?
+      # Center the text minus a right padding
+      SetX(@margin[:left]+(max_usable_width/2)-(GetStringWidth(tagline)/2) - template.cover_text_padding_right)
+      write_text(tagline, true)
+      SetY(GetY()-(HC_LINE_HEIGHT/2)) unless template.id == 7
+    end
+    SetTextColor(0,0,0)  
+  end
+
+  # Adds the inner cover page of a cookbook to the pdf document
+  def add_inner_cover(cookbook)
+    template = cookbook.template
+    new_page(true, false)
+
+    inner_cover_image = (File.exists?(template.inner_cover_image(cookbook.grayscale==1)) ? template.inner_cover_image(cookbook.grayscale==1) : cookbook.image_path('user_inner_cover_image'))
+    show_box = File.exists?(template.inner_cover_image(cookbook.grayscale==1)) ? false : true;
+    show_centered_image(inner_cover_image, max_usable_width, max_usable_height, show_box)
+    # Show the book title
+    if template.show_book_title_on_inner_cover == 1
+      SetY(template.inner_cover_title_y)  
+      SetFont(template.book_font,  template.cover_title_font_style, template.inner_cover_font_size)
+      if cookbook.grayscale==1
+        SetTextColor(90,90,90)
+      else
+        title_color = template.book_color.split(',')
+        SetTextColor(title_color[0].to_i,title_color[1].to_i,title_color[2].to_i)
+      end
+      for i in 1..template.tag_lines
+        tagline = eval("cookbook.tag_line_#{i}[0..template.max_tag_line_#{i}_length]")
+        tagline = ' ' if tagline.empty?
+        write_text(tagline, true)
+        SetY(GetY()-(HC_LINE_HEIGHT/2)) unless template.id == 7
+      end  
+      SetTextColor(0,0,0)  
+    end
+  end
+
+  # Adds the introduction/dedication to the pdf cookbook
+  def add_introduction(cookbook, page_number=true)
+    template = cookbook.template
+    new_page(false, page_number)
+    SetY(GetY()+18)
+    SetFont(template.book_font, template.headers_font_style, template.headers_font_size.to_i)
+    if !cookbook.grayscale?
+      header_color = template.book_color.split(',')
+      SetTextColor(header_color[0].to_i, header_color[1].to_i, header_color[2].to_i)
+    end
+    write_text((cookbook.intro_type==0 ? 'Introduction' : 'Dedication'), true)
+    SetTextColor(0,0,0)
+    Ln()
+    SetFont('Times','',11)
+    if cookbook.center_introduction
+      begin
+        MultiCell(max_usable_width, HC_LINE_HEIGHT, clean_text(cookbook.intro_text), 0, 'C')
+      rescue
+        # replace_word_characters!(cookbook.intro_text)
+        MultiCell(max_usable_width, HC_LINE_HEIGHT, clean_text(cookbook.intro_text), 0, 'C')
+      end
+    else 
+      write_text(cookbook.intro_text)
+    end
+    show_centered_image(cookbook.image_path('intro_image'), (max_usable_width-20), (max_usable_height_remaining-5)) if cookbook.intro_image?
+  end
+  
+  # Add the notes page
+  def add_notes_page(cookbook)
+    new_page(false)
+    SetY(GetY()+25)
+    SetFont('Times','I',17)
+    write_text('Notes', true)
+    Ln()
+    y_position = GetY()+2.5
+    7.times do
+      Line(@margin[:left], y_position, HC_PAGE_WIDTH-@margin[:right], y_position)
+      y_position+=15.5
+    end
+    SetY(175)
+    SetFont('Times','',9)
+    write_text('This book was created & published with the help of', true, 4)
+    SetFont('Times','BIU',11)
+    write_text('www.HeritageCookbook.com', true, 4)
+    SetFont('Times','',9)
+    write_text('Printed in Canada', true, 4)
+    write_text(Time.now.year.to_s, true, 4)
+  end
+
+  # Adds the table_of_contents page of a cookbook to the pdf document
+  def add_table_of_contents(cookbook)
+    template = cookbook.template
+    new_page(true, false)
+    if File.exists?(cookbook.template.toc_image(cookbook.grayscale==1))
+      show_centered_image(cookbook.template.toc_image(cookbook.grayscale==1), max_usable_width, max_usable_height)
+    end
+    SetY(template.toc_header_y)
+    SetFont(template.book_font, template.headers_font_style, template.headers_font_size.to_i)
+    if !cookbook.grayscale?
+      header_color = template.book_color.split(',')
+      SetTextColor(header_color[0].to_i, header_color[1].to_i, header_color[2].to_i)
+    end
+    write_text('Table of Contents', true)
+    SetTextColor(0,0,0)
+    Ln()
+    SetFont('Times','',11)
+    line_height = HC_LINE_HEIGHT*1.5
+
+    # Show the sections with page numbers
+    page_number = 6
+    cookbook.sections.each do |section|
+      new_section = Section.find(section.id)
+      page_number = page_number.ceil
+      if new_section.has_children?
+        # Section pages always start on the right page
+        if page_number % 2 == 0 #odd
+          page_number+=1 
+        else #even
+          page_number+=2
+        end
+        SetX(@margin[:left]+28)
+        write_text(new_section.name)
+        SetXY(HC_PAGE_WIDTH-@margin[:right]-GetStringWidth(page_number.to_i.to_s)-31, GetY()-HC_LINE_HEIGHT*2)
+        write_text(page_number.to_i.to_s)
+        SetY(GetY()-HC_LINE_HEIGHT/2)
+        new_section.recipes.each do |recipe|     
+          page_number+=recipe.pages
+        end
+        page_number = page_number.ceil
+        new_section.extra_pages.each do |extra_page|   
+          page_number+=extra_page.pages.ceil
+        end
+      end
+    end
+  end
+
+  # Previews a section with all the recipes
+  def add_section(section, cookbook, show_recipes=true, page_numbers=true)
+    template = cookbook.template
+    # The section page should always show up on the right page - add an empty page is necessary
+    new_page(true, true) if PageNo() % 2 == 1
+
+    # The section title page
+    new_page(true, false)
+
+    # Special case for the custom design
+    if template.id == 8 && section.photo?
+      # Show the user image for this section
+      show_centered_image(section.pdf_image(mode), max_usable_width, max_usable_height, true)
+    else  
+      # Show the default frame image for this section
+      show_centered_image(template.divider_image(section.cookbook.grayscale==1), max_usable_width, max_usable_height)
+      
+      # Show the user image for this section
+      if section.photo? 
+        SetY(template.section_user_image_y)
+        show_centered_image(section.pdf_image(mode), template.section_user_image_max_width, template.section_user_image_max_height, true)
+      end
+
+      SetFont(template.book_font, template.headers_font_style, template.headers_font_size.to_i)
+      if !section.cookbook.grayscale?
+        header_color = template.book_color.split(',')
+        SetTextColor(header_color[0].to_i, header_color[1].to_i, header_color[2].to_i)
+      end
+      SetXY(34, template.section_header_y)
+      width = 84
+      begin
+        MultiCell(width, HC_LINE_HEIGHT*2, clean_text(section.name), 0, 'C')
+      rescue
+        # replace_word_characters!(section.name)
+        MultiCell(width, HC_LINE_HEIGHT*2, clean_text(section.name), 0, 'C')
+      end
+    end
+
+    SetTextColor(0,0,0)
+    
+    # The recipes on this section
+    if show_recipes
+      @start_recipe_in_new_page = true
+      section.recipes.each do |recipe| 
+        add_recipe(recipe, page_numbers, false)
+      end
+    end
+    
+    # The extra pages on this section
+    section.extra_pages.each do |extra_page| 
+      add_extra_page(extra_page, page_numbers)
+    end
+  end
+
+  # Adds a recipe to the pdf cookbook
+  def add_recipe(recipe, page_numbers=true, force_new_page = false)
+    
+    if @start_recipe_in_new_page || force_new_page
+      new_page(false, page_numbers)      
+    else
+      half_page = (PdfCookbook::HC_PAGE_HEIGHT+PdfCookbook::HC_EVEN_MARGIN[:top]-PdfCookbook::HC_EVEN_MARGIN[:bottom])/2
+      SetY(half_page-1)
+    end
+    if recipe.pages == 0.5
+      @start_recipe_in_new_page = !@start_recipe_in_new_page
+    end
+
+    # If there's no image show the recipe in one page
+    if !recipe.photo? && recipe.pages < 2
+      add_recipe_title(recipe)
+      add_recipe_story(recipe)
+    # If there's an image then show it on the left with the story and the recipe on the right
+    else
+      add_recipe_story(recipe) 
+      new_page(false, page_numbers)
+      add_recipe_title(recipe)
+    end
+    
+    if recipe.ingredients_uses_two_columns?
+      half = (PdfCookbook::HC_PAGE_WIDTH/2) - PdfCookbook::HC_EVEN_MARGIN[:right]
+      init_y_pos = GetY()
+      column_margin = 1
+      
+      SetRightMargin(PdfCookbook::HC_EVEN_MARGIN[:right]+half+column_margin)
+      write_text(recipe.ingredient_list, false, HC_LINE_HEIGHT, !recipe.instructions.empty? || !recipe.servings.empty?) 
+      end_y_pos = GetY()
+      
+      SetXY(half, init_y_pos)
+      SetLeftMargin(PdfCookbook::HC_EVEN_MARGIN[:left]+half+column_margin)
+      SetRightMargin(PdfCookbook::HC_EVEN_MARGIN[:right])
+      write_text(recipe.ingredient_list_2, false, HC_LINE_HEIGHT, !recipe.instructions.empty? || !recipe.servings.empty?)      
+      end_y_pos = GetY() if GetY() > end_y_pos
+      
+      SetLeftMargin(PdfCookbook::HC_EVEN_MARGIN[:left])
+      SetRightMargin(PdfCookbook::HC_EVEN_MARGIN[:right])
+      SetY(end_y_pos)
+    else
+      write_text(recipe.ingredient_list, false, HC_LINE_HEIGHT, !recipe.instructions.blank? || !recipe.servings.blank? )      
+    end
+    write_text(recipe.instructions, false, HC_LINE_HEIGHT, !recipe.servings.empty?)
+    write_text(recipe.servings.to_s, false, HC_LINE_HEIGHT*0.5, false) if !recipe.servings.to_s.empty?
+  end
+
+  # Adds the recipe title the pdf cookbook
+  def add_recipe_title(recipe)
+    SetFont('Times','BI',17)
+    prev_y = GetY()
+    title_line_height = HC_LINE_HEIGHT*1.2
+    write_text(recipe.name, false, title_line_height)
+    title_lines = (((GetY()-prev_y) / title_line_height) - 1).round
+    SetY( GetY() - (HC_LINE_HEIGHT / 2) - title_lines * (HC_LINE_HEIGHT / 2) + (2*title_lines) )
+    
+    SetFont('Times','',11)
+    if recipe.submitted_by.to_s.empty?
+      Ln()
+    else
+      if recipe.submitted_by_title == ''
+        write_text(recipe.submitted_by)
+      else
+        write_text(recipe.submitted_by_title + ' ' + recipe.submitted_by)
+      end
+    end
+    SetY( GetY() - (HC_LINE_HEIGHT * 0.5))
+  end
+  
+  # Adds a recipe to the pdf cookbook
+  def add_recipe_story(recipe)
+    SetFont('Times','',11)
+    if !recipe.photo?
+      write_text(recipe.story, false, HC_LINE_HEIGHT, false)
+      Ln(HC_LINE_HEIGHT) unless recipe.story.blank?
+    else
+      quarter_inch = 6.35 # Images should go outside of the margins a bit
+      max_width = max_usable_width + (2*quarter_inch)
+      max_height = max_usable_height - HC_LINE_HEIGHT
+      if !recipe.story.empty?
+        max_height = max_height/2 + 10
+      end
+      SetX(GetX()-quarter_inch)
+      show_centered_image(recipe.pdf_photo(mode), max_width, max_height)
+      Ln(HC_LINE_HEIGHT)
+      SetFont('Times','',11)
+      write_text(recipe.story, false, HC_LINE_HEIGHT, false)
+    end
+  end
+  
+  
+  # Adds an add_extra_page to the pdf cookbook
+  def add_extra_page(extra_page, page_numbers=true)
+    new_page(false, page_numbers)
+
+    SetFont('Times','BI',17)
+    write_text(extra_page.name)
+
+    SetFont('Times','',11)
+
+    # If no image, just write the text
+    if extra_page.pdf_photo.blank?
+      write_text(extra_page.text, false, HC_LINE_HEIGHT, false)
+    else
+      quarter_inch = 6.35 # Images should go outside of the margins a bit
+      max_width = max_usable_width + (2*quarter_inch)
+      # account for the title being 2 or 3 lines long
+      max_height = max_usable_height - HC_LINE_HEIGHT - (GetY()-@margin[:top])
+      if !extra_page.text.empty?
+        max_height = max_height/2 + 10
+      end
+      SetX(GetX()-quarter_inch)
+      show_centered_image(extra_page.pdf_photo(mode), max_width, max_height)
+      Ln(HC_LINE_HEIGHT)
+      SetFont('Times','',11)
+      write_text(extra_page.text, false, HC_LINE_HEIGHT, false)
+    end
+
+  end
+  
+  # Adds the back cover to the PDF
+  def add_back_cover(cookbook)
+    new_page(true, false)
+    SetY(190)
+    max_height=19
+    show_centered_image(cookbook.template.back_cover_image, max_usable_width, max_height)
+  end
+    
+  # Adds the book index to the PDF
+  def add_index(cookbook, page_numbers=true)
+    template = cookbook.template
+    
+    # Calculate the page numbers
+    page_number = 6
+    index = {:section => {}, :recipe => {}, :extra_page => {}}
+    cookbook.sections.each do |section|
+      new_section = Section.find(section.id)
+      page_number = page_number.ceil
+      if new_section.has_children?
+        # Section pages always start on the right page
+        if page_number % 2 == 0
+          page_number+=1 
+        else
+          page_number+=0
+        end
+        index[:section].merge!({new_section.id => page_number})
+        
+        new_section.recipes.each do |recipe|
+          page_number+=recipe.pages
+          index[:recipe].merge!({recipe.id => page_number.ceil})
+        end
+        page_number = page_number.ceil
+        
+        page_number += 1 if new_section.extra_pages
+        new_section.extra_pages.each do |extra_page|   
+          index[:extra_page].merge!({extra_page.id => page_number.ceil})
+          page_number+=extra_page.pages
+        end
+      end
+    end
+    new_page(true, page_numbers)
+    SetFont(template.book_font, template.headers_font_style, template.headers_font_size.to_i)
+    write_text('Index', false, HC_LINE_HEIGHT, false)
+    
+    cookbook.sections.sort{|v1,v2| v1.name <=> v2.name}.each do |section|
+      new_section = Section.find(section.id)
+      if new_section.has_children?
+        Ln()
+        SetFont('Times', 'B', 9)
+        write_text(new_section.name, false, HC_LINE_HEIGHT, false)
+        Line(GetX()+GetStringWidth(new_section.name)+2, GetY()-1, max_usable_width-GetStringWidth(index[:section][new_section.id].to_s), GetY()-1)
+        SetXY(max_usable_width-GetStringWidth(index[:section][new_section.id].to_s), GetY()-HC_LINE_HEIGHT)
+        write_text(index[:section][new_section.id].to_s, false, HC_LINE_HEIGHT, false)
+        SetFont('Times', '', 9)
+        
+        # Collect all the recipes and extra_pages that are also recipes
+        entries = []
+        entries << new_section.recipes.collect{ |recipe| recipe }
+        entries << new_section.extra_pages.select{ |extra_page| extra_page.index_as_recipe? }
+        entries = entries.flatten
+        
+        entries.sort{|v1,v2| v1.name <=> v2.name}.each do |entry|
+          write_text("#{entry.name},  #{index[entry.class.to_s.underscore.to_sym][entry.id]}", false, HC_LINE_HEIGHT*0.8, false)
+        end
+        
+        extra_pages_not_indexed = new_section.extra_pages.select{|extra_page| !extra_page.index_as_recipe?}
+        if !extra_pages_not_indexed.empty?
+          Ln() if !entries.empty?
+          extra_pages_not_indexed.sort{|v1,v2| v1.name <=> v2.name}.each do |extra_page|
+            write_text("#{extra_page.name},  #{index[:extra_page][extra_page.id]}", false, HC_LINE_HEIGHT*0.8, false)
+          end
+        end
+      end
+    end
+  end
+    
+    
+  # ------------------------------------------------- ----------------- Length calculations
+    
+  # Returns the number of pages on the cookbook
+  def self.get_book_length(cookbook)
+    # Front cover, inside cover, dedication and TOC
+    page_number = 8
+    cookbook.sections.each do |section|
+      new_section = Section.find(section.id)
+      
+      if new_section.has_children?
+        # Section pages always start on the right page
+        if page_number % 2 == 0
+          page_number+=1 
+        else
+          page_number+=2
+        end
+        # Have to add all the recipes up for the section and then round up to
+        # account for half page recipes and the extra 1/2 page empty at the end
+        # if there's an odd number of them
+        section_pages = 0
+        new_section.recipes.each {|recipe| section_pages+=recipe.pages}
+        page_number += section_pages.ceil
+      
+        section_pages = 0
+        new_section.extra_pages.each {|extra_page| section_pages+=extra_page.pages}
+        page_number += section_pages.ceil
+      end
+    end
+    
+    if cookbook.show_index
+      page_number += 1 if page_number % 2 == 0
+      page_number += get_index_length(cookbook)
+    end
+    
+    # The back cover page always end on the left page
+    if page_number % 2 == 0
+      page_number += 3 
+    else
+      page_number += 2
+    end
+    
+    # The back cover
+    page_number += 1
+    return page_number.to_i
+  end
+
+  # Returns the number of color pages in a cookbook
+  def self.get_book_color_pages(cookbook)
+    # The cover page and the back cover don't count
+    color_pages = 0 
+
+    if cookbook.template.template_type==8
+      # The inner cover color count depends on the inner cover image settings on template 8
+      color_pages += 1 if cookbook.user_inner_cover_image? && !cookbook.inner_cover_image_grayscale?
+    else
+      # The inner cover is color if the cookbook grayscale is set to color
+      color_pages += 1 unless cookbook.grayscale?
+    end
+  
+    # The TOC page is color if the cookbook grayscale is set to color, except for template 8 which is B&W text only
+    color_pages += 1 if !cookbook.grayscale? && cookbook.template.template_type!=8
+          
+    if cookbook.template.template_type==8
+      # The introduction page is color if the image on it is color
+      color_pages += 1 if cookbook.intro_image? && !cookbook.intro_image_grayscale?
+    else
+      # THe introduction page is color if the overall setting is for color, or the image on it is in color
+      color_pages += 1 if !cookbook.grayscale? || (cookbook.intro_image? && !cookbook.intro_image_grayscale?)
+    end
+
+    cookbook.sections.each do |section|
+      new_section = Section.find(section.id)
+      
+      if new_section.has_children?
+        # The section page
+        color_pages += 1 unless cookbook.grayscale?
+      
+        # The photos on the recipes
+        new_section.recipes.each do |recipe|
+          color_pages += 1 if recipe.photo? && !recipe.grayscale?
+        end
+      
+        # The photos on the extra_pages
+        new_section.extra_pages.each do |extra_page|
+          color_pages += 1 if extra_page.photo? && !extra_page.grayscale?
+        end
+      end
+    end
+    return color_pages.to_i
+  end
+
+  # Returns the number of pages on the recipe
+  def self.get_recipe_length(recipe)
+    pdf = self.new
+    pdf.add_recipe(recipe, false, true)
+
+    return {:page => pdf.PageNo, :y => pdf.GetY()}
+  end
+
+  # Returns the number of pages on the recipe
+  def self.get_story_length(recipe)    
+    pdf = self.new
+    pdf.new_page(false, false)
+    pdf.add_recipe_story(recipe)
+    return {:page => pdf.PageNo, :y => pdf.GetY()}
+  end
+  
+  # Returns the number of pages on the introduction/dedication
+  def self.get_introduction_length(cookbook)
+    
+    # to prevent mangling of the actual object
+    cookbook = cookbook.clone
+    
+    pdf = self.new
+    pdf.add_introduction(cookbook)
+    return {:page => pdf.PageNo, :y => pdf.GetY()}
+  end
+
+  # Returns the number of pages on the introduction/dedication
+  def self.get_extra_page_length(extra_page)
+    pdf = self.new
+    pdf.add_extra_page(extra_page)
+    return {:page => pdf.PageNo, :y => pdf.GetY()}
+  end
+
+  # Returns the number of pages on the index
+  def self.get_index_length(cookbook)
+    pdf = self.new
+    pdf.add_index(cookbook)
+
+    return pdf.PageNo.to_i
+  end
+  
+  # -------------------------------------------------------------------- Text cleaning functions- 
+  
+  # def clean_text(text)
+  #   replace_map!(text, SUBSTITUTIONS, REPLACEMENT)
+  #   # replace_word_characters!(text)
+  #   Iconv.new('iso-8859-1', 'utf-8').iconv(text)
+  # rescue
+  #     replace_map!(text, SUBSTITUTIONS, REPLACEMENT)
+  #     # replace_word_characters!(text)
+  #   begin
+  #     Iconv.new('iso-8859-1', 'utf-8').iconv(text)
+  #     text
+  #   rescue Iconv::IllegalSequence => error
+  #     unique_message_logger("#{error}\n--String: #{text}", 'iconv-errors')
+  #     text
+  #   end
+  # end
+  def clean_text(text)
+    replace_map!(text, SUBSTITUTIONS, REPLACEMENT)
+    text.encode('iso-8859-1')
+  end
+
+
+  SUBSTITUTIONS = {
+    "\\"            => "\\\\\\",
+    "\342\200\234"  => '"',
+    "\342\200\235"  => '"',
+    "\342\200\236"  => '"',
+    "\342\200\246"  => "...",
+    "\342\200\232"  => ",",
+    "\313\206"      => "^",
+    "\342\200\230"  => "'",
+    "\342\200\231"  => "'",
+    "\342\200\242"  => '&bull;',
+    "\342\200\223"  => "-",
+    "\342\200\224"  => "-",
+    "\313\234"      => "~",
+    "\342\227\246"  => "∫",   # Degree symbol
+    "\357\202\260"  => "∫",   # Degree symbol
+    "\342\227\217"  => "∫",   # Degree symbol
+    "\313\232"      => "∫",   # Degree symbol
+    "\342\205\223"  => "1/3", # 1/3 symbol
+    "\342\205\224"  => "2/3", # 2/3 symbol
+    "\342\205\233"  => "1/8", # 1/8 symbol
+    "\302\275"      => "1/2", # 1/2 symbol
+    "\313\235"      => '"',   # inch symbol
+    "\342\204\242"  => "",    # TM symbol
+    "\342\201\204"  => "/",   # weird box symbol
+    "\305\223"      => "oe",  # french lowercase oe symbol
+    "\305\222"      => "OE",  # french uppercase oe symbol
+    "\305\270"      => "Y",   # french y umlaut oe symbol
+    "\342\202\254"  => "E",   # euro symbol
+    "\306\222"      => "f",   # curvy f É symbol
+    "½"             => "1/2", 
+    "¼"             => "1/4", 
+    "¾"             => "3/4"
+  }
+  
+  REPLACEMENT = Regexp.new(SUBSTITUTIONS.keys.collect{ |subst| Regexp.escape(subst) }.join('|'))
+
+  def replace_map!(string, substitutions, regexp)
+   string.gsub!(regexp) do |s|
+     substitutions[s]
+   end
+  end
+
+end

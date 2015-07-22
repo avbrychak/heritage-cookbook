@@ -1,0 +1,40 @@
+@import "config";
+
+#contributors-index {
+  
+  .contributors {
+    width: 100%;
+    margin-bottom: 1em;
+
+    .contributor {
+
+      .name {
+        @include serif-font;
+
+        .email {
+          @include sans-serif-font;
+
+          a {
+            color: $gray;
+            font-size: 0.9em;
+          }
+        }
+      }
+
+      .contributed-recipes {
+        @include serif-font;
+        text-align: right;
+        vertical-align: top;
+      }
+
+      .actions {
+        margin-bottom: 1em;
+        font-size: 0.9em;
+
+        a {
+          color: $blue;
+        }
+      }
+    }
+  }
+}

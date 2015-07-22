@@ -1,0 +1,15 @@
+ActiveLinkHelper
+================
+
+A step closer to managing 'currenty selected links'
+
+sample usage:
+active_link 'Link', '/some_controller/and_action', :self_only
+=> will be marked as active for that page only
+
+active_link 'Link', '/some_controller/and_action', :self
+=> will marked as active for that page and everything that goes after
+=> so /some_controller/and_action/blah will also make it active
+
+active_link 'Link', '/some_link', custom_regex
+=> will be marked as active if regex matches current uri

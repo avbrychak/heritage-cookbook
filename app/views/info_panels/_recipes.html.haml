@@ -1,0 +1,37 @@
+= render "info_panels/here_to_help"
+
+#info-text
+
+  %h4 Add recipes, photos and stories
+
+  %h5 How to add recipes
+  %p.note 
+    Enter all your recipe information into the fields provided.
+    %br
+    Make sure the recipe is in the right section by selecting the section you want the recipe to be in from the drop down menu. This is also how you move recipes from one section to another.
+    %br
+    List your ingredients next. 
+    %br
+    You can list your ingredients in two columns to save space by clicking the 2 column format box.
+    %br
+    Enter the prep instructions. These will go under the ingredients. Make sure not to add extra “returns” as this makes the recipe longer than it really is by adding blank lines.
+    %br
+    Author’s credit is the line that shows who submitted or wrote the recipe. Select the wording you would like from the drop down menu, and add the person’s name. Skip this step if you don’t want a name at all. If you choose “leave blank” but add a name , there will be no wording before the author’s name.
+    %br
+    Enter the number of servings. The program adds the words “Yield:” before your text here. If you leave the field blank, the word Yield will not appear.
+
+  %h5 Add a photo
+  %p.note 
+    Add a photo to your recipe by selecting a jpg from your computer and adding it in, or choosing one from our library. If you would like your photo to be in black and white, check the black and white box. The program will save the photo, so make sure you wait until you get a “saved!” message before moving on. 
+    = modal_tag "(more on adding photos here)", render("recipes/modal_help_photo")
+
+  %p.note 
+    Adding a photo will turn your recipe into a two page entry, with the photo on the left, and recipe on the right.
+    = modal_tag "(more on the page layout here)", render("recipes/modal_help_layout")
+
+  %p.note
+    If you would like your recipe and photo on one page, select the layout that shows recipe and photo on one page. 
+    %br
+    Note: this only works with short recipes as there is less room for text.
+
+  %p.note Click "done" to return to the recipe editing screen.

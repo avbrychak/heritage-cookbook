@@ -1,0 +1,29 @@
+!!! 5
+%html
+  %head
+    %title
+      HeritageCookbook.com
+      = yield :page_title
+    = stylesheet_link_tag :application
+    = stylesheet_link_tag :admin
+    = csrf_meta_tag
+    = javascript_include_tag "http://use.typekit.net/cjz5zyk.js"
+    :javascript
+      try{Typekit.load();}catch(e){}
+    = "<!--[if IE 8]>#{stylesheet_link_tag :ie8}<![endif]-->".html_safe
+    <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  %body
+    = render "layouts/header"
+    #notification
+      .container
+        - if flash[:alert]
+          %p.alert= flash[:alert]
+        - elsif flash[:notice]
+          %p.notice= flash[:notice]
+    .container
+      = render "layouts/admin_menu"
+      #content.full-width
+        %div{id: "#{controller_name}-#{action_name}"}
+          = yield
+
+    = javascript_include_tag :application

@@ -1,0 +1,19 @@
+#form-errors= errors_for @order if @order.errors.any?
+
+= form_for @order, url: (@order.is_reorder?) ? update_reorder_order_path(@order) : order_path(@order) , remote: true do |f|
+  .control-group
+    = f.label :number_of_books, "Number of Books"
+    = f.text_field :number_of_books
+  .control-group
+    = f.label :ship_country, "Ship to Country"
+    = f.select :ship_country, ["Canada", "United States", "Other"]
+  .control-group
+    = f.label :ship_state, "State/Province"
+    = f.select :ship_state, Order::states_reverse
+  .control-group
+    = f.label :ship_zip, "ZIP/Postal Code"
+    = f.text_field :ship_zip
+  .control-group
+    .align-on-labels
+    = f.submit "Calculate", class: "blue calculate-order-price"
+    .loader= image_tag "loader.gif"

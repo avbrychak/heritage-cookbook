@@ -1,0 +1,19 @@
+plastic_coil:
+  id: 1
+  name: "Plastic Coil"
+  max_number_of_pages: 400
+
+wiro:
+  id: 2
+  name: "Wiro"
+  max_number_of_pages: 150
+
+soft:
+  id: 3
+  name: "Soft"
+  max_number_of_pages: 400
+
+hard:
+  id: 4
+  name: "Hard"
+  max_number_of_pages: 400

@@ -1,0 +1,9 @@
+family_landscape_tagging_1:
+  tag: family
+  taggable_id: 1
+  taggable_type: LibImage
+
+family_portrait_tagging_1:
+  tag: family
+  taggable_id: 2
+  taggable_type: LibImage

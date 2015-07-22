@@ -1,0 +1,77 @@
+<%= content_for :headline, "Your cookbook has been re-ordered" %>
+
+<h2>Dear <%= @user_name %>,</h2>
+
+<p>Congratulations on your bestseller!</p>
+
+<p>Your reprint file has just been sent to the printer and so it won't be long now. Hume Imaging will print your cookbook in 10-15 business days and then sent it out to you via FedEx Ground.</p>
+
+<p>The following information is important - Please keep a copy of it. Print it out and keep it safely.</p>
+
+<h2>Reorder Receipt</h2>
+
+<p>This is to confirm the information just sent to the printer.</p>
+
+<table>
+  <caption>Reorder Details:</caption>
+  <tr>
+    <th>Order Number:</th>
+    <td>#<%= @order.id %></td>
+  </tr>
+  <tr>
+    <th>Number of Books:</th>
+    <td><%= @order.number_of_books %></td>
+  </tr>
+  <tr>
+    <th>Printing Cost:</th>
+    <td>$<%= @order.order_printing_cost %></td>
+  </tr>
+  <tr>
+    <th>Shipping Cost:</th>
+    <td><%= (@order.order_shipping_cost) ? "$#{@order.order_shipping_cost}" : "Unknown" %></td>
+  </tr>
+  <tr>
+    <th>Total Charged:</th>
+    <td>$<%= @charged %></td>
+  </tr>
+</table>
+
+<p>
+  Please bill:
+  <br/><br/>
+  <%= @order.bill_first_name %> <%= @order.bill_last_name %>
+  <br/>
+  <%= @order.bill_address %>
+  <br/>
+  <%= @order.bill_address2 %>
+  <br/>
+  <%= @order.bill_city %> <%= @order.bill_state %>,
+  <br/>
+  <%= @order.bill_country %> <%= @order.bill_zip %>
+  <br/>
+  <%= @order.bill_phone %>
+  <br/>
+  <%= @order.bill_email %>
+</p>
+
+<p>
+  Please ship the books to:
+  <br/><br/>
+  <%= @order.ship_first_name %> <%= @order.ship_last_name %>
+  <br/>
+  <%= @order.ship_address %>
+  <br/>
+  <%= @order.ship_address2 %>
+  <br/>
+  <%= @order.ship_city %> <%= @order.ship_state %>
+  <br/>
+  <%= @order.ship_country %> <%= @order.ship_zip %>
+  <br/>
+  <%= @order.ship_phone %>
+  <br/>
+  <%= @order.ship_email %>
+</p>
+
+
+Thanks,
+Virginie

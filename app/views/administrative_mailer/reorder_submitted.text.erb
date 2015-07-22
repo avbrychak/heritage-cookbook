@@ -1,0 +1,62 @@
+Hello,
+
+This is just an automated note to let you know that a cookbook has been re-ordered and paid for with Beanstream.
+This re-order is #<%= @order.id %> 
+It is a reprint of the original order (#<%= @order.reorder_id %>).
+
+Since this cookbook has already been generated as a PDF once, the PDF will not be generated again. 
+Instead an email has been sent to Hume specifying how many books should be re-printed in this re-order.
+
+The details are as follows:
+
+------------------
+Order Details:
+------------------
+Order ID: <%= @order.id %>
+Re-order of the order ID: <%= @order.reorder_id %>
+Cookbook ID: <%= @order.cookbook_id %>
+Book name: <%= @order.cookbook_title || @order.cookbook.title %>
+
+Binding: <%= @order.book_binding %>
+Number of books: <%=@order.number_of_books %>
+Number of pages: <%= @order.num_pages %>
+--Cover pages (front and back): 2
+--Inside Color pages: <%= @order.order_color_pages %>
+--Black and White pages: <%=@order.order_bw_pages%>
+
+Printing Price: <%= @order.order_printing_cost ? ("$%.2f" % @order.order_printing_cost) : 'Not Charged' %>
+Shipping Price: <%= @order.order_shipping_cost ? ("$%.2f" % @order.order_shipping_cost) : 'Not Charged' %>
+Total Price: <%= "$%.2f" % @order.order_total_cost %>
+Paid on: <%=@order.paid_on %>
+Beanstream Payment: <%= "$%.2f" % @order.beanstream_cost %>
+Customer Notes: <%=@order.notes %>
+Expected Delivery: <%=@order.delivery_time%>
+
+------------------
+Billing Information
+------------------
+Name: <%=@order.bill_first_name + ' ' + @order.bill_last_name %>
+Address: 
+  <%=@order.bill_address %> 
+  <%=@order.bill_address2 %>
+  <%=@order.bill_city %>, <%=@order.bill_state %>, <%=@order.bill_zip %>
+  <%=@order.bill_country %>
+Phone: <%=@order.bill_phone %>
+Email: <%=@order.bill_email %>
+
+
+------------------
+Shipping Information
+------------------
+Name: <%=@order.ship_first_name %> <%=@order.ship_last_name %>
+Address: 
+  <%=@order.ship_address %> 
+  <%=@order.ship_address2 %>
+  <%=@order.ship_city %>, <%=@order.ship_state %> <%=@order.ship_zip %>
+  <%=@order.ship_country %>
+Phone: <%=@order.ship_phone %>
+Email: <%=@order.ship_email %>
+
+
+Your site,
+http://www.heritagecookbook.com

@@ -1,0 +1,30 @@
+%hr    
+  - if @order.large_order?
+    %p= "Please request a price quote for pricing on orders of #{Order::MAX_NUMBER_OF_BOOKS} books or more."
+    %p.note= "When clicking on the 'Request a price quote', an email will be sent to our printing service asking for a price for your command:"
+    %table.order
+      %tr
+        %th Name:
+        %td= current_user.name
+      %tr
+        %th Number of books:
+        %td= "#{@order.number_of_books} books"
+      - if @order.order_color_pages && @order.order_bw_pages
+        %tr
+          %th Color pages:
+          %td= "#{@order.order_color_pages} pages"
+        %tr
+          %th Black-and-White pages:
+          %td= "#{@order.order_bw_pages} pages"
+      %tr
+        %th Shipping Zip/Postal code:
+        %td= @order.ship_zip
+    = link_to "Request a custom quote", ask_price_quote_order_path(@order), class: "button orange"
+  - elsif @order.ship_country == 'Other'
+    %p 
+      Please contact us regarding International orders - 
+      = mail_to CONTACT_EMAIL
+  - elsif @order.total_cost
+    %h3#order-cost= "Your re-order price is $#{@order.total_cost}"
+    = render "reorder_cookbook_price_informations"
+    #place-this-order-button= link_to "Place this order", edit_customer_details_order_path(@order), class: "button orange"

@@ -1,0 +1,10 @@
+%ol.steps#design-steps
+  %li{class: classes_for_design_step(:pick_a_design)}
+    = link_to "1. Pick a Design", templates_path
+    %span.checkmark ✔
+  %li{class: classes_for_design_step(:personalize_design)}
+    = link_to "2. Personalize Design", edit_cookbook_path(current_cookbook)
+    %span.checkmark ✔
+  %li{class: classes_for_design_step(:introduction)}
+    = link_to "3. Introduction or Dedication", edit_introduction_cookbook_path(current_cookbook)
+    %span.checkmark ✔

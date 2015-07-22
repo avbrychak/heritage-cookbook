@@ -1,0 +1,22 @@
+// Start the loader
+$('.loader').fadeIn();
+
+// Ask for preview status every 5 seconds
+var previewStatusInterval = window.setInterval('getPreviewStatus()', 2000);
+
+// Ajax call to get preview status.
+// On success (preview is ready to be downloaded), 
+// stop the loader, stop the ajax calls and start the document download.
+var getPreviewStatus = function(){
+  $.ajax({
+    url: "/previews/status", 
+    dataType: "script",
+    success: function(){
+      window.clearInterval(previewStatusInterval);
+      $('.loader').fadeOut(100, function(){
+        window.location = '/previews/download';
+      });
+    }
+  });
+}
+getPreviewStatus();

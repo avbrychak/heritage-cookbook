@@ -1,0 +1,17 @@
+You've been invited to contribute to a Heritage cookbook
+--------------------------------------------------------
+
+Dear <%= @user.name %>,
+
+<%= @inviter.name %> has invited you to join in the fun of creating a cookbook at HeritageCookbook.com. 
+
+<%- if @message && !@message.empty? %>
+<%= @inviter.first_name %> wrote this for you:
+
+<%= @message %>
+<%- end %>
+
+Since you already have an account on HeritageCookbook.com, you simply need to log in and you will see their cookbook at the bottom of the bookshelf page. You can login at: <%= @login_url %>
+
+Have Fun!
+Virginie

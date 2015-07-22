@@ -1,0 +1,26 @@
+--- 
+- !ruby/object:Textblock 
+  attributes: 
+    name: email_paid_account_expiry_notice_1
+    description: Email / Email / Paid Account Expiry Notice 1 day
+    text_html: |-
+      <h1>Dear (=user_name=)</h1>
+      <p>You have 1 day before your account expires.</p>
+    
+    text: |-
+      h1. Dear (=user_name=)
+      
+      You have 1 day before your account expires
+
+- !ruby/object:Textblock
+  attributes:
+    name: email_paid_account_expiry_notice_7
+    description: Email / Email / Paid Account Expiry Notice 7 days
+    text_html: |-
+      <h1>Dear (=user_name=)</h1>
+      <p>You have 7 days before your account expires.</p>
+    
+    text: |-
+      h1. Dear (=user_name=)
+      
+      You have 7 days before your account expires

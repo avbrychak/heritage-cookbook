@@ -1,0 +1,38 @@
+# General
+book_font: "Freesketch"
+book_color: "474445"
+
+# Cover
+cover_title_y: 5.28
+cover_text_padding_right: 0
+cover_title_font_size: 48
+cover_title_font_style: ""
+cover_color: "F4F3F1"
+
+has_image: 0
+cover_user_image_y:
+cover_user_image_max_height:
+cover_user_image_max_width:
+
+tag_lines: 1
+max_tag_line_1_length: 16
+max_tag_line_2_length:
+max_tag_line_3_length:
+max_tag_line_4_length:
+
+# Inner cover
+inner_cover_title_y: 5.2593
+inner_cover_font_size: 48
+show_book_title_on_inner_cover: 1
+
+# Sections
+header_color:
+section_header_y: 4.98
+headers_font_size: 38
+headers_font_style: ""
+section_user_image_y:
+section_user_image_max_height:
+section_user_image_max_width:
+
+# Table of content
+toc_header_y: 7.750

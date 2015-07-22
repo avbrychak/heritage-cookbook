@@ -1,0 +1,98 @@
+- content_for :page_title, "Pick your cookbook template"
+- content_for :headline, "Pick your cookbook template"
+- content_for :info_panel, render("info_panels/design_step_1")
+
+= render "layouts/design_steps"
+
+%h3 Select a binding format
+
+= form_for @cookbook do |f|
+  %ul#bindings
+    %li
+      = f.label :book_bindind_id, image_tag("binding_plastic_coil.png"), value: 1
+      %p 
+        Plastic Coil 
+        %br
+        (great value)
+        %br
+        %span.note 400 pages max.
+      = f.radio_button :book_binding_id, 1
+    %li
+      = f.label :book_bindind_id, image_tag("binding_wiro.png"), value: 2
+      %p 
+        Wirebound 
+        %br
+        (tried and true)
+        %br
+        %span.note 150 pages max.
+      = f.radio_button :book_binding_id, 2
+    %li
+      = f.label :book_bindind_id, image_tag("binding_soft.png"), value: 3
+      %p 
+        Soft Cover 
+        %br
+        (paperback binding)
+        %br
+        %span.note 400 pages max.
+      = f.radio_button :book_binding_id, 3
+    %li
+      = f.label :book_bindind_id, image_tag("binding_hard.png"), value: 4
+      %p 
+        Hard Cover 
+        %br
+        (most professional)
+        %br
+        %span.note 400 pages max.
+      = f.radio_button :book_binding_id, 4
+
+%h3 Select a book design
+
+#templates-description
+  - @templates.each do |template|
+    .template{id: "template_#{template.id}", class: (template.id == @current_template_id) ? "selected" : "hidden"}
+      .general
+        .left-part
+          .thumb= image_tag template.thumbnail_image
+        .right-part
+          %h2.name= template.name
+          %p.description
+            = template.description
+          .features
+            %ul
+              - if template.tag_lines > 0
+                %li
+                  .picto.text= "customizable tag line"
+              - if template.has_image? || template.template_type==8
+                %li
+                  .picto.photo= "customizable photo"
+          = link_to "Use this design", select_template_path(template.id), class: "button orange" if template.id != @current_template_id
+      .thumbs
+        .thumb= image_tag template.thumbnail_image(:title)
+        .thumb= image_tag template.thumbnail_image(:toc)
+        .thumb= image_tag template.thumbnail_image(:section)
+      %hr
+  - if @current_template_id == 0
+    .template.selected
+      .general
+        .left-part
+          .thumb= image_tag "template_placeholder.gif"
+        .right-part
+          %h2.name Choose a design
+          %p.note 
+            No design selected for this cookbook yet.
+            %br
+            You can choose a design in the list below.
+
+
+%ul#templates
+  - @templates.each do |template|
+    %li.template
+      .thumb{'data-description' => "template_#{template.id}"}= image_tag(template.thumbnail_image)
+      %p.type.note
+        - if template.tag_lines > 0
+          %span.picto.text
+        - if template.has_image? || template.template_type==8          
+          %span.picto.photo
+        %br
+        = "#{template.position}: #{template.name}"
+

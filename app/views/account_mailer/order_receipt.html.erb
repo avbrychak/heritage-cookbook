@@ -1,0 +1,127 @@
+<%= content_for :headline, "Your HeritageCookbook has been placed" %>
+
+<h2>Dear <%= @user_name %>,</h2>
+			
+<p>Congratulations! You have done it - you have created your cookbook!</p>
+
+<p>Your file has just been sent to the printer and so it won't be long now. Hume Imaging will print your cookbook in 10-15 business days. The charge on your credit card will appear under Hume Imaging. The order will be sent it out to you via FedEx Ground.</p>
+
+<p>The following information is important - Please keep a copy of it. Print it out and keep it safely.</p>
+
+<h2>Reordering More Cookbooks</h2>
+
+<p>You can reorder at any time – it's easy.</p>
+
+<p>
+  If your membership is still live:
+  <ol>
+    <li> 
+      If you don't need to make any changes –
+      <br/>
+      Just logon to order more books the way you did initially, and re-order your books from the "Books you've ordered" list. 
+    </li>
+    <li> 
+      If you need to make a change to your book –
+      <br/>
+      Opps – you forget to include Aunt Sally's chocolate chip cookie recipe in the first books? Just add her recipe and place your order.
+    </li>
+  </ol>
+</p>
+   
+<p>
+  If your membership has lapsed:
+  <ol>    
+    <li> 
+      If you don't need to make any changes –
+      <br/>
+      Just logon to your account. You go to the bottom of the page and click on the book that you wish to reorder. 
+    </li>
+    <li>   
+      If you need to make a change to your book –
+      <br/>
+      Oh, oh – you forgot Uncle Tom's special brew and he's pretty upset.
+      In this case you will need to reactivate your membership so that you can modify your book file to include his recipe. 
+      <br/>
+      Then you place your order.
+    </li>
+  </ul>
+</p>
+
+<p>
+  PS
+  <br/>
+  The minimum order is still just four books.
+  <br/>
+  Printing takes 2-3 weeks plus about a week for shipping.
+</p>
+
+
+<h2>Order Receipt</h2>
+
+<p>This is to confirm the information just sent to the printer.</p>
+
+<table>
+  <caption>Order Details:</caption>
+  <tr>
+    <th>Order Number:</th>
+    <td>#<%= @order.id %></td>
+  </tr>
+  <tr>
+    <th>Number of Books:</th>
+    <td><%= @order.number_of_books %></td>
+  </tr>
+  <tr>
+    <th>Printing Cost:</th>
+    <td>$<%= @order.order_printing_cost %></td>
+  </tr>
+  <tr>
+    <th>Shipping Cost:</th>
+    <td><%= (@order.order_shipping_cost) ? "$#{@order.order_shipping_cost}" : "Unknown" %></td>
+  </tr>
+  <tr>
+    <th>Total Charged:</th>
+    <td>$<%= @charged %></td>
+  </tr>
+</table>
+
+<p>
+  Please bill:
+  <br/><br/>
+  <%= @order.bill_first_name %> <%= @order.bill_last_name %>
+  <br/>
+  <%= @order.bill_address %>
+  <br/>
+  <%= @order.bill_address2 %>
+  <br/>
+  <%= @order.bill_city %> <%= @order.bill_state %>,
+  <br/>
+  <%= @order.bill_country %> <%= @order.bill_zip %>
+  <br/>
+  <%= @order.bill_phone %>
+  <br/>
+  <%= @order.bill_email %>
+</p>
+
+<p>
+  Please ship the books to:
+  <br/><br/>
+  <%= @order.ship_first_name %> <%= @order.ship_last_name %>
+  <br/>
+  <%= @order.ship_address %>
+  <br/>
+  <%= @order.ship_address2 %>
+  <br/>
+  <%= @order.ship_city %> <%= @order.ship_state %>
+  <br/>
+  <%= @order.ship_country %> <%= @order.ship_zip %>
+  <br/>
+  <%= @order.ship_phone %>
+  <br/>
+  <%= @order.ship_email %>
+</p>
+
+<p>LASTLY -- Please email me and tell us what you think about the books when they arrive. We love to hear from you!!!</p>
+
+<p>I hope that the books are a wonderful success and I look forward to helping you with your next volume. :)</p>
+
+<p>Virginie</p>
