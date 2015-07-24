@@ -17,7 +17,6 @@ class CookbookPreviewWorker
     @book.document.to_file rendering_filename
     File.rename rendering_filename, @filename
   end
-  handle_asynchronously :section
 
   # Preview a recipe.
   def recipe(recipe_id)
@@ -29,7 +28,6 @@ class CookbookPreviewWorker
     @book.document.to_file rendering_filename
     File.rename rendering_filename, @filename
   end
-  handle_asynchronously :recipe
 
   # Preview an extra page.
   def extra_page(extra_page_id)
@@ -41,7 +39,6 @@ class CookbookPreviewWorker
     @book.document.to_file rendering_filename
     File.rename rendering_filename, @filename
   end
-  handle_asynchronously :extra_page
 
   # Preview a cookbook.
   def cookbook
@@ -50,7 +47,6 @@ class CookbookPreviewWorker
     cookbook.render_preview rendering_filename
     File.rename rendering_filename, @filename
   end
-  handle_asynchronously :cookbook
 
   # Preview a cookbook cover
   def cover
@@ -61,7 +57,6 @@ class CookbookPreviewWorker
     @book.document.to_file rendering_filename
     File.rename rendering_filename, @filename
   end
-  handle_asynchronously :cover
 
   # Preview the inner cover and the table of content
   def title_and_toc
@@ -74,7 +69,6 @@ class CookbookPreviewWorker
     @book.document.to_file rendering_filename
     File.rename rendering_filename, @filename
   end
-  handle_asynchronously :title_and_toc
 
   # Preview the index page
   def index
@@ -86,7 +80,6 @@ class CookbookPreviewWorker
     @book.document.to_file rendering_filename
     File.rename rendering_filename, @filename
   end
-  handle_asynchronously :index
 
   def introduction
     cookbook = Cookbook.find(@cookbook_id)
@@ -96,6 +89,5 @@ class CookbookPreviewWorker
     @book.document.to_file rendering_filename
     File.rename rendering_filename, @filename
   end
-  handle_asynchronously :introduction
 
 end
